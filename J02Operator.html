@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>J02Operator.html</title>
+
+    <script type="text/javascript">
+        document.write("<h2>산술연산자<h2>");
+        // 곱셈, 나눗셈, 나머지 연산자가 우선순위가 높다
+        document.write("(3%5*2+10/5)="+(3%5*2+10/5));
+        // Java에서는 정수자료형으로 반환되므로 0이 나오지만 JS에서는 0.6이 출력된다.
+        document.write("<br>3/5="+ (3/5));
+
+        document.write("<h2>비교연산자<h2>");
+        // 문자열끼리의 비교연산은 가능하다. 결과는 true
+        document.write("가나다1">'가나다');
+        /*
+        3>9==>false, 0==>false 이므로 아래 결과는
+        true가 된다.
+        */
+        document.write("<br> 3>9==0의 결과:"+(3>9==0));
+
+        // 0이 아니므로 true
+        if(-1){
+            document.write("<br>-1은 true이다");
+        }
+        else{
+            document.write("<br>-1은 false이다"); 
+        }
+
+        //null이므로 false
+        if(null){
+            document.write("<br>null은 true이다");
+        }
+        else{
+            document.write("<br>null은 false이다"); 
+        }
+
+        //결과가 0이므로 false
+        if(10-10){
+            document.write("<br>10-10은 true이다");
+        }
+        else{
+            document.write("<br>10-10은 false이다"); 
+        }
+
+        //false와 null자체의 비교이므로 false
+        if(false==null){
+            document.write("<br>true이다");
+        }
+        else{
+            document.write("<br>false이다"); 
+        }
+
+        //문자열 자체는 null이 아니므로 true
+        if("자바스크립트"){
+            document.write("<br>문자열은 true이다");
+        }
+        else{
+            document.write("<br>문자열은 false이다"); 
+        }
+        /* Javascript에서는 0, null, false일 때 false를 반환하고
+        나머지는 모두 true라고 생각하면 된다.*/
+
+        /*
+        논리연산자의 우선순위 : ! > && > ||
+        */
+        document.write("<h2>논리연산자<h2>");
+        document.write("3>2 || 5<=10 && !(3-4)의 결과: "+
+            3>2 || 5<=10 && !(3-4)); //결과 : true
+
+        document.write("<h2>증감연산자<h2>");
+        var num=10;
+        num++; //증가 : 11
+        document.write("num= "+ ++num); //증가된 후 출력 : 12
+        document.write("<br>num= "+ num++); //출력 후 증가 : 12
+        document.write("<br>num= "+ num); //최종 출력 : 13
+
+        document.write("<h2>복합대입연산자<h2>");
+            document.write("num%=5= "+ (num%=5)); //13%5=3
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
