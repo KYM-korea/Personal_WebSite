@@ -1,6 +1,7 @@
 package common;
 
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
@@ -12,6 +13,16 @@ public class JDBConnect {
 	public Statement stmt;
 	public PreparedStatement psmt;
 	public ResultSet rs;
+	
+	public JDBConnect(String driver, String url, String id, String pwd) {
+		try {
+			Class.forName(driver);
+			con = DriverManager.getConnection(url, id, pwd);
+			System.out.println("연결 성공");
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
 	
 	public void close() {
 		try {
@@ -27,6 +38,16 @@ public class JDBConnect {
 	}
 	
 	public JDBConnect(ServletContext application) {
-		
+		try {
+			String driver = application.getInitParameter("OracleDriver");
+			Class.forName(driver);
+			String url = application.getInitParameter("OracleURL");
+			String id = application.getInitParameter("OracleId");
+			String pwd = application.getInitParameter("OraclePwd");
+			con = DriverManager.getConnection(url, id, pwd);
+			System.out.println("연결 성공");
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
 	}
 }
