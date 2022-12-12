@@ -48,6 +48,18 @@ public class JDBConnect {
 		}
 	}
 	
+	//인수생성자1 : DB연결에 필요한 모든 정보를 매개변수로 받음
+	public JDBConnect(String driver, String url, String id, String pwd) {
+		try {
+			Class.forName(driver);
+			con = DriverManager.getConnection(url, id, pwd);
+			System.out.println("DB 연결 성공(인수 생성자 1)");
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
 	//인수생성자 : application내장객체 사용을 위한 매개변수 선언
 	public JDBConnect(ServletContext application) {
 		/*
