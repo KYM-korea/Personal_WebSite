@@ -15,6 +15,37 @@ public class MemberDAO extends JDBConnect{
 		super(application);
 	}
 	
+<<<<<<< HEAD
+=======
+	//회원가입용
+	public int insertMember(MemberDTO dto) {
+		int result= 0;
+		try {
+			String query = "INSERT INTO member VALUES(?,?,?,?,?,?,?,?,?,?,?)";
+			psmt = con.prepareStatement(query);
+			
+			psmt.setString(1, dto.getId());
+			psmt.setString(2, dto.getPass());
+			psmt.setString(3, dto.getPass_check());
+			psmt.setString(4, dto.getName());
+			psmt.setInt(5, dto.getAge());
+			psmt.setString(6, dto.getSex());
+			psmt.setString(7, dto.getEmali());
+			psmt.setString(8, dto.getPhone());
+			psmt.setString(9, dto.getInterest1());
+			psmt.setString(10, dto.getInterest2());
+			psmt.setString(11, dto.getInterest3());
+			
+			result = psmt.executeUpdate();
+		} 
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+	
+	//로그인용
+>>>>>>> branch 'main' of https://github.com/KYM-korea/Personal_WebSite.git
 	public MemberDTO getMemberDTO(String uid, String upass) {
 		MemberDTO dto = new MemberDTO();
 		String query = "SELECT * FROM member WHERE id=? AND pass=?";

@@ -10,8 +10,8 @@ public class MemberDTO {
 	private String emali;
 	private String phone;
 	private String interest1;
-	private String interest2;
-	private String interest3;
+	private String interest2="";
+	private String interest3="";
 	
 	
 	public String getId() {
