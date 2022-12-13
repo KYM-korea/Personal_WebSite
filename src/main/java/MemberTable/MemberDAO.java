@@ -14,9 +14,6 @@ public class MemberDAO extends JDBConnect{
 	public MemberDAO(ServletContext application) {
 		super(application);
 	}
-	
-<<<<<<< HEAD
-=======
 	//회원가입용
 	public int insertMember(MemberDTO dto) {
 		int result= 0;
@@ -45,7 +42,6 @@ public class MemberDAO extends JDBConnect{
 	}
 	
 	//로그인용
->>>>>>> branch 'main' of https://github.com/KYM-korea/Personal_WebSite.git
 	public MemberDTO getMemberDTO(String uid, String upass) {
 		MemberDTO dto = new MemberDTO();
 		String query = "SELECT * FROM member WHERE id=? AND pass=?";
