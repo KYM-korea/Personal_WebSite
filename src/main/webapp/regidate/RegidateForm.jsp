@@ -8,33 +8,62 @@
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">  
-<!-- <script type="text/javascript">
-function subChoice(){
-    var fn = document.choiceFrm;        
-    var chkNum = 0;
-    for(var i=0 ; i<fn.t1.length ; i++){
-        if(fn.t1[i].checked==true) chkNum++;
-    }        
-    if(chkNum>=3){
-        for(var i=0 ; i<fn.t1.length ; i++){
-            if(fn.t1[i].checked==false){
-                fn.t1[i].disabled = true;
-            }
-        }
-    }
-    else{
-        for(var i=0 ; i<fn.t1.length ; i++){
-            fn.t1[i].disabled = false;
-        }	
-    }
-</script> -->
+<script type="text/javascript">
+function validateForm(form) {
+	if(form.id.value==""){
+		alert("아이디써");
+		form.id.focus();
+		return false;
+	}
+	if(form.pass.value==""){
+		alert("비번써");
+		form.pass.focus();
+		return false;
+	}
+	if(form.pass_check.value==""){
+		alert("비번다시");
+		form.pass_check.focus();
+		return false;
+	}
+	if(form.name.value==""){
+		alert("이름!");
+		form.name.focus();
+		return false;
+	}
+	if(form.age.value==""){
+		alert("나이!");
+		form.age.focus();
+		return false;
+	}
+	if(form.sex.value==""){
+		alert("섹스");
+		form.sex.focus();
+		return false;
+	}
+	if(form.email.value==""){
+		alert("메일!");
+		form.email.focus();
+		return false;
+	}
+	if(form.phone.value==""){
+		alert("전화!");
+		form.phone.focus();
+		return false;
+	}
+	if(form.interest1.value==""){
+		alert("관심!");
+		form.interest1.focus();
+		return false;
+	}
+	
+}
+</script>
 <style>
 	*{font-family: Verdana, Geneva, Tahoma, sans-serif; font-size: 12px;margin: 0px auto;}
 	
 	.c_imp{color : red;}
 	.btn_search{background-color: #3d3d3d; color: #ffffff; width: 70px; height: 23px; padding:1px 0 2px;}
     .btn_search:hover{background-color: #6d6d6d;}
-	
 </style>
 </head>
 <body class="container p-5 my-5 border">
@@ -51,7 +80,7 @@ function subChoice(){
 	
 	<h1>회원가입</h1>
 	
-	<form name="myForm" method="get">
+	<form name="myForm" method="post" action="RegidateProcess.jsp">
 		<table class="table">
 			
 			<tr>
@@ -139,8 +168,8 @@ function subChoice(){
 				<th><span class="c_imp">*</span>전화번호</th>
 				<td>
 					<input type="text" maxlength="3" style="width: 50px"/> - 
-					<input type="text" maxlength="3" style="width: 80px"/> - 
-					<input type="text" maxlength="3" style="width: 80px"/>
+					<input type="text" maxlength="4" style="width: 80px"/> - 
+					<input type="text" maxlength="4" style="width: 80px"/>
 				</td>
 			</tr>
 			<!-- 필수 1개 선택
