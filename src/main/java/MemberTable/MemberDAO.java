@@ -14,6 +14,7 @@ public class MemberDAO extends JDBConnect{
 	public MemberDAO(ServletContext application) {
 		super(application);
 	}
+	
 	public MemberDTO getMemberDTO(String uid, String upass) {
 		MemberDTO dto = new MemberDTO();
 		String query = "SELECT * FROM member WHERE id=? AND pass=?";

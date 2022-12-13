@@ -9,4 +9,5 @@ public class StoreDAO extends JDBConnect {
 	public StoreDAO(ServletContext application) {
 		super(application);
 	}
+	
 }

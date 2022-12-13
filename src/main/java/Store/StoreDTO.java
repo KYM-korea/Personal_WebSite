@@ -1,35 +1,35 @@
 package Store;
 
 public class StoreDTO {
+	//이미지 저장 경로
 	private String imgsrc;
+	//DB에 저장될 이미지 이름
 	private String name;
-	private String R_imgsrc;
-	private String R_name;
+	//실제 이름
+	private String rName;
+	//제품 이름
+	private String title;
+	//제품 구성
 	private String comp;
+	//제품 가격
 	private int price;
 	
 	public StoreDTO() {}
-	public StoreDTO(String name, String imgsrc, String R_imgsrc, String R_name,
+	public StoreDTO(String name, String imgsrc, String rName, String title,
 			String comp, int price) {
 		this.imgsrc=imgsrc;
 		this.name=name;
-		this.R_imgsrc=R_imgsrc;
-		this.R_name=R_name;
+		this.rName=rName;
+		this.title=title;
 		this.comp=comp;
 		this.price=price;
 	}
 	
-	public String getR_imgsrc() {
-		return R_imgsrc;
+	public String gettitle() {
+		return title;
 	}
-	public void setR_imgsrc(String r_imgsrc) {
-		R_imgsrc = r_imgsrc;
-	}
-	public String getR_name() {
-		return R_name;
-	}
-	public void setR_name(String r_name) {
-		R_name = r_name;
+	public void settitle(String title) {
+		this.title = title;
 	}
 	public String getImgsrc() {
 		return imgsrc;
@@ -42,6 +42,12 @@ public class StoreDTO {
 	}
 	public void setName(String name) {
 		this.name = name;
+	}
+	public String getrName() {
+		return rName;
+	}
+	public void setrName(String rName) {
+		this.rName = rName;
 	}
 	public String getComp() {
 		return comp;

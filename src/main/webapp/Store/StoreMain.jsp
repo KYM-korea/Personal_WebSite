@@ -1,6 +1,21 @@
+<%@page import="java.util.HashMap"%>
+<%@page import="java.util.Map"%>
+<%@page import="Store.StoreDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+<%
+request.setAttribute("ImgObj1", new StoreDTO("PopcornM.png","../Image/","1.png",
+		"팝콘 ( M )","팝콘 ( M )", 4000));
+request.setAttribute("ImgObj2", new StoreDTO("PopcornL.png","../Image/","2.png",
+		"팝콘 ( L )","팝콘 ( L )", 7000));
+request.setAttribute("ImgObj3", new StoreDTO("CokeM.png","../Image/","3.png",
+		"탄산음료 ( R )","탄산음료 ( R )", 2000));
+request.setAttribute("ImgObj4", new StoreDTO("CokeL.png","../Image/","1.png",
+		"탄산음료 ( L )","탄산음료 ( L )", 8000));
+request.setAttribute("ImgObj5", new StoreDTO("Combo1.png","../Image/","1.png",
+		"러브콤보","팝콘 (L) + 탄산음료(R) 2", 10000));
+%>
 <html>
 <head>
 <meta charset="UTF-8">
@@ -29,28 +44,90 @@
 			<div id="all" class="tab-pane active">
 				<h2>전체 메뉴</h2>
 				<div class="row">
+					<h3>스낵</h3>
+					<ul class="nav">
 				<%
 					for(int i = 0 ; i < 4 ; i++){
+				%>
+					<li class="nav-item">
+						<a href="#" class="page-link">
+							<jsp:include page="StoreSnack.jsp" />
+						</a>
+					</li>
+				<%
+					}
+				%>
+					</ul>
+				</div>
+				<hr />
+				<div class="row">
+					<h3>기프트카드</h3>
+					<%
+					for(int i = 0 ; i < 4 ; i++){
+						int cnt = ((i+1)%3)+1;
+						String path = "../Image/"+cnt+".png";
+						request.setAttribute("Imgsrc2", path);
+					%>
+					<jsp:include page="StoreGiftCard.jsp" />
+					<%}%>
+				</div>	
+				<hr />
+				<div class="row">
+					<h3>티켓 및 관람권</h3>
+					<%
+					for(int i = 0 ; i < 4 ; i++){
+						int cnt = ((i+2)%3)+1;
+						String path = "../Image/"+cnt+".png";
+						request.setAttribute("Imgsrc3", path);
+					%>
+					<jsp:include page="StoreTicket.jsp" />
+					<%}%>
+				</div>
+			</div>	
+			<div id="Snack" class="tab-pane fade">
+				<h2>스낵류</h2>
+				<div class="row">
+				<%
+					for(int i = 0 ; i < 10 ; i++){
+						int cnt = (i%3)+1;
+						String path = "../Image/"+cnt+".png";
+						request.setAttribute("Imgsrc", path);
 				%>
 					<jsp:include page="StoreSnack.jsp" />
 				<%
 					}
 				%>
 				</div>
-				<jsp:include page="StoreGiftCard.jsp" />
-				<jsp:include page="StoreTicket.jsp" />
-			</div>
-			<div id="Snack" class="tab-pane fade">
-				<h2>스낵류</h2>
-				<jsp:include page="StoreSnack.jsp" />
 			</div>
 			<div id="GiftCard" class="tab-pane fade">
 				<h2>기프트카드</h2>
-				<jsp:include page="StoreGiftCard.jsp" />
+				<div class="row">
+				<%
+					for(int i = 0 ; i < 8 ; i++){
+						int cnt = ((i+1)%3)+1;
+						String path = "../Image/" + cnt + ".png";
+						request.setAttribute("Imgsrc2", path);
+				%>
+					<jsp:include page="StoreGiftCard.jsp" />
+				<%
+					}
+				%>
+				</div>
 			</div>
 			<div id="Ticket" class="tab-pane fade">
 				<h2>관람권</h2>
-				<jsp:include page="StoreTicket.jsp" />
+				<div class="row">
+				<%
+					for(int i = 0 ; i < 4 ; i++){
+						int cnt = ((i+2)%3)+1;
+						String path = "../Image/" + cnt + ".png";
+						request.setAttribute("Imgsrc3", path);
+				%>
+					<jsp:include page="StoreTicket.jsp" />
+				<%
+					}
+				%>
+				</div>
 			</div>
 		</div>
 	</div>
