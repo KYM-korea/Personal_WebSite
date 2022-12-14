@@ -5,16 +5,8 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <%
-request.setAttribute("ImgObj1", new StoreDTO("PopcornM.png","../Image/","1.png",
-		"팝콘 ( M )","팝콘 ( M )", 4000));
-request.setAttribute("ImgObj2", new StoreDTO("PopcornL.png","../Image/","2.png",
-		"팝콘 ( L )","팝콘 ( L )", 7000));
-request.setAttribute("ImgObj3", new StoreDTO("CokeM.png","../Image/","3.png",
-		"탄산음료 ( R )","탄산음료 ( R )", 2000));
-request.setAttribute("ImgObj4", new StoreDTO("CokeL.png","../Image/","1.png",
-		"탄산음료 ( L )","탄산음료 ( L )", 8000));
-request.setAttribute("ImgObj5", new StoreDTO("Combo1.png","../Image/","1.png",
-		"러브콤보","팝콘 (L) + 탄산음료(R) 2", 10000));
+/* request.setAttribute("ImgObj5", new StoreDTO("Combo1.png","../Image/","1.png",
+		"러브콤보","팝콘 (L) + 탄산음료(R) 2", 10000, "snack")); */
 %>
 <html>
 <head>

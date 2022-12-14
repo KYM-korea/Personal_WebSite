@@ -13,23 +13,36 @@ public class StoreDTO {
 	private String comp;
 	//제품 가격
 	private int price;
+	//제품 분류
+	private String field;
+	//제품 추천수
+	private int sug;
+	//제품 등록일
+	private java.sql.Date regidate;
 	
-	public StoreDTO() {}
-	public StoreDTO(String name, String imgsrc, String rName, String title,
-			String comp, int price) {
-		this.imgsrc=imgsrc;
-		this.name=name;
-		this.rName=rName;
-		this.title=title;
-		this.comp=comp;
-		this.price=price;
+	public java.sql.Date getRegidate() {
+		return regidate;
 	}
-	
-	public String gettitle() {
+	public void setRegidate(java.sql.Date regidate) {
+		this.regidate = regidate;
+	}
+	public int getSug() {
+		return sug;
+	}
+	public void setSug(int sug) {
+		this.sug = sug;
+	}
+	public String getTitle() {
 		return title;
 	}
-	public void settitle(String title) {
+	public void setTitle(String title) {
 		this.title = title;
+	}
+	public String getField() {
+		return field;
+	}
+	public void setField(String field) {
+		this.field = field;
 	}
 	public String getImgsrc() {
 		return imgsrc;
