@@ -1,6 +1,22 @@
+<%@page import="java.util.List"%>
+<%@page import="Store.StoreDAO"%>
+<%@page import="java.util.HashMap"%>
+<%@page import="java.util.Map"%>
+<%@page import="Store.StoreDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+<%
+StoreDAO dao = new StoreDAO(application);
+
+List<StoreDTO> sList = dao.selectList("snack");
+List<StoreDTO> gList = dao.selectList("gift");
+List<StoreDTO> tList = dao.selectList("ticket");
+
+dao.close();
+/* request.setAttribute("ImgObj5", new StoreDTO("Combo1.png","../Image/","1.png",
+		"러브콤보","팝콘 (L) + 탄산음료(R) 2", 10000, "snack")); */
+%>
 <html>
 <head>
 <meta charset="UTF-8">
@@ -29,28 +45,103 @@
 			<div id="all" class="tab-pane active">
 				<h2>전체 메뉴</h2>
 				<div class="row">
+					<h3>스낵</h3>
+					<ul class="nav">
 				<%
-					for(int i = 0 ; i < 4 ; i++){
+					int cnt = 0;
+					for(StoreDTO sd : sList){
+						if(cnt == 4){
+							break;
+						}else{
+							request.setAttribute("snackObj", sd);
+				%>
+					<li class="nav-item">
+						<a href="#" class="page-link">
+							<jsp:include page="StoreSnack.jsp" />
+						</a>
+					</li>
+				<%
+						}
+						cnt++;
+					}
+				%>
+					</ul>
+				</div>
+				<hr />
+				<div class="row">
+					<h3>기프트카드</h3>
+					<%
+					cnt=0;
+					for(StoreDTO gd : gList){
+						if(cnt==4){
+							break;
+						}else{
+						request.setAttribute("giftCardObj", gd);
+					%>
+					<jsp:include page="StoreGiftCard.jsp" />
+					<%
+						}
+						cnt++;
+					}
+					%>
+				</div>	
+				<hr />
+				<div class="row">
+					<h3>티켓 및 관람권</h3>
+					<%
+					cnt = 0;
+					for(StoreDTO td : tList){
+						if(cnt==4){
+							break;
+						}else{
+						request.setAttribute("ticketObj", td);
+					%>
+					<jsp:include page="StoreTicket.jsp" />
+					<%
+						}
+						cnt++;
+					}
+					%>
+				</div>
+			</div>	
+			<div id="Snack" class="tab-pane fade">
+				<h2>스낵류</h2>
+				<div class="row">
+				<%
+					for(StoreDTO sd : sList){
+						request.setAttribute("snackObj", sd);
 				%>
 					<jsp:include page="StoreSnack.jsp" />
 				<%
 					}
 				%>
 				</div>
-				<jsp:include page="StoreGiftCard.jsp" />
-				<jsp:include page="StoreTicket.jsp" />
-			</div>
-			<div id="Snack" class="tab-pane fade">
-				<h2>스낵류</h2>
-				<jsp:include page="StoreSnack.jsp" />
 			</div>
 			<div id="GiftCard" class="tab-pane fade">
 				<h2>기프트카드</h2>
-				<jsp:include page="StoreGiftCard.jsp" />
+				<div class="row">
+				<%
+					for(StoreDTO gd : gList){
+						request.setAttribute("giftCardObj", gd);
+				%>
+					<jsp:include page="StoreGiftCard.jsp" />
+				<%
+					}
+				%>
+				</div>
 			</div>
 			<div id="Ticket" class="tab-pane fade">
 				<h2>관람권</h2>
-				<jsp:include page="StoreTicket.jsp" />
+				<div class="row">
+				<%
+					for(StoreDTO td : tList){
+						request.setAttribute("ticketObj", td);
+				%>
+					<jsp:include page="StoreTicket.jsp" />
+				<%
+					}
+				%>
+				</div>
 			</div>
 		</div>
 	</div>

@@ -14,7 +14,6 @@ public class MemberDAO extends JDBConnect{
 	public MemberDAO(ServletContext application) {
 		super(application);
 	}
-	
 	//회원가입용
 	public int insertMember(MemberDTO dto) {
 		

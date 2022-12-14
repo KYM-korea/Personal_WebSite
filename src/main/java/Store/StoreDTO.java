@@ -1,35 +1,48 @@
 package Store;
 
 public class StoreDTO {
+	//실제 이름
+	private String rName;
+	//이미지 저장 경로
 	private String imgsrc;
-	private String name;
-	private String R_imgsrc;
-	private String R_name;
-	private String comp;
+	//DB에 저장될 이미지 이름
+	private String dName;
+	//제품 이름
+	private String title;
+	//제품 구성
+	private String cop;
+	//제품 가격
 	private int price;
+	//제품 분류
+	private String field;
+	//제품 추천수 카운트
+	private int sug;
+	//제품 등록일
+	private java.sql.Date regidate;
 	
-	public StoreDTO() {}
-	public StoreDTO(String name, String imgsrc, String R_imgsrc, String R_name,
-			String comp, int price) {
-		this.imgsrc=imgsrc;
-		this.name=name;
-		this.R_imgsrc=R_imgsrc;
-		this.R_name=R_name;
-		this.comp=comp;
-		this.price=price;
+	public java.sql.Date getRegidate() {
+		return regidate;
 	}
-	
-	public String getR_imgsrc() {
-		return R_imgsrc;
+	public void setRegidate(java.sql.Date regidate) {
+		this.regidate = regidate;
 	}
-	public void setR_imgsrc(String r_imgsrc) {
-		R_imgsrc = r_imgsrc;
+	public int getSug() {
+		return sug;
 	}
-	public String getR_name() {
-		return R_name;
+	public void setSug(int sug) {
+		this.sug = sug;
 	}
-	public void setR_name(String r_name) {
-		R_name = r_name;
+	public String getTitle() {
+		return title;
+	}
+	public void setTitle(String title) {
+		this.title = title;
+	}
+	public String getField() {
+		return field;
+	}
+	public void setField(String field) {
+		this.field = field;
 	}
 	public String getImgsrc() {
 		return imgsrc;
@@ -37,17 +50,23 @@ public class StoreDTO {
 	public void setImgsrc(String imgsrc) {
 		this.imgsrc = imgsrc;
 	}
-	public String getName() {
-		return name;
+	public String getdName() {
+		return dName;
 	}
-	public void setName(String name) {
-		this.name = name;
+	public void setdName(String dName) {
+		this.dName = dName;
 	}
-	public String getComp() {
-		return comp;
+	public String getrName() {
+		return rName;
 	}
-	public void setComp(String comp) {
-		this.comp = comp;
+	public void setrName(String rName) {
+		this.rName = rName;
+	}
+	public String getCop() {
+		return cop;
+	}
+	public void setCop(String cop) {
+		this.cop = cop;
 	}
 	public int getPrice() {
 		return price;
