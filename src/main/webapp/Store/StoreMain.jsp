@@ -1,3 +1,5 @@
+<%@page import="java.util.List"%>
+<%@page import="Store.StoreDAO"%>
 <%@page import="java.util.HashMap"%>
 <%@page import="java.util.Map"%>
 <%@page import="Store.StoreDTO"%>
@@ -5,6 +7,13 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <%
+StoreDAO dao = new StoreDAO(application);
+
+List<StoreDTO> sList = dao.selectList("snack");
+List<StoreDTO> gList = dao.selectList("gift");
+List<StoreDTO> tList = dao.selectList("ticket");
+
+dao.close();
 /* request.setAttribute("ImgObj5", new StoreDTO("Combo1.png","../Image/","1.png",
 		"러브콤보","팝콘 (L) + 탄산음료(R) 2", 10000, "snack")); */
 %>
@@ -39,7 +48,12 @@
 					<h3>스낵</h3>
 					<ul class="nav">
 				<%
-					for(int i = 0 ; i < 4 ; i++){
+					int cnt = 0;
+					for(StoreDTO sd : sList){
+						if(cnt == 4){
+							break;
+						}else{
+							request.setAttribute("snackObj", sd);
 				%>
 					<li class="nav-item">
 						<a href="#" class="page-link">
@@ -47,6 +61,8 @@
 						</a>
 					</li>
 				<%
+						}
+						cnt++;
 					}
 				%>
 					</ul>
@@ -55,35 +71,45 @@
 				<div class="row">
 					<h3>기프트카드</h3>
 					<%
-					for(int i = 0 ; i < 4 ; i++){
-						int cnt = ((i+1)%3)+1;
-						String path = "../Image/"+cnt+".png";
-						request.setAttribute("Imgsrc2", path);
+					cnt=0;
+					for(StoreDTO gd : gList){
+						if(cnt==4){
+							break;
+						}else{
+						request.setAttribute("giftCardObj", gd);
 					%>
 					<jsp:include page="StoreGiftCard.jsp" />
-					<%}%>
+					<%
+						}
+						cnt++;
+					}
+					%>
 				</div>	
 				<hr />
 				<div class="row">
 					<h3>티켓 및 관람권</h3>
 					<%
-					for(int i = 0 ; i < 4 ; i++){
-						int cnt = ((i+2)%3)+1;
-						String path = "../Image/"+cnt+".png";
-						request.setAttribute("Imgsrc3", path);
+					cnt = 0;
+					for(StoreDTO td : tList){
+						if(cnt==4){
+							break;
+						}else{
+						request.setAttribute("ticketObj", td);
 					%>
 					<jsp:include page="StoreTicket.jsp" />
-					<%}%>
+					<%
+						}
+						cnt++;
+					}
+					%>
 				</div>
 			</div>	
 			<div id="Snack" class="tab-pane fade">
 				<h2>스낵류</h2>
 				<div class="row">
 				<%
-					for(int i = 0 ; i < 10 ; i++){
-						int cnt = (i%3)+1;
-						String path = "../Image/"+cnt+".png";
-						request.setAttribute("Imgsrc", path);
+					for(StoreDTO sd : sList){
+						request.setAttribute("snackObj", sd);
 				%>
 					<jsp:include page="StoreSnack.jsp" />
 				<%
@@ -95,10 +121,8 @@
 				<h2>기프트카드</h2>
 				<div class="row">
 				<%
-					for(int i = 0 ; i < 8 ; i++){
-						int cnt = ((i+1)%3)+1;
-						String path = "../Image/" + cnt + ".png";
-						request.setAttribute("Imgsrc2", path);
+					for(StoreDTO gd : gList){
+						request.setAttribute("giftCardObj", gd);
 				%>
 					<jsp:include page="StoreGiftCard.jsp" />
 				<%
@@ -110,10 +134,8 @@
 				<h2>관람권</h2>
 				<div class="row">
 				<%
-					for(int i = 0 ; i < 4 ; i++){
-						int cnt = ((i+2)%3)+1;
-						String path = "../Image/" + cnt + ".png";
-						request.setAttribute("Imgsrc3", path);
+					for(StoreDTO td : tList){
+						request.setAttribute("ticketObj", td);
 				%>
 					<jsp:include page="StoreTicket.jsp" />
 				<%
