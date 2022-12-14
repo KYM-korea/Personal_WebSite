@@ -15,8 +15,11 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 </head>
-<body>
-	<div class="container">
+<body class="bg-dark">
+    <!-- Header -->
+    <%@ include file ="../Main/inc/Top.jsp" %>
+
+	<div class="container bg-dark">
 		<h2>스토어</h2>
 		<ul class="nav nav-tabs" role="tablist">
 	            <li class="nav-item">
@@ -123,5 +126,8 @@
 			</div>
 		</div>
 	</div>
+	
+	<!-- Footer -->
+	<%@ include file ="../Main/inc/Bottom.jsp" %>
 </body>
 </html>
