@@ -8,6 +8,7 @@
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">  
+	
 <script type="text/javascript">
 function validateForm(form) {
 	if(form.id.value==""){
@@ -30,9 +31,19 @@ function validateForm(form) {
 		form.name.focus();
 		return false;
 	}
-	if(form.age.value==""){
+	if(form.year.value==""){
 		alert("나이!");
-		form.age.focus();
+		form.year.focus();
+		return false;
+	}
+	if(form.month.value==""){
+		alert("나이!");
+		form.month.focus();
+		return false;
+	}
+	if(form.day.value==""){
+		alert("나이!");
+		form.day.focus();
 		return false;
 	}
 	if(form.sex.value==""){
@@ -40,14 +51,33 @@ function validateForm(form) {
 		form.sex.focus();
 		return false;
 	}
-	if(form.email.value==""){
+	if(form.email1.value==""){
 		alert("메일!");
 		form.email.focus();
 		return false;
 	}
-	if(form.phone.value==""){
+	if(form.email2.value==""){
+		alert("메일주소!");
+		form.email2.focus();
+		return false;
+	}
+	if(form.phone1.value==""){
 		alert("전화!");
 		form.phone.focus();
+		return false;
+	}if(form.phone1.value==""){
+		alert("전화!");
+		form.phone1.focus();
+		return false;
+	}
+	if(form.phone2.value==""){
+		alert("전화!");
+		form.phone2.focus();
+		return false;
+	}
+	if(form.phone3.value==""){
+		alert("전화!");
+		form.phone3.focus();
 		return false;
 	}
 	if(form.interest1.value==""){
@@ -55,8 +85,23 @@ function validateForm(form) {
 		form.interest1.focus();
 		return false;
 	}
-	
 }
+function inputEmail(frm){
+    var domain = frm.email_domain.value;
+    if(domain==''){//--선택-- 부분을 선택했을때
+        frm.email1.value = '';//모든 입력값을 지운다. 
+        frm.email2.value = '';
+    }
+    else if(domain=='직접입력'){//'직접입력'을 선택했을때
+        frm.email2.readOnly = false;//사용자가 입력해야 하므로 readonly속성을 해제한다. 
+        frm.email2.value = '';
+        frm.email2.focus();
+    }
+    else{//도메인을 선택했을때
+        frm.email2.value = domain;//선택한 도메인을 입력한다. 
+        frm.email2.readOnly = true;//입력된 값을 수정할 수 없도록 readonly속성을 활성화한다. 
+    }
+}  
 </script>
 <style>
 	*{font-family: Verdana, Geneva, Tahoma, sans-serif; font-size: 12px;margin: 0px auto;}
@@ -82,11 +127,10 @@ function validateForm(form) {
 	
 	<form name="myForm" method="post" action="RegidateProcess.jsp">
 		<table class="table">
-			
 			<tr>
 				<th><span class="c_imp">*</span>아이디</th>
 				<td>
-					<input type="text" style="width: 120px;"/>
+					<input type="text" style="width: 120px;" name="id"/>
 					<button type="button" class="btn_search">중복확인</button>
 					<!-- 아이디가 중복된다면 지워지게 하기 이미 PK라서 괜찮나? 어차피 안 만들어질텐데 흠 -->
 				</td>
@@ -94,56 +138,68 @@ function validateForm(form) {
 			<tr>
 				<th><span class="c_imp">*</span>비밀번호</th>
 				<td>
-					<input type="password"/>
+					<input type="password" name="pass1"/>
 				</td>
 			</tr>
 			<tr>
 				<th><span class="c_imp">*</span>비밀번호 확인</th>
 				<td>
-					<input type="password" />
+					<input type="password" name="pass2"/>
 					<!-- 비밀번호가 일치하지 않으면 일치하지 않는다는 alert 혹은 span으로 빨간 글씨가 나오게 하고 비밀번호 지워지게? -->
 				</td>
 			</tr>
 			<tr>
 				<th><span class="c_imp">*</span>이름</th>
 				<td>
-					<input type="text" style="width: 100px;" />
+					<input type="text" style="width: 100px;" name="name" />
 				</td>
 			</tr>
+			
+			<!-- 생년월일 년 월 일 따로 했는데 이걸 어떻게 집어넣어줘야할까?  -->
 			<tr>
-				<th><span class="c_imp">*</span>나이</th>
+				<th><span class="c_imp">*</span>생년월일</th>
 				<td>
 					<!-- 나이는 그 위아래로 숫자나와서 선택할 수 있게 하면 좋을듯-->
-					<select name="" id="">
-						<option value="">-선택-</option>
-						<option value="1">25</option>
-						<option value="2">26</option>
-						<option value="3">27</option>
-						<option value="4">28</option>
-						<option value="5">29</option>
-						<option value="6">30</option>
-						<option value="7">31</option>
-						<option value="8">32</option>
-						<option value="9">33</option>
-						<option value="10">34</option>
-						<option value="11">35</option>
-						<option value="12">36</option>
-						<option value="13">37</option>
-						<option value="14">38</option>
-						<option value="15">39</option>
-						<option value="16">40</option>
-						<option value="17">41</option>
-						<option value="18">42</option>
-						<option value="19">43</option>
-						<option value="20">44</option>
-					</select>
+					<%
+					String query1 = "<select name='year'><option value=''>-선택-</option>";
+						
+					for(int i=100 ; i>=0 ; i--){
+						int birth1 = 1922+i;
+						query1 += "<option value="+birth1+">"+birth1+"</option>";
+						
+					}
+					query1 += "</select>";
+					out.println(query1);
+					%>
+					
+					<%
+					String query2 = "<select name='month'><option value=''>-선택-</option>";
+					
+					for(int i=1 ; i<=12 ; i++){
+						int birth2 = i;
+						query2 += "<option value="+birth2+">"+birth2+"</option>";
+					}
+					query2 += "</select>";
+					out.println(query2);
+					%>
+					<%
+					String query3 = "<select name='day'><option value=''>-선택-</option>";
+					
+					//30일 31일 따로 만들어주기? if문으로 바꿔줘야 함
+					for(int i=1 ; i<=31 ; i++){
+						int birth3 = i;
+						query3 += "<option value="+birth3+">"+birth3+"</option>";
+					}
+					query3 += "</select>";
+					out.println(query3);
+					%>
 				</td>
 			</tr>
 			<tr>
 				<th><span class="c_imp">*</span>성별</th>
 				<td>
-					<input type="radio" />남
-					<input type="radio" />여
+					<input type="radio" name="sex" value="남"/>남자
+					<input type="radio" name="sex" value="여"/>여자
 				</td>
 			</tr>
 			<tr>
@@ -167,24 +223,25 @@ function validateForm(form) {
 			<tr>
 				<th><span class="c_imp">*</span>전화번호</th>
 				<td>
-					<input type="text" maxlength="3" style="width: 50px"/> - 
-					<input type="text" maxlength="4" style="width: 80px"/> - 
-					<input type="text" maxlength="4" style="width: 80px"/>
+					<input type="text" maxlength="3" style="width: 50px" name="phone1"/> - 
+					<input type="text" maxlength="4" style="width: 80px" name="phone2"/> - 
+					<input type="text" maxlength="4" style="width: 80px" name="phone3"/>
 				</td>
 			</tr>
 			<!-- 필수 1개 선택
 			3개 선택시 클릭못하게 만들기 vs에서 찾기 -->
+			<!-- 관심장르를 checkbox말고 그냥 select로 할까? 흠.... select로 3개 따로 만드는 게 나으려나 -->
 			<tr>
 				<th>관심장르</th>
 				<td>
-					<input type="checkbox" name="t1"  value="액션"/>액션
-					<input type="checkbox" name="t1"  value="멜로"/>멜로
-					<input type="checkbox" name="t1"  value="SF"/>SF
-					<input type="checkbox" name="t1"  value="SF"/>공포 <br />
-					<input type="checkbox" name="t1"  value="SF"/>판타지
-					<input type="checkbox" name="t1"  value="SF"/>스릴러
-					<input type="checkbox" name="t1"  value="SF"/>추리
-					<input type="checkbox" name="t1"  value="SF"/>코미디
+					<input type="checkbox" name="interest1"  value="액션"/>액션
+					<input type="checkbox" name="interest1"  value="멜로"/>멜로
+					<input type="checkbox" name="interest1"  value="SF"/>SF
+					<input type="checkbox" name="interest1"  value="SF"/>공포 <br />
+					<input type="checkbox" name="interest1"  value="SF"/>판타지
+					<input type="checkbox" name="interest1"  value="SF"/>스릴러	
+					<input type="checkbox" name="interest1"  value="SF"/>추리
+					<input type="checkbox" name="interest1"  value="SF"/>코미디
 				</td>
 			</tr>
 		</table>

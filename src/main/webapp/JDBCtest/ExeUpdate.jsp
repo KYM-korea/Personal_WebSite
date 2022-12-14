@@ -18,7 +18,7 @@
 	String pass = "2222";
 	String pass_check = "2222";
 	String name = "테스터2";
-	int age = 30;
+	String age = "30";
 	String sex = "여";
 	String email = "test2@gmail.com";
 	String phone = "01099998888";
@@ -32,7 +32,7 @@
 	psmt.setString(2, pass);
 	psmt.setString(3, pass_check);
 	psmt.setString(4, name);
-	psmt.setInt(5, age);
+	psmt.setString(5, age);
 	psmt.setString(6, sex);
 	psmt.setString(7, email);
 	psmt.setString(8, phone);
