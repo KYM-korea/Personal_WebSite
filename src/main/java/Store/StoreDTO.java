@@ -1,8 +1,8 @@
 package Store;
 
 public class StoreDTO {
-	//실제 이름
-	private String rName;
+	//인덱스
+	private int idx;
 	//이미지 저장 경로
 	private String imgsrc;
 	//DB에 저장될 이미지 이름
@@ -56,11 +56,11 @@ public class StoreDTO {
 	public void setdName(String dName) {
 		this.dName = dName;
 	}
-	public String getrName() {
-		return rName;
+	public int getIdx() {
+		return idx;
 	}
-	public void setrName(String rName) {
-		this.rName = rName;
+	public void setIdx(int idx) {
+		this.idx = idx;
 	}
 	public String getCop() {
 		return cop;

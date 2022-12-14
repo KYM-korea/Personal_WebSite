@@ -14,18 +14,58 @@ List<StoreDTO> gList = dao.selectList("gift");
 List<StoreDTO> tList = dao.selectList("ticket");
 
 dao.close();
-/* request.setAttribute("ImgObj5", new StoreDTO("Combo1.png","../Image/","1.png",
-		"러브콤보","팝콘 (L) + 탄산음료(R) 2", 10000, "snack")); */
 %>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>스토어 - 상품구매</title>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+	function validateForm(form){
+		if(form.title.value==""){
+			alert("상품명을 입력하세요");
+			form.title.focus();
+			return false;
+		}
+		if(form.cop.value==""){
+			alert("상품구성을 입력하세요");
+			form.cop.focus();
+			return false;
+		}
+		if(form.price.value==""){
+			alert("상품가격을 입력하세요");
+			form.price.focus();
+			return false;
+		}
+		if(form.goodsImg.value==""){
+			alert("첨부파일을 등록하세요");
+			return false;
+		}
+	}
+</script>
 </head>
-<body>
-	<div class="container">
+<body class="bg-dark">
+	<!-- Header -->
+    <%@ include file ="../Main/inc/Top.jsp" %>
+    
+	<div class="container bg-dark">
+	<br /><br /><br /><br />
+	<form method="post" name="RegiGoods" enctype="multipart/form-data"
+	action="RegiGoodsProcess.jsp" onsubmit="return validateForm(this);">
+		상품명 : <input type="text" name="title" /><br />
+		상품구성 : <input type="text" name="cop" /><br />
+		상품가격 : <input type="text" name="price" /><br />
+		상품분야 : <select name="field" >
+					<option value="snack">스낵</option>
+					<option value="gift">기프티콘</option>
+					<option value="ticket">관람권</option>
+				</select>
+		상품이미지 : <input type="file" name="goodsImg" /><br />
+		<input type="submit" value="전송" />
+	</form>
+	<br /><br /><br /><br />
+>>>>>>> branch 'main' of https://github.com/KYM-korea/Personal_WebSite.git
 		<h2>스토어</h2>
 		<ul class="nav nav-tabs" role="tablist">
 	            <li class="nav-item">
@@ -144,6 +184,10 @@ dao.close();
 				</div>
 			</div>
 		</div>
+		
 	</div>
+	
+	<!-- Footer -->
+	<%@ include file ="../Main/inc/Bottom.jsp" %>
 </body>
 </html>

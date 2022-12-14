@@ -9,6 +9,8 @@ import javax.servlet.ServletContext;
 import common.JDBConnect;
 
 public class StoreDAO extends JDBConnect {
+	
+	public StoreDAO() {}
 	//DB 연결
 	public StoreDAO(ServletContext application) {
 		super(application);
@@ -22,7 +24,7 @@ public class StoreDAO extends JDBConnect {
 		//상품 분류를 넘겨 받아 개수 카운트
 		String query = "SELECT * FROM store "
 				+ " WHERE fd = '" + fd +"' "
-				+ " ORDER BY regidate DESC";
+				+ " ORDER BY sug DESC";
 		
 		try {
 			stmt = con.createStatement();
@@ -52,8 +54,20 @@ public class StoreDAO extends JDBConnect {
 		int result = 0;
 		
 		try {
-			String query = " INSERT INTO board ( "
-					+ "";
+			String query = " INSERT INTO store ( "
+					+ " idx, imgsrc, dname, title, cop, price, "
+					+ " fd, sug) VALUES ( seq_board_num.nextval, "
+					+ " ?, ?, ? ,? ,? ,? ,0 ) ";
+			
+			psmt = con.prepareStatement(query);
+			psmt.setString(1, dto.getImgsrc());
+			psmt.setString(2, dto.getdName());
+			psmt.setString(3, dto.getTitle());
+			psmt.setString(4, dto.getCop());
+			psmt.setInt(5, dto.getPrice());
+			psmt.setString(6, dto.getField());
+			
+			result = psmt.executeUpdate();
 		}catch(Exception e) {
 			e.printStackTrace();
 			System.out.println("Insert 에러 발생");
