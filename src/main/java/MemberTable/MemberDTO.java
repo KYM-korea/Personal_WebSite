@@ -1,41 +1,33 @@
 package MemberTable;
 
 public class MemberDTO {
-	private String id;
-	private String pass1;
-	private String pass2;
-	private String name;
-	private String year;
-	private String month;
-	private String day;
-	private String sex;
-	private String email1;
-	private String email2;
-	private String phone1;
-	private String phone2;
-	private String phone3;
-	private String interest1;
-	private String interest2="";
-	private String interest3="";
-	
-	
+	//멤버변수
+	private String id;			//아이디1
+	private String pass;		//패스워드2
+	private String name;		//이름3
+	private String year;		//생년월일4
+	private String month;		//생년월일4
+	private String day;		//생년월일4
+	private String sex;			//성별5
+	private String email1;		//이메일6
+	private String email2;		//이메일6
+	private String phone1;		//전화번호7
+	private String phone2;		//전화번호7
+	private String phone3;		//전화번호7
+	private String interest1;	//관심사항8
+	private String interest2;	//관심사항8
+	private String interest3;	//관심사항8
 	public String getId() {
 		return id;
 	}
 	public void setId(String id) {
 		this.id = id;
 	}
-	public String getPass1() {
-		return pass1;
+	public String getPass() {
+		return pass;
 	}
-	public void setPass1(String pass1) {
-		this.pass1 = pass1;
-	}
-	public String getPass2() {
-		return pass2;
-	}
-	public void setPass2(String pass2) {
-		this.pass2 = pass2;
+	public void setPass(String pass) {
+		this.pass = pass;
 	}
 	public String getName() {
 		return name;
@@ -116,4 +108,6 @@ public class MemberDTO {
 		this.interest3 = interest3;
 	}
 	
+	
+
 }

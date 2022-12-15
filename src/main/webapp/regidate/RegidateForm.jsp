@@ -138,13 +138,13 @@ function inputEmail(frm){
 			<tr>
 				<th><span class="c_imp">*</span>비밀번호</th>
 				<td>
-					<input type="password" name="pass1"/>
+					<input type="password" name="pass"/>
 				</td>
 			</tr>
 			<tr>
 				<th><span class="c_imp">*</span>비밀번호 확인</th>
 				<td>
-					<input type="password" name="pass2"/>
+					<input type="password" name="pass_check"/>
 					<!-- 비밀번호가 일치하지 않으면 일치하지 않는다는 alert 혹은 span으로 빨간 글씨가 나오게 하고 비밀번호 지워지게? -->
 				</td>
 			</tr>
