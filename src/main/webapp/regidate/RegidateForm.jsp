@@ -125,7 +125,7 @@ function inputEmail(frm){
 	
 	<h1>회원가입</h1>
 	
-	<form name="myForm" method="post" action="RegidateProcess.jsp">
+	<form name="myForm" method="post" action="RegidateProcess.jsp" onsubmit="return validateForm(form);">
 		<table class="table">
 			<tr>
 				<th><span class="c_imp">*</span>아이디</th>
