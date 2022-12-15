@@ -33,8 +33,7 @@ public class StoreDAO extends JDBConnect {
 			while(rs.next()) {
 				StoreDTO sdb = new StoreDTO();
 				
-				sdb.setImgsrc(rs.getString("imgsrc"));
-				sdb.setdName(rs.getString("dName"));
+				sdb.setsName(rs.getString("sName"));
 				sdb.setTitle(rs.getString("title"));
 				sdb.setCop(rs.getString("cop"));
 				sdb.setPrice(rs.getInt("price"));
@@ -55,12 +54,12 @@ public class StoreDAO extends JDBConnect {
 		
 		try {
 			String query = " INSERT INTO store ( "
-					+ " idx, imgsrc, dname, title, cop, price, "
-					+ " fd, sug) VALUES ( seq_board_num.nextval, "
+					+ " idx, sName, dname, title, cop, price, "
+					+ " fd, sug) VALUES ( 7, "
 					+ " ?, ?, ? ,? ,? ,? ,0 ) ";
 			
 			psmt = con.prepareStatement(query);
-			psmt.setString(1, dto.getImgsrc());
+			psmt.setString(1, dto.getsName());
 			psmt.setString(2, dto.getdName());
 			psmt.setString(3, dto.getTitle());
 			psmt.setString(4, dto.getCop());

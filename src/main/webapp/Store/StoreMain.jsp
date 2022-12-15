@@ -65,9 +65,9 @@ dao.close();
 		<input type="submit" value="전송" />
 	</form>
 	<br /><br /><br /><br />
->>>>>>> branch 'main' of https://github.com/KYM-korea/Personal_WebSite.git
 		<h2>스토어</h2>
-		<ul class="nav nav-tabs" role="tablist">
+		<div class="fixed">
+			<ul class="nav nav-tabs" role="tablist">
 	            <li class="nav-item">
 	                <a class="nav-link active" data-bs-toggle="tab" href="#all">전체메뉴</a>
 	            </li>
@@ -81,6 +81,7 @@ dao.close();
 	                <a class="nav-link" data-bs-toggle="tab" href="#Ticket">티켓</a>
 	            </li>
 	        </ul>
+        </div>
 		<div class="tab-content">
 			<div id="all" class="tab-pane active">
 				<h2>전체 메뉴</h2>
