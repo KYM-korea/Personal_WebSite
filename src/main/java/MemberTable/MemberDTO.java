@@ -2,13 +2,18 @@ package MemberTable;
 
 public class MemberDTO {
 	private String id;
-	private String pass;
-	private String pass_check;
+	private String pass1;
+	private String pass2;
 	private String name;
-	private int age;
+	private String year;
+	private String month;
+	private String day;
 	private String sex;
-	private String emali;
-	private String phone;
+	private String email1;
+	private String email2;
+	private String phone1;
+	private String phone2;
+	private String phone3;
 	private String interest1;
 	private String interest2="";
 	private String interest3="";
@@ -20,17 +25,17 @@ public class MemberDTO {
 	public void setId(String id) {
 		this.id = id;
 	}
-	public String getPass() {
-		return pass;
+	public String getPass1() {
+		return pass1;
 	}
-	public void setPass(String pass) {
-		this.pass = pass;
+	public void setPass1(String pass1) {
+		this.pass1 = pass1;
 	}
-	public String getPass_check() {
-		return pass_check;
+	public String getPass2() {
+		return pass2;
 	}
-	public void setPass_check(String pass_check) {
-		this.pass_check = pass_check;
+	public void setPass2(String pass2) {
+		this.pass2 = pass2;
 	}
 	public String getName() {
 		return name;
@@ -38,11 +43,23 @@ public class MemberDTO {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public int getAge() {
-		return age;
+	public String getYear() {
+		return year;
 	}
-	public void setAge(int age) {
-		this.age = age;
+	public void setYear(String year) {
+		this.year = year;
+	}
+	public String getMonth() {
+		return month;
+	}
+	public void setMonth(String month) {
+		this.month = month;
+	}
+	public String getDay() {
+		return day;
+	}
+	public void setDay(String day) {
+		this.day = day;
 	}
 	public String getSex() {
 		return sex;
@@ -50,17 +67,35 @@ public class MemberDTO {
 	public void setSex(String sex) {
 		this.sex = sex;
 	}
-	public String getEmali() {
-		return emali;
+	public String getEmail1() {
+		return email1;
 	}
-	public void setEmali(String emali) {
-		this.emali = emali;
+	public void setEmail1(String email1) {
+		this.email1 = email1;
 	}
-	public String getPhone() {
-		return phone;
+	public String getEmail2() {
+		return email2;
 	}
-	public void setPhone(String phone) {
-		this.phone = phone;
+	public void setEmail2(String email2) {
+		this.email2 = email2;
+	}
+	public String getPhone1() {
+		return phone1;
+	}
+	public void setPhone1(String phone1) {
+		this.phone1 = phone1;
+	}
+	public String getPhone2() {
+		return phone2;
+	}
+	public void setPhone2(String phone2) {
+		this.phone2 = phone2;
+	}
+	public String getPhone3() {
+		return phone3;
+	}
+	public void setPhone3(String phone3) {
+		this.phone3 = phone3;
 	}
 	public String getInterest1() {
 		return interest1;
@@ -80,6 +115,5 @@ public class MemberDTO {
 	public void setInterest3(String interest3) {
 		this.interest3 = interest3;
 	}
-	
 	
 }
