@@ -3,9 +3,9 @@ package Store;
 public class StoreDTO {
 	//인덱스
 	private int idx;
-	//이미지 저장 경로
-	private String imgsrc;
 	//DB에 저장될 이미지 이름
+	private String sName;
+	//실제 이미지 이름 
 	private String dName;
 	//제품 이름
 	private String title;
@@ -44,11 +44,11 @@ public class StoreDTO {
 	public void setField(String field) {
 		this.field = field;
 	}
-	public String getImgsrc() {
-		return imgsrc;
+	public String getsName() {
+		return sName;
 	}
-	public void setImgsrc(String imgsrc) {
-		this.imgsrc = imgsrc;
+	public void setsName(String sName) {
+		this.sName = sName;
 	}
 	public String getdName() {
 		return dName;
