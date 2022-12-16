@@ -27,10 +27,14 @@
     </style>
 </head>
 <body class="bg-dark">
-    <div class="container bg-dark">
+	<div class="container-fruid">
+		<div class="container">
+	        <!-- Header -->
+	        <%@ include file ="./inc/Top.jsp" %>
+	    </div>
+    </div>
+    <div class="container">
 
-        <!-- Header -->
-        <%@ include file ="./inc/Top.jsp" %>
 
         <!-- Body -->
 

@@ -45,12 +45,13 @@ dao.close();
 	}
 </script>
 </head>
-<body class="bg-dark">
+<body class="">
+	<div class="container-fruid">
 	<!-- Header -->
     <%@ include file ="../Main/inc/Top.jsp" %>
-    
-	<div class="container bg-dark">
-	<br /><br /><br /><br />
+    </div>
+	<div class="container">
+	<br /><br />
 	<form method="post" name="RegiGoods" enctype="multipart/form-data"
 	action="RegiGoodsProcess.jsp" onsubmit="return validateForm(this);">
 		상품명 : <input type="text" name="title" /><br />
@@ -64,7 +65,7 @@ dao.close();
 		상품이미지 : <input type="file" name="goodsImg" /><br />
 		<input type="submit" value="전송" />
 	</form>
-	<br /><br /><br /><br />
+	<br /><br />
 		<h2>스토어</h2>
 		<div class="fixed">
 			<ul class="nav nav-tabs" role="tablist">
@@ -185,7 +186,6 @@ dao.close();
 				</div>
 			</div>
 		</div>
-		
 	</div>
 	
 	<!-- Footer -->

@@ -15,7 +15,7 @@
 	    color: gray;
 	}
 </style>
-<header>
+<header class="bg-dark">
     <div class="util-area">
 		<!-- 로그인 전 -->
 		<div class="before right-link">

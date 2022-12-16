@@ -55,7 +55,7 @@ public class StoreDAO extends JDBConnect {
 		try {
 			String query = " INSERT INTO store ( "
 					+ " idx, sName, dname, title, cop, price, "
-					+ " fd, sug) VALUES ( 7, "
+					+ " fd, sug) VALUES ( 16, "
 					+ " ?, ?, ? ,? ,? ,? ,0 ) ";
 			
 			psmt = con.prepareStatement(query);
