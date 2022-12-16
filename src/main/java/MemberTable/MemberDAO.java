@@ -21,25 +21,18 @@ public class MemberDAO extends JDBConnect{
 		
 		//16개!
 		try {
-			String query = "INSERT INTO member VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+			String query = "INSERT INTO member VALUES(?,?,?,?,?,?,?,?)";
 			
 			psmt = con.prepareStatement(query);
 			
 			psmt.setString(1, dto.getId());
 			psmt.setString(2, dto.getPass());
 			psmt.setString(3, dto.getName());
-			psmt.setString(4, dto.getYear());
-			psmt.setString(5, dto.getMonth());
-			psmt.setString(6, dto.getDay());
-			psmt.setString(7, dto.getSex());
-			psmt.setString(8, dto.getEmail1());
-			psmt.setString(9, dto.getEmail2());
-			psmt.setString(10, dto.getPhone1());
-			psmt.setString(11, dto.getPhone2());
-			psmt.setString(12, dto.getPhone3());
-			psmt.setString(13, dto.getInterest1());
-			psmt.setString(14, dto.getInterest2());
-			psmt.setString(15, dto.getInterest3());
+			psmt.setString(4, dto.getBirth());
+			psmt.setString(5, dto.getSex());
+			psmt.setString(6, dto.getEmail());
+			psmt.setString(7, dto.getPhone());
+			psmt.setString(8, dto.getInterest1());
 
 			
 			result = psmt.executeUpdate();
@@ -65,18 +58,11 @@ public class MemberDAO extends JDBConnect{
 				dto.setId(rs.getString("id"));
 				dto.setPass(rs.getString("pass"));
 				dto.setName(rs.getString(3));
-				dto.setYear(rs.getString(4));
-				dto.setMonth(rs.getString(5));
-				dto.setDay(rs.getString(6));
-				dto.setSex(rs.getString(7));
-				dto.setEmail1(rs.getString(8));
-				dto.setEmail2(rs.getString(9));
-				dto.setPhone1(rs.getString(10));
-				dto.setPhone2(rs.getString(11));
-				dto.setPhone3(rs.getString(12));
-				dto.setInterest1(rs.getString(13));
-				dto.setInterest2(rs.getString(14));
-				dto.setInterest3(rs.getString(15));
+				dto.setBirth(rs.getString(4));
+				dto.setSex(rs.getString(5));
+				dto.setEmail(rs.getString(6));
+				dto.setPhone(rs.getString(7));
+				dto.setInterest1(rs.getString(8));
 			}
 		}
 		catch (Exception e) {

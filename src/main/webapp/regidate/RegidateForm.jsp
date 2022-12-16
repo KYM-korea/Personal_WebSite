@@ -5,19 +5,19 @@
 <head>
 <meta charset="UTF-8">
 <title>regidateForm</title>
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">  
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">  
 	
 <script type="text/javascript">
 function validateForm(form) {
 	if(form.id.value==""){
-		alert("아이디써");
+		alert("아이디를 입력하세요");
 		form.id.focus();
 		return false;
 	}
 	if(form.pass.value==""){
-		alert("비번써");
+		alert("비밀번호를 입력하세요");
 		form.pass.focus();
 		return false;
 	}
@@ -27,62 +27,63 @@ function validateForm(form) {
 		return false;
 	}
 	if(form.name.value==""){
-		alert("이름!");
+		alert("이름을 입력하세요");
 		form.name.focus();
 		return false;
 	}
 	if(form.year.value==""){
-		alert("나이!");
+		alert("생년월일을 입력하세요.1");
 		form.year.focus();
 		return false;
 	}
-	if(form.month.value==""){
-		alert("나이!");
+	 if(form.month.value==""){
+		alert("생년월일을 입력하세요.2");
 		form.month.focus();
 		return false;
 	}
 	if(form.day.value==""){
-		alert("나이!");
+		alert("생년월일을 입력하세요.3");
 		form.day.focus();
 		return false;
 	}
 	if(form.sex.value==""){
-		alert("섹스");
-		form.sex.focus();
+		alert("성별 선택해");
 		return false;
 	}
 	if(form.email1.value==""){
-		alert("메일!");
-		form.email.focus();
+		alert("이메일을 입력하세요.");
+		form.email1.focus();
 		return false;
 	}
 	if(form.email2.value==""){
-		alert("메일주소!");
+		alert("이메일 주소를 입력하세요.");
 		form.email2.focus();
 		return false;
 	}
 	if(form.phone1.value==""){
-		alert("전화!");
-		form.phone.focus();
-		return false;
-	}if(form.phone1.value==""){
-		alert("전화!");
+		alert("전화번호가 잘못 입력되었습니다.");
 		form.phone1.focus();
 		return false;
 	}
 	if(form.phone2.value==""){
-		alert("전화!");
+		alert("전화번호가 잘못 입력되었습니다.");
 		form.phone2.focus();
 		return false;
 	}
 	if(form.phone3.value==""){
-		alert("전화!");
+		alert("전화번호가 잘못 입력되었습니다.");
 		form.phone3.focus();
 		return false;
 	}
-	if(form.interest1.value==""){
-		alert("관심!");
-		form.interest1.focus();
+	var isInt = false; 
+	var check = document.getElementsByName("interest1");
+	for(var i = 0 ; i < check.length ; i++){
+		if(check[i].checked){
+			isInt = true;
+		}
+	}
+	if(isInt==false){
+		alert("장르좀...");
 		return false;
 	}
 }
@@ -103,6 +104,10 @@ function inputEmail(frm){
     }
 }  
 </script>
+<!-- 자바소스 -->
+<%%>
+<!-- HTML소스 -->
+<script></script>
 <style>
 	*{font-family: Verdana, Geneva, Tahoma, sans-serif; font-size: 12px;margin: 0px auto;}
 	
@@ -125,7 +130,7 @@ function inputEmail(frm){
 	
 	<h1>회원가입</h1>
 	
-	<form name="myForm" method="post" action="RegidateProcess.jsp" onsubmit="return validateForm(form);">
+	<form name="myForm" method="post" action="RegidateProcess.jsp" onsubmit="return validateForm(this);">
 		<table class="table">
 			<tr>
 				<th><span class="c_imp">*</span>아이디</th>
@@ -223,9 +228,9 @@ function inputEmail(frm){
 			<tr>
 				<th><span class="c_imp">*</span>전화번호</th>
 				<td>
-					<input type="text" maxlength="3" style="width: 50px" name="phone1"/> - 
-					<input type="text" maxlength="4" style="width: 80px" name="phone2"/> - 
-					<input type="text" maxlength="4" style="width: 80px" name="phone3"/>
+					<input type="text" maxlength="3" style="width: 50px" name="phone1" /> - 
+					<input type="text" maxlength="4" style="width: 80px" name="phone2" /> - 
+					<input type="text" maxlength="4" style="width: 80px" name="phone3" />
 				</td>
 			</tr>
 			<!-- 필수 1개 선택
