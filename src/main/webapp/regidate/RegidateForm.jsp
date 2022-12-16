@@ -17,7 +17,7 @@ function validateForm(form) {
 		return false;
 	}
 	if(form.pass.value==""){
-		alert("비번써");
+		alert("비번써");//6451651
 		form.pass.focus();
 		return false;
 	}
