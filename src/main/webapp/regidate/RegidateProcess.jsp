@@ -7,8 +7,7 @@
 MemberDAO dao = new MemberDAO(application);
 
 String id = request.getParameter("id");
-String pass1 = request.getParameter("pass1");
-String pass2 = request.getParameter("pass2");
+String pass = request.getParameter("pass");
 String name = request.getParameter("name");
 String year = request.getParameter("year");
 String month = request.getParameter("month");
@@ -19,6 +18,7 @@ String email2 = request.getParameter("email2");
 String phone1 = request.getParameter("phone1");
 String phone2 = request.getParameter("phone2");
 String phone3 = request.getParameter("phone3");
+/* String phone = request.getParameter("phone1")+"-"+request.getParameter("phone2")+"-"+request.getParameter("phone3"); */
 String interest1 = request.getParameter("interest1");
 String interest2 = request.getParameter("interest2");
 String interest3 = request.getParameter("interest3");
@@ -26,8 +26,8 @@ String interest3 = request.getParameter("interest3");
 MemberDTO dto = new MemberDTO();
 
 dto.setId(id);
-dto.setPass1(pass1);
-dto.setPass2(pass2);
+dto.setPass(pass);
+
 dto.setName(name);
 dto.setYear(year);
 dto.setMonth(month);
@@ -44,7 +44,6 @@ dto.setInterest3(interest3);
 
 int iResult = dao.insertMember(dto);
 dao.close();
-
 
 %>
 

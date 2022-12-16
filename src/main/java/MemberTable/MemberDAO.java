@@ -21,26 +21,26 @@ public class MemberDAO extends JDBConnect{
 		
 		//16개!
 		try {
-			String query = "INSERT INTO member VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+			String query = "INSERT INTO member VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 			
 			psmt = con.prepareStatement(query);
 			
 			psmt.setString(1, dto.getId());
-			psmt.setString(2, dto.getPass1());
-			psmt.setString(3, dto.getPass2());
-			psmt.setString(4, dto.getName());
-			psmt.setString(5, dto.getYear());
-			psmt.setString(6, dto.getMonth());
-			psmt.setString(7, dto.getDay());
-			psmt.setString(8, dto.getSex());
-			psmt.setString(9, dto.getEmail1());
-			psmt.setString(10, dto.getEmail2());
-			psmt.setString(11, dto.getPhone1());
-			psmt.setString(12, dto.getPhone2());
-			psmt.setString(13, dto.getPhone3());
-			psmt.setString(14, dto.getInterest1());
-			psmt.setString(15, dto.getInterest2());
-			psmt.setString(16, dto.getInterest3());
+			psmt.setString(2, dto.getPass());
+			psmt.setString(3, dto.getName());
+			psmt.setString(4, dto.getYear());
+			psmt.setString(5, dto.getMonth());
+			psmt.setString(6, dto.getDay());
+			psmt.setString(7, dto.getSex());
+			psmt.setString(8, dto.getEmail1());
+			psmt.setString(9, dto.getEmail2());
+			psmt.setString(10, dto.getPhone1());
+			psmt.setString(11, dto.getPhone2());
+			psmt.setString(12, dto.getPhone3());
+			psmt.setString(13, dto.getInterest1());
+			psmt.setString(14, dto.getInterest2());
+			psmt.setString(15, dto.getInterest3());
+
 			
 			result = psmt.executeUpdate();
 		} 
@@ -63,21 +63,20 @@ public class MemberDAO extends JDBConnect{
 			
 			if(rs.next()) {
 				dto.setId(rs.getString("id"));
-				dto.setPass1(rs.getString("pass1"));
-				dto.setPass2(rs.getString(3));
-				dto.setName(rs.getString(4));
-				dto.setYear(rs.getString(5));
-				dto.setMonth(rs.getString(6));
-				dto.setDay(rs.getString(7));
-				dto.setSex(rs.getString(8));
-				dto.setEmail1(rs.getString(9));
-				dto.setEmail2(rs.getString(10));
-				dto.setPhone1(rs.getString(11));
-				dto.setPhone2(rs.getString(12));
-				dto.setPhone3(rs.getString(13));
-				dto.setInterest1(rs.getString(14));
-				dto.setInterest2(rs.getString(15));
-				dto.setInterest3(rs.getString(16));
+				dto.setPass(rs.getString("pass"));
+				dto.setName(rs.getString(3));
+				dto.setYear(rs.getString(4));
+				dto.setMonth(rs.getString(5));
+				dto.setDay(rs.getString(6));
+				dto.setSex(rs.getString(7));
+				dto.setEmail1(rs.getString(8));
+				dto.setEmail2(rs.getString(9));
+				dto.setPhone1(rs.getString(10));
+				dto.setPhone2(rs.getString(11));
+				dto.setPhone3(rs.getString(12));
+				dto.setInterest1(rs.getString(13));
+				dto.setInterest2(rs.getString(14));
+				dto.setInterest3(rs.getString(15));
 			}
 		}
 		catch (Exception e) {
