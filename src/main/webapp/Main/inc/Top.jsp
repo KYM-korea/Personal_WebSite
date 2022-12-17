@@ -16,6 +16,7 @@
 	}
 </style>
 <header class="bg-dark">
+<div class="container">
     <div class="util-area">
 		<!-- 로그인 전 -->
 		<div class="before right-link">
@@ -23,7 +24,7 @@
 		    <a href="" class="util-menu">회원가입</a>
 		</div>
 		<!--로고-->
-		<img style="width: 15%; margin: auto; display: block;" src="https://img.freepik.com/premium-vector/movie-shop-logo-design-concept_96807-552.jpg" alt="">
+		<img style="width: 150px; margin-left: 580px; display: block;" src="https://img.freepik.com/premium-vector/movie-shop-logo-design-concept_96807-552.jpg" alt="">
 		<!-- 로그인 후 -->
 		<div class="after" style="display: none;">
 		    <a href="" class="util-menu">마이페이지</a>
@@ -38,4 +39,8 @@
         <div class="col-lg-3"><a href="../Store/StoreMain.jsp" class="nav-link">스토어</a></div>
         <div class="col-lg-3"><a href="" class="nav-link">공지</a></div>
     </div>
+</div>
 </header>
+
+<!-- body 시작 -->
+<div class="container">
