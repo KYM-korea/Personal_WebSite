@@ -1,5 +1,8 @@
 package MemberTable;
 
+import java.util.List;
+import java.util.Vector;
+
 import javax.servlet.ServletContext;
 
 import common.JDBConnect;
@@ -21,18 +24,24 @@ public class MemberDAO extends JDBConnect{
 		
 		//16개!
 		try {
-			String query = "INSERT INTO member VALUES(?,?,?,?,?,?,?,?)";
+			String query = "INSERT INTO member VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 			
 			psmt = con.prepareStatement(query);
 			
 			psmt.setString(1, dto.getId());
-			psmt.setString(2, dto.getPass());
-			psmt.setString(3, dto.getName());
-			psmt.setString(4, dto.getBirth());
-			psmt.setString(5, dto.getSex());
-			psmt.setString(6, dto.getEmail());
-			psmt.setString(7, dto.getPhone());
-			psmt.setString(8, dto.getInterest1());
+			psmt.setString(2, dto.getPass1());
+			psmt.setString(3, dto.getPass2());
+			psmt.setString(4, dto.getName());
+			psmt.setString(5, dto.getYear());
+			psmt.setString(6, dto.getMonth());
+			psmt.setString(7, dto.getDay());
+			psmt.setString(8, dto.getSex());
+			psmt.setString(9, dto.getEmail1());
+			psmt.setString(10, dto.getEmail2());
+			psmt.setString(11, dto.getPhone1());
+			psmt.setString(12, dto.getPhone2());
+			psmt.setString(13, dto.getPhone3());
+			psmt.setString(14, dto.getInterest1());
 
 			
 			result = psmt.executeUpdate();
@@ -46,7 +55,7 @@ public class MemberDAO extends JDBConnect{
 	//로그인용
 	public MemberDTO getMemberDTO(String uid, String upass) {
 		MemberDTO dto = new MemberDTO();
-		String query = "SELECT * FROM member WHERE id=? AND pass=?";
+		String query = "SELECT * FROM member WHERE id=? AND pass1=?";
 		
 		try {
 			psmt = con.prepareStatement(query);
@@ -56,19 +65,42 @@ public class MemberDAO extends JDBConnect{
 			
 			if(rs.next()) {
 				dto.setId(rs.getString("id"));
-				dto.setPass(rs.getString("pass"));
-				dto.setName(rs.getString(3));
-				dto.setBirth(rs.getString(4));
-				dto.setSex(rs.getString(5));
-				dto.setEmail(rs.getString(6));
-				dto.setPhone(rs.getString(7));
-				dto.setInterest1(rs.getString(8));
+				dto.setPass1(rs.getString("pass1"));
+				dto.setPass2(rs.getString(3));
+				dto.setName(rs.getString(4));
+				dto.setYear(rs.getString(5));
+				dto.setMonth(rs.getString(6));
+				dto.setDay(rs.getString(7));
+				dto.setSex(rs.getString(8));
+				dto.setEmail1(rs.getString(9));
+				dto.setEmail2(rs.getString(10));
+				dto.setPhone1(rs.getString(11));
+				dto.setPhone2(rs.getString(12));
+				dto.setPhone3(rs.getString(13));
+				dto.setInterest1(rs.getString(14));
 			}
 		}
 		catch (Exception e) {
 			e.printStackTrace();
 		}
 		return dto;
+	}
+	
+	public List<String> idCheck() {
+		List<String> ilist = new Vector<String>();
+		String query = "SELECT id FROM member";
+		try {
+			stmt = con.createStatement();
+			rs = stmt.executeQuery(query);
+			while(rs.next()) {
+				ilist.add(rs.getString(1));
+			}
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("중복체크 오류");
+		}
+		return ilist;
 	}
 	
 }

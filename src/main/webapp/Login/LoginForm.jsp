@@ -5,16 +5,19 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../common/jquery/jquery-3.6.1.min.js"></script>
 <script>
 	function validateForm(form) {
-		if(!form.user_id.value){
+		if(!form.id.value){
 			alert("아이디를 입력하세요.");
-			form.user_id.focus();
+			form.id.focus();
 			return false;
 		}
-		if(form.user_pw.value==''){
+		if(form.pass1.value==''){
 			alert("패스워드를 입력하세요.");
-			form.user_pw.focus();
+			form.pass1.focus();
 			return false;
 		}
 	}
@@ -43,10 +46,10 @@
 				<h3>로그인</h3>
 			</header>
 			<div>
-				<input type="text" name="user_id" placeholder="아이디"/>
+				<input type="text" name="id" placeholder="아이디"/>
 			</div>
 			<div>
-				<input type="password" name="user_pw" placeholder="비밀번호"/>
+				<input type="password" name="pass1" placeholder="비밀번호"/>
 			</div>
 			<div>
 				<input type="submit" value="로그인하기">
@@ -61,5 +64,6 @@
 	<%
 	}
 	%>
+	<%@ include file ="../Main/inc/Bottom.jsp" %>
 </body>
 </html>

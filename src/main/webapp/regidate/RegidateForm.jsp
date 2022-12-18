@@ -1,8 +1,23 @@
+<%@page import="java.util.Vector"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.util.List"%>
+<%@page import="MemberTable.MemberDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
+<% MemberDAO dao = new MemberDAO(application);
+	List<String> sival = new Vector<String>();
+	sival = dao.idCheck();
+	StringBuffer abc = new StringBuffer();
+	for(int i =0; i<sival.size();i++){
+		if(abc.length()>0){
+			abc.append(',');
+		}
+		abc.append('"').append(sival.get(i)).append('"');
+	}
+%>
 <meta charset="UTF-8">
 <title>regidateForm</title>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
@@ -10,20 +25,22 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">  
 	
 <script type="text/javascript">
+var idch = 0;
+
 function validateForm(form) {
 	if(form.id.value==""){
 		alert("아이디를 입력하세요");
 		form.id.focus();
 		return false;
 	}
-	if(form.pass.value==""){
+	if(form.pass1.value==""){
 		alert("비밀번호를 입력하세요");
-		form.pass.focus();
+		form.pass1.focus();
 		return false;
 	}
-	if(form.pass_check.value==""){
+	if(form.pass2.value==""){
 		alert("비번다시");
-		form.pass_check.focus();
+		form.pass2.focus();
 		return false;
 	}
 	if(form.name.value==""){
@@ -86,6 +103,10 @@ function validateForm(form) {
 		alert("장르좀...");
 		return false;
 	}
+	if(idch==0){
+		alert("중복확인좀");
+		return false;
+	}
 }
 function inputEmail(frm){
     var domain = frm.email_domain.value;
@@ -103,6 +124,31 @@ function inputEmail(frm){
         frm.email2.readOnly = true;//입력된 값을 수정할 수 없도록 readonly속성을 활성화한다. 
     }
 }  
+
+function idCheck(fn) {
+	
+	var id = document.getElementById("id").value;
+	var ilist = [<%= abc.toString()%>];
+	var chk = false;
+	for(var i=0; i<=ilist.length;i++){
+		if(id==ilist[i]){
+			chk = true;
+			break;
+		}
+	}
+	if(fn.id.value==""){
+		alert("아이디 입력하고 눌러임마!");
+		fn.id.focus();
+	}
+	else if(chk==true){
+		alert("아이디 중복임");
+	}
+	else{
+		alert("중복없음");
+		idch = 1;
+	}
+	
+}
 </script>
 <!-- 자바소스 -->
 <%%>
@@ -135,21 +181,22 @@ function inputEmail(frm){
 			<tr>
 				<th><span class="c_imp">*</span>아이디</th>
 				<td>
-					<input type="text" style="width: 120px;" name="id"/>
-					<button type="button" class="btn_search">중복확인</button>
+					<input type="text" style="width: 120px;" name="id"
+					id="id"/>
+					<button type="button" class="btn_search" onclick="idCheck(this.form);">중복확인</button>
 					<!-- 아이디가 중복된다면 지워지게 하기 이미 PK라서 괜찮나? 어차피 안 만들어질텐데 흠 -->
 				</td>
 			</tr>
 			<tr>
 				<th><span class="c_imp">*</span>비밀번호</th>
 				<td>
-					<input type="password" name="pass"/>
+					<input type="password" name="pass1"/>
 				</td>
 			</tr>
 			<tr>
 				<th><span class="c_imp">*</span>비밀번호 확인</th>
 				<td>
-					<input type="password" name="pass_check"/>
+					<input type="password" name="pass2"/>
 					<!-- 비밀번호가 일치하지 않으면 일치하지 않는다는 alert 혹은 span으로 빨간 글씨가 나오게 하고 비밀번호 지워지게? -->
 				</td>
 			</tr>
@@ -257,6 +304,8 @@ function inputEmail(frm){
                     <input type="submit" value="회원가입" class="btn_submit" />
                     &nbsp;&nbsp;
                     <input type="reset" value="취소" class="btn_cancel" />
+                    &nbsp;&nbsp;
+                    <input type="button" value="홈으로" class="btn_gohome" onclick="location.href='../Main/HomeMain.jsp';"/>
                 </td>
             </tr>
         </table> 
