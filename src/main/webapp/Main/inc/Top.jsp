@@ -19,7 +19,7 @@
     <div class="util-area">
 		<!-- 로그인 전 -->
 		<div class="before right-link">
-		    <a href="" class="util-menu">로그인</a>
+		    <a href="#" class="util-menu"onclick="location.href='../Login/LoginForm.jsp';">로그인</a>
 		    <a href="" class="util-menu">회원가입</a>
 		</div>
 		<!--로고-->
