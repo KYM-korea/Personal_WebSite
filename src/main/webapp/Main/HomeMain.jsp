@@ -26,6 +26,23 @@ dao.close();
            var poster = document.getElementsByClassName("wrap")[idx];
            poster.style = "display:block";
         }
+        function validateForm(form) {
+        	if(form.name.value=""){
+        		alert("영화명을 입력해주세요");
+        		form.name.focus();
+        		return false;
+        	}
+        	if(form.genre.value=""){
+        		alert("장르를 선택해주세요");
+        		form.genre.focus();
+        		return false;
+        	}
+        	if(form.img.value=""){
+        		alert("이미지를 첨부해주세요");
+        		form.img.focus();
+        		return false;
+        	}
+        }
     </script>
     <style>
         .summary{
@@ -44,7 +61,7 @@ dao.close();
 
 <form method="post" name="RegiMoive" enctype="multipart/form-data" style="color:white;"
 	action="RegiMovieProcess.jsp" onsubmit="return validateForm(this);">
-	이름 : <input type="text" name="name" /><br />
+	영화명 : <input type="text" name="name" /><br />
 	장르 : <select name="genre" >
 					<option value="action">액션</option>
 					<option value="melo">멜로</option>
@@ -62,6 +79,12 @@ dao.close();
 
 <!-- Body -->
 <!-- 슬라이드 배너 -->
+<!-- 
+***해야할 것***
+-movie_slide 테이블에서 데이터 가져와서 dto 객체 생성
+-컬렉션으로 해당 배너 출력
+-관리자에서 배너 노출 여부 설정하도록 적용
+ -->
 <div id="demo" class="carousel slide" data-bs-ride="carousel">
     <div class="carousel-indicators">
         <button type="button" data-bs-target="#demo" data-bs-slide-to="0" class="active"></button>
@@ -104,6 +127,7 @@ dao.close();
     </button>
 	</div>    
 </div>
+
 <!-- 카드형 아이템 -->
 <div class="row">
 		<%

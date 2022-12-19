@@ -8,7 +8,7 @@ public class MovieDTO {
 	private String name;
 	//영화 장르
 	private String genre;
-	//영화 이미지
+	//영화 이미지 이름
 	private String img;
 	//영화 설명
 	private String summary;
@@ -16,10 +16,12 @@ public class MovieDTO {
 	private int grade;
 	//좋아요 수
 	private int likeCnt;
+	//기존 이미지 파일명
+	private String ofile;
+	//DB 이미지 저장될 파일명
+	private String nfile;
 	//등록일
 	private java.sql.Date rDate;
-	//종료일(DB에 rDate+30일로 기본값 설정 되어 있음)
-	private java.sql.Date eDate;
 	
 	public int getIdx() {
 		return idx;
@@ -63,17 +65,23 @@ public class MovieDTO {
 	public void setLikeCnt(int likeCnt) {
 		this.likeCnt = likeCnt;
 	}
+	public String getOfile() {
+		return ofile;
+	}
+	public void setOfile(String ofile) {
+		this.ofile = ofile;
+	}
+	public String getNfile() {
+		return nfile;
+	}
+	public void setNfile(String nfile) {
+		this.nfile = nfile;
+	}
 	public java.sql.Date getrDate() {
 		return rDate;
 	}
 	public void setrDate(java.sql.Date rDate) {
 		this.rDate = rDate;
-	}
-	public java.sql.Date geteDate() {
-		return eDate;
-	}
-	public void seteDate(java.sql.Date eDate) {
-		this.eDate = eDate;
 	}
 	
 }
