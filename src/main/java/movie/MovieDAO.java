@@ -20,7 +20,7 @@ public class MovieDAO extends JDBConnect {
 		
 		List<MovieDTO> mItem = new Vector<MovieDTO>();
 		
-		String query = "SELECT * FROM movie "
+		String query = "SELECT * FROM movie_info "
 				+ " ORDER BY rDate DESC";
 		
 		try {
@@ -38,8 +38,9 @@ public class MovieDAO extends JDBConnect {
 				dto.setSummary(rs.getString("summary"));
 				dto.setGrade(rs.getInt("grade"));
 				dto.setLikeCnt(rs.getInt("likeCnt"));
+				dto.setOfile(rs.getString("ofile"));
+				dto.setNfile(rs.getString("nfile"));
 				dto.setrDate(rs.getDate("rDate"));
-				dto.seteDate(rs.getDate("eDate"));
 				
 				mItem.add(dto);
 			}
@@ -49,5 +50,30 @@ public class MovieDAO extends JDBConnect {
 			e.printStackTrace();
 		}
 		return mItem;
+	}
+
+	//영화 정보 등록을 위한 메서드
+	public int insertMoive(MovieDTO dto) {
+		int iResult = 0;
+		try {
+			String query = "INSERT INTO movie_info ( "
+					+ " idx, name, genre, summary, ofile, nfile) "
+					+ " VALUES ( "
+					+ " seq_movie_num.nextval, ?, ?, ?, ?, ?)";
+			
+			psmt = con.prepareStatement(query);
+			psmt.setString(1, dto.getName());
+			psmt.setString(2, dto.getGenre());
+			psmt.setString(3, dto.getSummary());
+			psmt.setString(4, dto.getOfile());
+			psmt.setString(5, dto.getNfile());
+			
+			iResult = psmt.executeUpdate();		
+		}
+		catch (Exception e) {
+			System.out.println("INSERT 중 예외 발생");
+			e.printStackTrace();
+		}
+		return iResult;
 	}
 }
