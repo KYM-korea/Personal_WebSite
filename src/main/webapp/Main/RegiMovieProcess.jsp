@@ -1,3 +1,4 @@
+<%@page import="movie.MovieDAO"%>
 <%@page import="movie.MovieDTO"%>
 <%@page import="org.apache.catalina.manager.DummyProxySession"%>
 <%@page import="java.io.File"%>
@@ -18,6 +19,14 @@
 		MultipartRequest mr = new MultipartRequest(request, fileDir,
 	            maxPostSize, encoding);	
 		
+		/* 	
+		if(mr==null) {
+			out.print("첨부파일이 제한용량을 초과했습니다.");
+			response.sendRedirect("./HomeMain.jsp");
+			return;
+		} */
+			
+		
 		String fileName = mr.getFilesystemName("img");
 		String ext = fileName.substring(fileName.lastIndexOf("."));
 		String now = new SimpleDateFormat("yyyyMMdd_HmsS").format(new Date());
@@ -35,9 +44,20 @@
 		dto.setName(name);
 		dto.setGenre(genre);
 		dto.setSummary(summary);
-		//추가 작업 필요
+		dto.setOfile(fileName);
+		dto.setNfile(newFileName);
+		
+		MovieDAO dao = new MovieDAO();
+		dao.insertMoive(dto);
+		dao.close();
+		
+		response.sendRedirect("HomeMain.jsp");
 	}
 	catch (Exception e) {
+		e.printStackTrace();
+		request.setAttribute("errorMessage", "영화 등록 오류");
+		request.getRequestDispatcher("HomeMain.jsp").forward(request, response);
+		
 		
 	}
 %>
