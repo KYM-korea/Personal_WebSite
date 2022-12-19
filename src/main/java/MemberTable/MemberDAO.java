@@ -1,5 +1,8 @@
 package MemberTable;
 
+import java.util.List;
+import java.util.Vector;
+
 import javax.servlet.ServletContext;
 
 import common.JDBConnect;
@@ -71,4 +74,20 @@ public class MemberDAO extends JDBConnect{
 		return dto;
 	}
 	
+	public List<String> idCheck() {
+		List<String> ilist = new Vector<String>();
+		String query = "SELECT id FROM member";
+		try {
+			stmt = con.createStatement();
+			rs = stmt.executeQuery(query);
+			while(rs.next()) {
+				ilist.add(rs.getString(1));
+			}
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("중복체크 오류");
+		}
+		return ilist;
+	}
 }

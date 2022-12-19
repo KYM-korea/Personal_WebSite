@@ -29,5 +29,12 @@ dto.setInterest1(interest1);
 int iResult = dao.insertMember(dto);
 dao.close();
 
+if(iResult==1){
+	response.sendRedirect("../Login/LoginForm.jsp");
+}
+else{
+	request.getRequestDispatcher("RegidateForm.jsp")
+	.forward(request, response);
+}
 %>
 

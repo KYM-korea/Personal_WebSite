@@ -45,12 +45,10 @@ dao.close();
 	}
 </script>
 </head>
-<body class="">
-	<div class="container-fruid">
+<body>
 	<!-- Header -->
     <%@ include file ="../Main/inc/Top.jsp" %>
-    </div>
-	<div class="container">
+    
 	<br /><br />
 	<form method="post" name="RegiGoods" enctype="multipart/form-data"
 	action="RegiGoodsProcess.jsp" onsubmit="return validateForm(this);">
@@ -186,7 +184,6 @@ dao.close();
 				</div>
 			</div>
 		</div>
-	</div>
 	
 	<!-- Footer -->
 	<%@ include file ="../Main/inc/Bottom.jsp" %>

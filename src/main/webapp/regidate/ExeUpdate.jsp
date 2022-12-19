@@ -33,7 +33,7 @@
 	String interest3 ="";
 	
 	//인파라미터가 있는 동적쿼리문을 준비한다.
-	String sql = "INSERT INTO member VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+	String sql = "INSERT INTO member VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 	//동적쿼리문 실행을 위한 prepared객체 생성
 	PreparedStatement psmt = jdbc.con.prepareStatement(sql);
 	//인파라미터 설정시 인덱스는 1부터 시작한다.
@@ -51,8 +51,6 @@
 	psmt.setString(12, phone2);
 	psmt.setString(13, phone3);
 	psmt.setString(14, interest1);
-	psmt.setString(15, interest2);
-	psmt.setString(16, interest3);
 	
 	//행에 변화를 주는 update, delete, insert쿼리문은 executeUpdate()
 	//메서드를 통해 실행한다.
