@@ -47,9 +47,11 @@ try{
 	StoreDAO dao = new StoreDAO();
 	dao.insertStore(dto);
 	dao.close(); 
+	//완료시 StoreMain으로 돌아가기
 	response.sendRedirect("StoreMain.jsp");
 }catch(Exception e){
 	e.printStackTrace();
+	//에러 발생시 StoreMain으로 돌아가기
 	request.getRequestDispatcher("StoreMain.jsp").forward(request, response);
 }
 %>

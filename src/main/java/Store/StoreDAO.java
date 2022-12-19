@@ -33,6 +33,7 @@ public class StoreDAO extends JDBConnect {
 			while(rs.next()) {
 				StoreDTO sdb = new StoreDTO();
 				
+				sdb.setIdx(rs.getInt("idx"));
 				sdb.setsName(rs.getString("sName"));
 				sdb.setTitle(rs.getString("title"));
 				sdb.setCop(rs.getString("cop"));
@@ -74,8 +75,32 @@ public class StoreDAO extends JDBConnect {
 		
 		return result;
 	}
-	//상품 구매 이동
 	
+	//상품 구매 이동
+	public StoreDTO selectGoods(int idx) {
+		StoreDTO dto = new StoreDTO();		
+		
+		String query = "SELECT * FROM store WHERE idx=?";
+		
+		try {
+			psmt = con.prepareStatement(query);
+			psmt.setInt(1, idx);
+			rs = psmt.executeQuery();
+			
+			while(rs.next()) {
+				dto.setIdx(rs.getInt("idx"));
+				dto.setsName(rs.getString("sName"));
+				dto.setTitle(rs.getString("title"));
+				dto.setCop(rs.getString("cop"));
+				dto.setPrice(rs.getInt("price"));
+			}
+		}catch(Exception e) {
+			System.out.println("상품 조회 중 에러발생");
+			e.printStackTrace();
+		}
+		
+		return dto;
+	}
 	//상품 추천
 	
 	//상품 삭제

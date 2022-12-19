@@ -44,6 +44,19 @@ dao.close();
 		}
 	}
 </script>
+<style type="text/css">
+.card:focus, .card:hover {
+	border-color: #503396;
+}
+a:link{
+	color: black;
+	text-decoration: none;
+}
+a:visited{
+	color: black;
+	text-decoration: none;
+}
+</style>
 </head>
 <body>
 	<!-- Header -->
@@ -86,7 +99,6 @@ dao.close();
 				<h2>전체 메뉴</h2>
 				<div class="row">
 					<h3>스낵</h3>
-					<ul class="nav">
 				<%
 					int cnt = 0;
 					for(StoreDTO sd : sList){
@@ -95,17 +107,12 @@ dao.close();
 						}else{
 							request.setAttribute("snackObj", sd);
 				%>
-					<li class="nav-item">
-						<a href="#" class="page-link">
-							<jsp:include page="StoreSnack.jsp" />
-						</a>
-					</li>
+						<jsp:include page="StoreSnack.jsp" />
 				<%
 						}
 						cnt++;
 					}
 				%>
-					</ul>
 				</div>
 				<hr />
 				<div class="row">
@@ -118,7 +125,7 @@ dao.close();
 						}else{
 						request.setAttribute("giftCardObj", gd);
 					%>
-					<jsp:include page="StoreGiftCard.jsp" />
+							<jsp:include page="StoreGiftCard.jsp" />
 					<%
 						}
 						cnt++;
@@ -136,7 +143,7 @@ dao.close();
 						}else{
 						request.setAttribute("ticketObj", td);
 					%>
-					<jsp:include page="StoreTicket.jsp" />
+							<jsp:include page="StoreTicket.jsp" />
 					<%
 						}
 						cnt++;
@@ -151,7 +158,9 @@ dao.close();
 					for(StoreDTO sd : sList){
 						request.setAttribute("snackObj", sd);
 				%>
-					<jsp:include page="StoreSnack.jsp" />
+						
+						<jsp:include page="StoreSnack.jsp" />
+						
 				<%
 					}
 				%>
@@ -164,7 +173,7 @@ dao.close();
 					for(StoreDTO gd : gList){
 						request.setAttribute("giftCardObj", gd);
 				%>
-					<jsp:include page="StoreGiftCard.jsp" />
+						<jsp:include page="StoreGiftCard.jsp" />
 				<%
 					}
 				%>
@@ -177,7 +186,7 @@ dao.close();
 					for(StoreDTO td : tList){
 						request.setAttribute("ticketObj", td);
 				%>
-					<jsp:include page="StoreTicket.jsp" />
+						<jsp:include page="StoreTicket.jsp" />
 				<%
 					}
 				%>
