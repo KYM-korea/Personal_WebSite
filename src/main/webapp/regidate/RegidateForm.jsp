@@ -24,10 +24,15 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">  
 	
 <script type="text/javascript">
+var idch = 0;
 function validateForm(form) {
 	if(form.id.value==""){
 		alert("아이디를 입력하세요");
 		form.id.focus();
+		return false;
+	}
+	if(idch == 0){
+		alert("중복체크해주세요.");
 		return false;
 	}
 	if(form.pass.value==""){
@@ -101,6 +106,7 @@ function validateForm(form) {
 		form.interest1.focus();
 		return false;
 	}
+	
 }
 function inputEmail(frm){
     var domain = frm.email_domain.value;
@@ -123,7 +129,7 @@ function idCheck(fn) {
 	var id = document.getElementById("id").value;
 	var ilist = [<%= abc.toString()%>];
 	var chk = false;
-	for(var i=0; i<=ilist.length;i++){
+	for(var i=0 ; i<=ilist.length ; i++){
 		if(id==ilist[i]){
 			chk = true;
 			break;
@@ -273,24 +279,11 @@ function idCheck(fn) {
 					<input type="text" maxlength="4" style="width: 80px" name="phone3" />
 				</td>
 			</tr>
-			<!-- 필수 1개 선택
-			3개 선택시 클릭못하게 만들기 vs에서 찾기 -->
-			<!-- 관심장르를 checkbox말고 그냥 select로 할까? 흠.... select로 3개 따로 만드는 게 나으려나 -->
 			<tr>
 				<th>관심장르</th>
-				<!-- <td>
-					<input type="checkbox" name="interest1"  value="액션"/>액션
-					<input type="checkbox" name="interest1"  value="멜로"/>멜로
-					<input type="checkbox" name="interest1"  value="SF"/>SF
-					<input type="checkbox" name="interest1"  value="공포"/>공포 <br />
-					<input type="checkbox" name="interest1"  value="판타지"/>판타지
-					<input type="checkbox" name="interest1"  value="스릴러"/>스릴러	
-					<input type="checkbox" name="interest1"  value="추리"/>추리
-					<input type="checkbox" name="interest1"  value="코미디"/>코미디
-				</td> -->
 				<td>
 					<select name="interest1">
-						<option value="" checked>-장르선택1-</option>
+						<option value="" checked>-장르선택1(필수)-</option>
 						<option value="액션" >액션</option>
 						<option value="멜로" >멜로</option>
 						<option value="SF" >SF</option>
