@@ -6,5 +6,5 @@ session.removeAttribute("UserName");
 
 session.invalidate();
 
-response.sendRedirect("LoginForm.jsp");
+response.sendRedirect("../Main/HomeMain.jsp");
 %>

@@ -1,5 +1,4 @@
 <%@page import="java.util.Vector"%>
-<%@page import="java.util.ArrayList"%>
 <%@page import="java.util.List"%>
 <%@page import="MemberTable.MemberDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -26,23 +25,33 @@
 	
 <script type="text/javascript">
 var idch = 0;
-
 function validateForm(form) {
 	if(form.id.value==""){
 		alert("아이디를 입력하세요");
 		form.id.focus();
 		return false;
 	}
-	if(form.pass1.value==""){
+	if(idch == 0){
+		alert("중복체크해주세요.");
+		return false;
+	}
+	if(form.pass.value==""){
 		alert("비밀번호를 입력하세요");
-		form.pass1.focus();
+		form.pass.focus();
 		return false;
 	}
-	if(form.pass2.value==""){
-		alert("비번다시");
-		form.pass2.focus();
+	if(form.pass_check.value==""){
+		alert("비밀번호 재확인 해주세요");
+		form.pass_check.focus();
 		return false;
 	}
+	if(form.pass.value!=form.pass_check.value){
+        alert('패스워드가 일치하지 않습니다.')
+        form.pass.value='';
+        form.pass_check.value='';
+        form.pass.focus();
+        return false;
+    }
 	if(form.name.value==""){
 		alert("이름을 입력하세요");
 		form.name.focus();
@@ -92,21 +101,12 @@ function validateForm(form) {
 		form.phone3.focus();
 		return false;
 	}
-	var isInt = false; 
-	var check = document.getElementsByName("interest1");
-	for(var i = 0 ; i < check.length ; i++){
-		if(check[i].checked){
-			isInt = true;
-		}
-	}
-	if(isInt==false){
-		alert("장르좀...");
+	if(form.interest1.value==""){
+		alert("장르를 선택해주세요");
+		form.interest1.focus();
 		return false;
 	}
-	if(idch==0){
-		alert("중복확인좀");
-		return false;
-	}
+	
 }
 function inputEmail(frm){
     var domain = frm.email_domain.value;
@@ -124,13 +124,12 @@ function inputEmail(frm){
         frm.email2.readOnly = true;//입력된 값을 수정할 수 없도록 readonly속성을 활성화한다. 
     }
 }  
-
 function idCheck(fn) {
 	
 	var id = document.getElementById("id").value;
 	var ilist = [<%= abc.toString()%>];
 	var chk = false;
-	for(var i=0; i<=ilist.length;i++){
+	for(var i=0 ; i<=ilist.length ; i++){
 		if(id==ilist[i]){
 			chk = true;
 			break;
@@ -190,13 +189,13 @@ function idCheck(fn) {
 			<tr>
 				<th><span class="c_imp">*</span>비밀번호</th>
 				<td>
-					<input type="password" name="pass1"/>
+					<input type="password" name="pass"/>
 				</td>
 			</tr>
 			<tr>
 				<th><span class="c_imp">*</span>비밀번호 확인</th>
 				<td>
-					<input type="password" name="pass2"/>
+					<input type="password" name="pass_check"/>
 					<!-- 비밀번호가 일치하지 않으면 일치하지 않는다는 alert 혹은 span으로 빨간 글씨가 나오게 하고 비밀번호 지워지게? -->
 				</td>
 			</tr>
@@ -280,20 +279,36 @@ function idCheck(fn) {
 					<input type="text" maxlength="4" style="width: 80px" name="phone3" />
 				</td>
 			</tr>
-			<!-- 필수 1개 선택
-			3개 선택시 클릭못하게 만들기 vs에서 찾기 -->
-			<!-- 관심장르를 checkbox말고 그냥 select로 할까? 흠.... select로 3개 따로 만드는 게 나으려나 -->
 			<tr>
 				<th>관심장르</th>
 				<td>
-					<input type="checkbox" name="interest1"  value="액션"/>액션
-					<input type="checkbox" name="interest1"  value="멜로"/>멜로
-					<input type="checkbox" name="interest1"  value="SF"/>SF
-					<input type="checkbox" name="interest1"  value="SF"/>공포 <br />
-					<input type="checkbox" name="interest1"  value="SF"/>판타지
-					<input type="checkbox" name="interest1"  value="SF"/>스릴러	
-					<input type="checkbox" name="interest1"  value="SF"/>추리
-					<input type="checkbox" name="interest1"  value="SF"/>코미디
+					<select name="interest1">
+						<option value="" checked>-장르선택1(필수)-</option>
+						<option value="액션" >액션</option>
+						<option value="멜로" >멜로</option>
+						<option value="SF" >SF</option>
+						<option value="공포" >공포</option>
+						<option value="판타지" >판타지</option>
+						<option value="코미디" >코미디</option>
+					</select>
+					<select name="interest2">
+						<option value="" checked>-장르선택2-</option>
+						<option value="액션" >액션</option>
+						<option value="멜로" >멜로</option>
+						<option value="SF" >SF</option>
+						<option value="공포" >공포</option>
+						<option value="판타지" >판타지</option>
+						<option value="코미디" >코미디</option>
+					</select>
+					<select name="interest3">
+						<option value="" checked>-장르선택3-</option>
+						<option value="액션" >액션</option>
+						<option value="멜로" >멜로</option>
+						<option value="SF" >SF</option>
+						<option value="공포" >공포</option>
+						<option value="판타지" >판타지</option>
+						<option value="코미디" >코미디</option>
+					</select>
 				</td>
 			</tr>
 		</table>
@@ -304,8 +319,6 @@ function idCheck(fn) {
                     <input type="submit" value="회원가입" class="btn_submit" />
                     &nbsp;&nbsp;
                     <input type="reset" value="취소" class="btn_cancel" />
-                    &nbsp;&nbsp;
-                    <input type="button" value="홈으로" class="btn_gohome" onclick="location.href='../Main/HomeMain.jsp';"/>
                 </td>
             </tr>
         </table> 
