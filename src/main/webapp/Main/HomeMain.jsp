@@ -61,8 +61,8 @@ dao.close();
 
 <form method="post" name="RegiMoive" enctype="multipart/form-data" style="color:white;"
 	action="RegiMovieProcess.jsp" onsubmit="return validateForm(this);">
-	영화명 : <input type="text" name="name" /><br />
-	장르 : <select name="genre" >
+	영화명 : <input type="text" name="mName" /><br />
+	장르 : <select name="mGenre" >
 					<option value="action">액션</option>
 					<option value="melo">멜로</option>
 					<option value="sf">SF</option>
@@ -72,8 +72,8 @@ dao.close();
 					<option value="inference">추리</option>
 					<option value="comedy">코미디</option>
 				</select><br />
-	이미지 : <input type="file" name="img" /><br />
-	설명 : <textarea rows="" cols="" name="summary"></textarea><br />
+	이미지 : <input type="file" name="movieImg" /><br />
+	설명 : <textarea rows="" cols="" name="mSummary"></textarea><br />
 		<input type="submit" value="전송" />
 </form>
 
@@ -110,7 +110,7 @@ dao.close();
 			   }
 		%>
         <a href="#">
-            <img src="../Image/<%= dto.getImg() %>.jpg" class="d-block ">
+            <img src="../Image/<%= dto.getNfile() %>.jpg" class="d-block ">
         </a>
         </div>
         <%
@@ -136,7 +136,7 @@ dao.close();
 		%>
         <div class=" card me-4 bg-dark" style="width:200px">
             <div>
-                <img class="card-img-top" src="../Image/<%= dto.getImg() %>.jpg" alt="<%= dto.getImg() %>" style="width:100%;" onmouseover="posterOver(<%= dto.getIdx()-1 %>);">
+                <img class="card-img-top" src="../Image/<%= dto.getNfile() %>.jpg" alt="<%= dto.getNfile() %>" style="width:100%;" onmouseover="posterOver(<%= dto.getIdx()-1 %>);">
             </div>
             <div class="wrap" style="display: none; opacity: 1;">
                 

@@ -8,8 +8,6 @@ public class MovieDTO {
 	private String name;
 	//영화 장르
 	private String genre;
-	//영화 이미지 이름
-	private String img;
 	//영화 설명
 	private String summary;
 	//평점
@@ -40,12 +38,6 @@ public class MovieDTO {
 	}
 	public void setGenre(String genre) {
 		this.genre = genre;
-	}
-	public String getImg() {
-		return img;
-	}
-	public void setImg(String img) {
-		this.img = img;
 	}
 	public String getSummary() {
 		return summary;

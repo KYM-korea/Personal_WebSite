@@ -34,7 +34,6 @@ public class MovieDAO extends JDBConnect {
 				dto.setIdx(rs.getInt("idx"));
 				dto.setName(rs.getString("name"));
 				dto.setGenre(rs.getString("genre"));
-				dto.setImg(rs.getString("img"));
 				dto.setSummary(rs.getString("summary"));
 				dto.setGrade(rs.getInt("grade"));
 				dto.setLikeCnt(rs.getInt("likeCnt"));

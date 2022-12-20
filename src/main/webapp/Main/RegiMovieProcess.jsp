@@ -27,7 +27,7 @@
 		} */
 			
 		
-		String fileName = mr.getFilesystemName("img");
+		String fileName = mr.getFilesystemName("movieImg");
 		String ext = fileName.substring(fileName.lastIndexOf("."));
 		String now = new SimpleDateFormat("yyyyMMdd_HmsS").format(new Date());
 		String newFileName = now + ext;
@@ -36,9 +36,10 @@
 		File newFile = new File(fileDir + File.separator + newFileName);
 		oldFile.renameTo(newFile);
 		
-		String name = mr.getParameter("name");
-		String genre = mr.getParameter("genre");
-		String summary = mr.getParameter("summary");
+ 		String name = mr.getParameter("mName");
+		String genre = mr.getParameter("mGenre");
+		String summary = mr.getParameter("mSummary");
+	
 		
 		MovieDTO dto = new MovieDTO();
 		dto.setName(name);
