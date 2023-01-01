@@ -19,7 +19,7 @@ public class MovieDTO {
 	//DB 이미지 저장될 파일명
 	private String nfile;
 	//등록일
-	private java.sql.Date rDate;
+	private java.sql.Date regidate;
 	
 	public int getIdx() {
 		return idx;
@@ -69,11 +69,11 @@ public class MovieDTO {
 	public void setNfile(String nfile) {
 		this.nfile = nfile;
 	}
-	public java.sql.Date getrDate() {
-		return rDate;
+	public java.sql.Date getRegidate() {
+		return regidate;
 	}
-	public void setrDate(java.sql.Date rDate) {
-		this.rDate = rDate;
+	public void setRegidate(java.sql.Date regidate) {
+		this.regidate = regidate;
 	}
 	
 }

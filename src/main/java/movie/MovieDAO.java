@@ -21,7 +21,7 @@ public class MovieDAO extends JDBConnect {
 		List<MovieDTO> mItem = new Vector<MovieDTO>();
 		
 		String query = "SELECT * FROM movie_info "
-				+ " ORDER BY rDate DESC";
+				+ " ORDER BY regidate DESC";
 		
 		try {
 			stmt = con.createStatement();
@@ -39,7 +39,7 @@ public class MovieDAO extends JDBConnect {
 				dto.setLikeCnt(rs.getInt("likeCnt"));
 				dto.setOfile(rs.getString("ofile"));
 				dto.setNfile(rs.getString("nfile"));
-				dto.setrDate(rs.getDate("rDate"));
+				dto.setRegidate(rs.getDate("regidate"));
 				
 				mItem.add(dto);
 			}
