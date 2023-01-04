@@ -55,6 +55,11 @@
 				<input type="submit" value="로그인하기">
 			</div>
 		</form>
+		<div align="center" style="margin-bottom:108px;">
+			<a href="../regidate/RegidateForm.jsp">회원가입</a>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<a href="./FindId.jsp">아이디 비밀번호 찾기</a>
+		</div>
 	</div>
 	<%
 	}else{

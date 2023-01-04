@@ -31,7 +31,7 @@ public class MovieDAO extends JDBConnect {
 				
 				MovieDTO dto = new MovieDTO();
 				
-				dto.setIdx(rs.getInt("idx"));
+				dto.setIdx(rs.getString("idx"));
 				dto.setName(rs.getString("name"));
 				dto.setGenre(rs.getString("genre"));
 				dto.setSummary(rs.getString("summary"));
@@ -75,4 +75,6 @@ public class MovieDAO extends JDBConnect {
 		}
 		return iResult;
 	}
+	
+	
 }
