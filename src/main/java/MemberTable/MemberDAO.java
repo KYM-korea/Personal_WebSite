@@ -90,4 +90,48 @@ public class MemberDAO extends JDBConnect{
 		}
 		return ilist;
 	}
+	
+	//아이디찾기
+	public String findId(String name, String email, String phone) {
+		String  result = null;
+		
+		try {
+			String query = "SELECT id from member WHERE name=? and email=? and phone=?";
+			psmt = con.prepareStatement(query);
+			psmt.setString(1, name);
+			psmt.setString(2, email);
+			psmt.setString(3, phone);
+			rs = psmt.executeQuery();
+			if(rs.next()) {
+				result = rs.getString("id");
+			}
+		}
+		catch (Exception e) {
+			System.out.println("아이디 찾기중 예외발생");
+			e.printStackTrace();
+		}
+		return result;
+	}
+	//비번찾기
+	public String findPw(String id, String name, String email, String phone) {
+		String  result = null;
+		
+		try {
+			String query = "SELECT pass from member WHERE id=? and name=? and email=? and phone=?";
+			psmt = con.prepareStatement(query);
+			psmt.setString(1, id);
+			psmt.setString(2, name);
+			psmt.setString(3, email);
+			psmt.setString(4, phone);
+			rs = psmt.executeQuery();
+			if(rs.next()) {
+				result = rs.getString("pass");
+			}
+		}
+		catch (Exception e) {
+			System.out.println("비밀번호 찾기중 예외발생");
+			e.printStackTrace();
+		}
+		return result;
+	}
 }

@@ -12,6 +12,11 @@
 </head>
 <script type="text/javascript">
 function validateForm(form) {
+	if(form.id.value==""){
+		alert("아이디를 입력하세요");
+		form.id.focus();
+		return false;
+	}
 	if(form.name.value==""){
 		alert("이름을 입력하세요");
 		form.name.focus();
@@ -28,13 +33,9 @@ function validateForm(form) {
 		return false;
 	}
 }
-function idFind(){
+function pwFind(){
 	var ifn = document.myForm;
-	//윈도우 창 띄우기 시도중...
-	var name=ifn.name.value;
-	var email=ifn.email.value;
-	var phone=ifn.phone.value;
-	window.open("FinderProcess.jsp=?<%= ifn%>", "idover","width=300,height=200");
+	ifn.action="FinderPwProcess.jsp";
 }
 </script>
 <body align="center">
@@ -50,7 +51,11 @@ function idFind(){
 			    </li>
 			  </ul>
 			</div>
-			<table class="mt-3">
+			<table class="mt-3" >
+				<tr>
+					<th>아이디</th>
+					<td><input type="text" maxlength="20" placeholder="아이디" name="id" style="width:200px" /></td>
+				</tr>
 				<tr>
 					<th>이름</th>
 					<td><input type="text" maxlength="20" placeholder="이름" name="name" style="width:200px" /></td>
@@ -65,7 +70,7 @@ function idFind(){
 				</tr>
 				<tr>
 					<td colspan="2" align="center">
-						<input type="submit" value="확인" onclick="idFind();"/>
+						<input type="submit" value="확인" onclick="pwFind();"/>
 						 <input type="reset" value="취소" onclick="location.href='../Main/HomeMain.jsp'" />
 					</td>
 				</tr>
