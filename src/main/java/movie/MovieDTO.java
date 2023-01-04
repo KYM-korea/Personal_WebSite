@@ -71,6 +71,7 @@ public class MovieDTO {
 	public void setNfile(String nfile) {
 		this.nfile = nfile;
 	}
+		
 	public java.sql.Date getrDate() {
 		return rDate;
 	}
@@ -83,5 +84,6 @@ public class MovieDTO {
 	public void setM_idx(String m_idx) {
 		this.m_idx = m_idx;
 	}
+	
 	
 }
