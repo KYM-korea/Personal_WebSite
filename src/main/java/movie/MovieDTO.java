@@ -22,6 +22,8 @@ public class MovieDTO {
 	private java.sql.Date rDate;
 	//좋아요 인덱스
 	private String m_idx;
+	//유저 아이디
+	private String id;
 	
 	public String getIdx() {
 		return idx;
@@ -83,6 +85,12 @@ public class MovieDTO {
 	}
 	public void setM_idx(String m_idx) {
 		this.m_idx = m_idx;
+	}
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
 	}
 	
 	
