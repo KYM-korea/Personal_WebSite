@@ -3,7 +3,7 @@ package movie;
 public class MovieDTO {
 	
 	//영화 인덱스
-	private int idx;
+	private String idx;
 	//영화 이름
 	private String name;
 	//영화 장르
@@ -20,11 +20,13 @@ public class MovieDTO {
 	private String nfile;
 	//등록일
 	private java.sql.Date rDate;
+	//좋아요 인덱스
+	private String m_idx;
 	
-	public int getIdx() {
+	public String getIdx() {
 		return idx;
 	}
-	public void setIdx(int idx) {
+	public void setIdx(String idx) {
 		this.idx = idx;
 	}
 	public String getName() {
@@ -74,6 +76,12 @@ public class MovieDTO {
 	}
 	public void setrDate(java.sql.Date rDate) {
 		this.rDate = rDate;
+	}
+	public String getM_idx() {
+		return m_idx;
+	}
+	public void setM_idx(String m_idx) {
+		this.m_idx = m_idx;
 	}
 	
 }

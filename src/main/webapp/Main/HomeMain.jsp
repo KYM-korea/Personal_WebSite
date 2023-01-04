@@ -24,7 +24,7 @@ dao.close();
     <script>
         function posterOver(idx) {
            var poster = document.getElementsByClassName("wrap")[idx];
-           poster.style = "display:block";
+           poster.style = "";
         }
         function validateForm(form) {
         	if(form.name.value=""){
@@ -42,6 +42,26 @@ dao.close();
         		form.img.focus();
         		return false;
         	}
+        }
+        
+        function fillHeart(){
+        	var f_btn = document.getElementById("like_btn_f");
+        	var b_btn = document.getElementById("like_btn_b");
+        	var likeChk = document.getElementById("like");  
+        
+       		f_btn.style="";
+       		b_btn.style="display:none";
+       		likeChk.value="1";
+       }
+        
+        function blankHeart(){
+        	var f_btn = document.getElementById("like_btn_f");
+        	var b_btn = document.getElementById("like_btn_b");  
+        	var likeChk = document.getElementById("like");  
+        	
+       		f_btn.style="display:none";
+       		b_btn.style="";
+       		likeChk.value="0";
         }
     </script>
     <style>
@@ -110,7 +130,7 @@ dao.close();
 			   }
 		%>
         <a href="#">
-            <img src="../Image/<%= dto.getNfile() %>.jpg" class="d-block ">
+            <img src="../Image/<%= dto.getNfile() %>" class="d-block ">
         </a>
         </div>
         <%
@@ -136,7 +156,7 @@ dao.close();
 		%>
         <div class=" card me-4 bg-dark" style="width:200px">
             <div>
-                <img class="card-img-top" src="../Image/<%= dto.getNfile() %>.jpg" alt="<%= dto.getNfile() %>" style="width:100%;" onmouseover="posterOver(<%= dto.getIdx()-1 %>);">
+                <img class="card-img-top" src="../Image/<%= dto.getNfile() %>" alt="<%= dto.getNfile() %>" style="width:100%;" onmouseover="posterOver(<%= dto.getIdx() %>);">
             </div>
             <div class="wrap" style="display: none; opacity: 1;">
                 
@@ -151,8 +171,16 @@ dao.close();
                 </div>
             </div>
             <div>  
-                <a href="#" class="btn btn-outline-light"><i class="bi bi-heart"></i><%= dto.getLikeCnt() %></a>
+		        <form name="like_change" action="LikeProcess.jsp" method="post">		                     	
+                	<a href="javascript:like_change.submit();" class="btn btn-outline-light" >
+                	<input type="hidden" id="" name="lIdx" value=""<%= dto.getIdx() %>>
+                	<input type="hidden" id="" name="lGenre" value="<%= dto.getGenre() %>">
+                	<input type="hidden" id="" name="lName" value="<%= dto.getName() %>">
+                	<input type="hidden" id="like" name="like" value="1">
+            		<i id="like_btn_f" name="like_btn_f" class="bi bi-heart-fill" style="display:none;" onclick="blankHeart();"></i>
+	                <i id="like_btn_b" name="like_btn_b" class="bi bi-heart" style="" onclick="fillHeart();" ></i><%= dto.getLikeCnt() %></a>
                 <a href="#" class="btn btn-primary">예매</a>
+            	</form>
             </div>
         </div>
         <%
