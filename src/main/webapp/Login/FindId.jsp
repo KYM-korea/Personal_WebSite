@@ -9,6 +9,11 @@
 <script src="../common/jquery/jquery-3.6.1.min.js"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
 <title>Insert title here</title>
+<style>
+	input{
+		margin: 3px;
+	}
+</style>
 </head>
 <script type="text/javascript">
 function validateForm(form) {
@@ -30,26 +35,23 @@ function validateForm(form) {
 }
 function idFind(){
 	var ifn = document.myForm;
-	//윈도우 창 띄우기 시도중...
-	var name=ifn.name.value;
-	var email=ifn.email.value;
-	var phone=ifn.phone.value;
-	window.open("FinderProcess.jsp=?<%= ifn%>", "idover","width=300,height=200");
+	ifn.action="FinderProcess.jsp";
 }
 </script>
 <body align="center">
+<%@ include file ="../Main/inc/Top.jsp" %>
 <div class="container p-5 my-4 border" align="center">
+		<div class="container mt-3">
+		  <ul class="nav justify-content-center nav-tabs" >
+		    <li class="nav-item">
+		      <a class="nav-link active" href="./FindId.jsp" name="id">아이디 찾기</a>
+		    </li>
+		    <li class="nav-item">
+		      <a class="nav-link" href="./FindPw.jsp" name="pw" >비밀번호 찾기</a>
+		    </li>
+		  </ul>
+		</div>
 		<form name="myForm" method="post" onsubmit="return validateForm(this);">
-			<div class="container mt-3">
-			  <ul class="nav justify-content-center nav-tabs">
-			    <li class="nav-item">
-			      <a class="nav-link active" href="./FindId.jsp" name="id">아이디 찾기</a>
-			    </li>
-			    <li class="nav-item">
-			      <a class="nav-link" href="./FindPw.jsp" name="pw" >비밀번호 찾기</a>
-			    </li>
-			  </ul>
-			</div>
 			<table class="mt-3">
 				<tr>
 					<th>이름</th>
@@ -72,5 +74,6 @@ function idFind(){
 			</table>
 		</form>
 	</div>
+	<%@ include file ="../Main/inc/Bottom.jsp" %>
 </body>
 </html>
