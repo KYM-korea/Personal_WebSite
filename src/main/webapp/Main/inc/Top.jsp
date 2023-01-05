@@ -24,7 +24,8 @@
 			    <a href="#" class="util-menu" onclick="location.href='../regidate/RegidateForm.jsp';">회원가입</a>
 			</div>
 			<!--로고-->
-			<img style="width: 150px; margin-left: 580px; display: block;" src="https://img.freepik.com/premium-vector/movie-shop-logo-design-concept_96807-552.jpg" alt="">
+			<a href="../Main/HomeMain.jsp"><img style="width: 150px; margin-left: 580px; display: block;" src="../Image/logo.jpg" alt="">
+			</a>
 			<!-- 로그인 후 -->
 			<div class="after" style="display: none;">
 			    <a href="" class="util-menu">마이페이지</a>
