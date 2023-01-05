@@ -5,6 +5,7 @@
 <%@page import="java.util.Map"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
 <%
 NoticeDAO dao = new NoticeDAO(application);
 
@@ -86,7 +87,7 @@ dao.close();
 				%>
                    <tr>
                        <td><%= virtualNum %></td>
-                       <td><a href="noticeContent.jsp?idx=<%= dto.getIdx()%>"></a> <%= dto.getTitle() %></td>
+                       <td><a href="noticeView.jsp?idx=<%= dto.getIdx()%>"><%= dto.getTitle() %></a> </td>
                        <td><%= dto.getName() %></td>
                        <td><%= dto. getPostdate() %></td>
                    </tr>
@@ -137,7 +138,7 @@ dao.close();
 			<tr align="right">
 				<td>
 					<button type="button" onclick="#Main">홈으로</button> 
-					<button type="button" onclick="#Write">글쓰기</button> 
+					<button type="button" onclick="location.href='noticeWrite.jsp';">글쓰기</button> 
 					<!-- view에서 수정하기/ 삭제하기 / 이전으로(홈으로) 만들기 -->
 				</td>
 			</tr>
