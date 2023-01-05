@@ -33,7 +33,7 @@ public class StoreDAO extends JDBConnect {
 			while(rs.next()) {
 				StoreDTO sdb = new StoreDTO();
 				
-				sdb.setIdx(rs.getInt("idx"));
+				sdb.setIdx(rs.getString("idx"));
 				sdb.setsName(rs.getString("sName"));
 				sdb.setTitle(rs.getString("title"));
 				sdb.setCop(rs.getString("cop"));
@@ -49,14 +49,16 @@ public class StoreDAO extends JDBConnect {
 		return list;
 	}
 	
+	
 	//상품 등록하기
 	public int insertStore(StoreDTO dto) {
 		int result = 0;
 		
+		// idx 값 시퀀스 번호로 전환이 필요		
 		try {
 			String query = " INSERT INTO store ( "
 					+ " idx, sName, dname, title, cop, price, "
-					+ " fd, sug) VALUES ( 16, "
+					+ " fd, sug) VALUES ( 20, "
 					+ " ?, ?, ? ,? ,? ,? ,0 ) ";
 			
 			psmt = con.prepareStatement(query);
@@ -77,18 +79,18 @@ public class StoreDAO extends JDBConnect {
 	}
 	
 	//상품 구매 이동
-	public StoreDTO selectGoods(int idx) {
+	public StoreDTO selectGoods(String idx) {
 		StoreDTO dto = new StoreDTO();		
 		
 		String query = "SELECT * FROM store WHERE idx=?";
 		
 		try {
 			psmt = con.prepareStatement(query);
-			psmt.setInt(1, idx);
+			psmt.setString(1, idx);
 			rs = psmt.executeQuery();
 			
 			while(rs.next()) {
-				dto.setIdx(rs.getInt("idx"));
+				dto.setIdx(rs.getString("idx"));
 				dto.setsName(rs.getString("sName"));
 				dto.setTitle(rs.getString("title"));
 				dto.setCop(rs.getString("cop"));
@@ -101,7 +103,20 @@ public class StoreDAO extends JDBConnect {
 		
 		return dto;
 	}
+	
 	//상품 추천
+	public void updatePlusSug(String idx) {
+		String query = "UPDATE store SET "
+				+ " sug=sug+1 WHERE idx=? ";
+		try {
+			psmt = con.prepareStatement(query);
+			psmt.setString(1, idx);
+			psmt.execute();
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
 	
 	//상품 삭제
+	
 }

@@ -8,11 +8,9 @@
 <!DOCTYPE html>
 <%
 StoreDAO dao = new StoreDAO(application);
-
 List<StoreDTO> sList = dao.selectList("snack");
 List<StoreDTO> gList = dao.selectList("gift");
 List<StoreDTO> tList = dao.selectList("ticket");
-
 dao.close();
 %>
 <html>

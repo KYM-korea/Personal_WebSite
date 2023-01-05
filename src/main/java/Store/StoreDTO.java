@@ -2,7 +2,7 @@ package Store;
 
 public class StoreDTO {
 	//인덱스
-	private int idx;
+	private String idx;
 	//DB에 저장될 이미지 이름
 	private String sName;
 	//실제 이미지 이름 
@@ -56,10 +56,10 @@ public class StoreDTO {
 	public void setdName(String dName) {
 		this.dName = dName;
 	}
-	public int getIdx() {
+	public String getIdx() {
 		return idx;
 	}
-	public void setIdx(int idx) {
+	public void setIdx(String idx) {
 		this.idx = idx;
 	}
 	public String getCop() {
