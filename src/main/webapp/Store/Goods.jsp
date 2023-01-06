@@ -137,7 +137,7 @@ function cnt(type){
 			<td style="text-align: center;">
 			<c:choose>
 				<c:when test="${SugChk eq 0 || empty SugChk}">
-					<button type="button" class="btn btn-outline-primary" onclick="location.href='../movie/stsug.do?mode=plus';">상품추천</button>
+					<button type="button" class="btn btn-outline-primary" onclick="location.href='../movie/stsug.do?mode=plus&idx=${dto.idx}';">상품추천</button>
 				</c:when>	
 				<c:otherwise>
 					<button type="button" class="btn btn-outline-primary" onclick="../movie/stsug.do?mode=minus">추천취소</button>
