@@ -47,7 +47,7 @@ function validateForm(form) {
 게시물의 일련번호를 서버로 전송하기 위해서 hidden타입의 input이
 반드시 필요하다. 
 -->
-<input type="hid-den" name="num" value="<%= dto.getIdx() %>" />
+<input type="hid-den" name="idx" value="<%= dto.getIdx() %>" />
       
     <table border="1" width="90%">
         <tr>

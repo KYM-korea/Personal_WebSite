@@ -11,11 +11,11 @@ NoticeDAO dao = new NoticeDAO(application);
 
 Map<String, Object> param = new HashMap<String, Object>();
 
-String searchField = request.getParameter("searchField");
-String searchWord = request.getParameter("searchWord");
-
 String flag = request.getParameter("flag");
 param.put("flag", flag);
+
+String searchField = request.getParameter("searchField");
+String searchWord = request.getParameter("searchWord");
 
 if (searchWord != null) {
 	/* Map컬렉션에 컬럼명과 검색어를 추가한다. */
@@ -40,27 +40,25 @@ dao.close();
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="../common/jquery/jquery-3.6.1.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
-    <titler></title>
-   
+    <titler>공지사항 메인</title>
 </head>
 <body>
 <!-- Header -->
-    <%@ include file ="../Main/inc/Top.jsp" %>
+<%@ include file ="../Main/inc/Top.jsp" %>
+    
 <div class="container">
-	
-	<p><img src="https://www.tjoeun.co.kr/images/logo.gif?v=20190918" alt="공지사항 메인 이미지"></p>
-	
 	<ul class="nav nav-tabs" role="tablist">
 		<li class="nav-item">
-			<a class="nav-link active" data-bs-toggle="tab" href="./noticeContent.jsp">공지사항</a>
+			<a class="nav-link active" data-bs-toggle="tab" href="#notice">공지사항</a>
 		</li>
 		<li class="nav-item">
-			<a class="nav-link" data-bs-toggle="tab" href="./event.jsp">이벤트</a>
+			<a class="nav-link" data-bs-toggle="tab" href="#event">이벤트</a>
 		</li>
 	</ul>
 	
 	<!-- 공지사항  -->
-	<!-- 됐는데 네브바 안에서 공지사항 이벤트를 나눠서 나오게 해야하는데 그걸 못하겠음 -->
+	
+
 	<div class="tab-content">
 		<div id="notice" class="container tab-pane active">
 			<table class="table table-hover">
@@ -86,10 +84,13 @@ dao.close();
 					virtualNum = totalCount--;
 				%>
                    <tr>
-                       <td><%= virtualNum %></td>
-                       <td><a href="noticeView.jsp?idx=<%= dto.getIdx()%>"><%= dto.getTitle() %></a> </td>
-                       <td><%= dto.getName() %></td>
-                       <td><%= dto. getPostdate() %></td>
+	                    <td><%= virtualNum %></td>
+	                    <td>
+	                 		<a href="noticeView.jsp?flag=<%= dto.getFlag() %>&idx=<%= dto.getIdx()%>">
+	                 			<%= dto.getTitle() %></a> 
+	                 	</td>
+	                    <td><%= dto.getName() %></td>
+	                    <td><%= dto. getPostdate() %></td>
                    </tr>
                    <%
 					}
@@ -99,6 +100,7 @@ dao.close();
 		</div>
 		
 		<!-- 이벤트 -->
+
 		<div id="event" class="contatiner tab-pane fade">
 			<table class="table table-hover">
                 <thead class=" text-center">
@@ -122,13 +124,16 @@ dao.close();
 				for (NoticeDTO dto : boardLists) {
 					virtualNum = totalCount--;
 				%>
-                   <tr>
-                       <td><%= virtualNum %></td>
-                       <td><%= dto.getTitle() %></td>
-                       <td><%= dto.getName() %></td>
-                       <td><%= dto. getPostdate() %></td>
-                   </tr>
-                   <%
+                <tr>
+	                <td><%= virtualNum %></td>
+	                <td>
+	                	<a href="noticeView.jsp?flag=<%= dto.getFlag() %>&idx=<%= dto.getIdx()%>">
+	                		<%= dto.getTitle() %></a>
+	                </td>
+	                <td><%= dto.getName() %></td>
+	                <td><%= dto. getPostdate() %></td>
+                </tr>
+                <%
 					}
 				}
 				%>
@@ -138,15 +143,14 @@ dao.close();
 			<tr align="right">
 				<td>
 					<button type="button" onclick="#Main">홈으로</button> 
-					<button type="button" onclick="location.href='noticeWrite.jsp';">글쓰기</button> 
-					<!-- view에서 수정하기/ 삭제하기 / 이전으로(홈으로) 만들기 -->
+					<button type="button" onclick="location.href='noticeWrite.jsp?flag=${param.flag}}';">글쓰기</button> 
 				</td>
 			</tr>
 		</table>
 	</div>
 	
-	<!-- Footer -->
-	<%@ include file ="../Main/inc/Bottom.jsp" %>
+<!-- Footer -->
+<%@ include file ="../Main/inc/Bottom.jsp" %>
 </div>
 </body>
 </html>

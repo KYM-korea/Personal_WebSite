@@ -22,10 +22,12 @@ public class NoticeDAO extends JDBConnect {
 	public int selectCount(Map<String, Object> map) {
 		int totalCount = 0;
 		
-		String query = "SELECT COUNT(*) FROM notice ";
+		String query = "SELECT COUNT(*) FROM notice WHERE flag='" + map.get("flag") + "'";
+		
+		System.out.println(map.get("flag"));
 		
 		if(map.get("searchWord") != null) {
-			query += " WHERE " + map.get("searchField") + " "
+			query += " AND " + map.get("searchField") + " "
 					+ " LIKE '%" + map.get("searchWord") + "%'";
 		}
 		try {
@@ -46,12 +48,12 @@ public class NoticeDAO extends JDBConnect {
 		
 		List<NoticeDTO> bbs = new Vector<NoticeDTO>();
 		
-        String query = "SELECT * FROM notice "; 
+        String query = "SELECT * FROM notice WHERE flag='" + map.get("flag") + "'"; 
         if (map.get("searchWord") != null) {
-            query += " WHERE " + map.get("searchField") + " "
+            query += " AND " + map.get("searchField") + " "
                    + " LIKE '%" + map.get("searchWord") + "%' ";
         }
-        query += " ORDER BY idx DESC "; 
+        query += " ORDER BY postdate DESC "; 
 
 		
 		try {
