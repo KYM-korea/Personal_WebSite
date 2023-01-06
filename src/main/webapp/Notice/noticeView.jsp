@@ -59,8 +59,7 @@ function deletePost() {
         <tr>
             <td colspan="4" align="center">
 
-			     <button type="button"
-			             onclick="location.href='Edit.jsp?num=<%= dto.getIdx() %>';">
+			     <button type="button" onclick="location.href='Edit.jsp?idx=<%= dto.getIdx() %>';">
 			         수정하기</button>
 			     <button type="button" onclick="deletePost();">삭제하기</button> 
 

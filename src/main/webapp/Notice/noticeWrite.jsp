@@ -18,6 +18,17 @@ function validateForm(form) {  // 폼 내용 검증
         form.content.focus();
         return false;
     }
+    
+    var flagChk=false;
+    for(var i=0 ; i<frm.flag.length ; i++){
+        if(frm.flag[i].checked==true)
+            flagChk = true;
+    }
+    if(flagChk==false){
+        alert('어떤 게시판에 작성할 지 선택하세요.');
+        frm.flag[0].focus();
+        return false;
+    }
 }
 </script>
 </head>
@@ -39,7 +50,13 @@ function validateForm(form) {  // 폼 내용 검증
                 <textarea name="content" style="width: 90%; height: 100px;"></textarea>
             </td>
         </tr>
-
+		<tr>
+            <td>플래그</td>
+            <td>
+            	<label><input type="radio" name="flag" value="con" />공지사항</label>
+                <label><input type="radio" name="flag" value="eve" />이벤트</label>
+            </td>
+		</tr>
         <tr>
             <td colspan="2" align="center">
                 <button type="submit">작성 완료</button>
