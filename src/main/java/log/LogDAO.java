@@ -13,19 +13,26 @@ public class LogDAO extends JDBConnect {
 	}
 	
 	public void insertLike(LogDTO dto) {
+		String query = "";
 		try {
-			String query = "INSERT INTO sug_like_log ( "
-					+ " idx, name, category, id, field) "
-					+ " VALUES ( "
-					+ " ?, ?, ?, ?)";
-			
+			if(dto.getField().equals("movie")) {
+				query = "INSERT INTO sug_like_log ( "
+						+ " idx, id, field, name, category) "
+						+ " VALUES ( "
+						+ " ?, ?, ?, ?, ?)";
+			}else {
+				query = "INSERT INTO sug_like_log ("
+						+ " idx, id, field ) "
+						+ " VALUES ( ?,?,? )"; 
+			}
 			psmt = con.prepareStatement(query);
 			psmt.setString(1, dto.getIdx());
-			psmt.setString(2, dto.getName());
-			psmt.setString(3, dto.getCategory());
-			psmt.setString(4, dto.getId());
-			psmt.setString(5, dto.getField());
-			
+			psmt.setString(2, dto.getId());
+			psmt.setString(3, dto.getField());
+			if(dto.getField().equals("movie")) {
+				psmt.setString(4, dto.getName());
+				psmt.setString(5, dto.getCategory());
+			}
 			psmt.execute();		
 		}
 		catch (Exception e) {
@@ -52,7 +59,7 @@ public class LogDAO extends JDBConnect {
 		}
 	}
 	
-	public int likeChk(String id, String idx, String field) {
+	public int likeChk(String idx, String id, String field) {
 		int result = 0;
 		String query = "SELECT COUNT(*) FROM sug_like_log "
 				+ " WHERE idx = ? AND id = ? AND field = ?";

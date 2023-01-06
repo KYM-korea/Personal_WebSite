@@ -140,7 +140,7 @@ function cnt(type){
 					<button type="button" class="btn btn-outline-primary" onclick="location.href='../movie/stsug.do?mode=plus&idx=${dto.idx}';">상품추천</button>
 				</c:when>	
 				<c:otherwise>
-					<button type="button" class="btn btn-outline-primary" onclick="../movie/stsug.do?mode=minus">추천취소</button>
+					<button type="button" class="btn btn-outline-primary" onclick="location.href='../movie/stsug.do?mode=minus&idx=${dto.idx}';">추천취소</button>
 				</c:otherwise>
 			</c:choose>			
 			<button type="button" class="btn btn-outline-primary" onclick="location.href='';">구매하기</button>

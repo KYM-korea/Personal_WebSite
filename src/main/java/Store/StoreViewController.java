@@ -22,10 +22,11 @@ public class StoreViewController extends HttpServlet{
 		
 		if(session.getAttribute("UserId")!=null) {
 			id=session.getAttribute("UserId").toString();
-
+			
 			LogDAO ldao = new LogDAO();
 			int SugChk = ldao.likeChk(idx, id, "store");
 			ldao.close();
+			
 			req.setAttribute("SugChk", SugChk);
 		}
 		
