@@ -15,7 +15,7 @@ public class StoreSellController extends HttpServlet{
 		boolean result = false;
 		int buycnt = Integer.parseInt(req.getParameter("buycnt"));
 		
-		if(buycnt!=1 || buycnt!=10) {
+		if(buycnt!=1 || buycnt!=8) {
 			result = true;
 		}
 		

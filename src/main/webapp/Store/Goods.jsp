@@ -32,7 +32,7 @@ function cnt(type){
 	var buycnt = Number(document.getElementById("buycnt").value);
 	var price = ${dto.price};
 	if(type == 'plus'){
-		if(buycnt != 10){
+		if(buycnt != 8){
 			buycnt = buycnt + 1;
 			price = price * buycnt;
 			document.getElementById("buycnt").value = buycnt;
@@ -85,18 +85,20 @@ function cnt(type){
 			<td>
 				유효기간
 			</td>
-			<td colspan="2">구매이후 90일</td>
+			<td colspan="2">
+				<c:choose>
+					<c:when test="${dto.field eq 'snack' }">구매일로부터 92일 이내 사용 가능</c:when>
+					<c:when test="${dto.field eq 'giftCard' }">구매일로부터 24개월 이내 사용 가능</c:when>
+					<c:otherwise>구매일로부터 366일 이내 사용 가능</c:otherwise>
+				</c:choose>
+			</td>
 		</tr>
 		<tr>
 			<td>
 				판매수량
 			</td>
 			<td colspan="2">
-				<c:choose>
-					<c:when test="${test }"></c:when>
-					<c:when test="${test }"></c:when>
-					<c:otherwise></c:otherwise>
-				</c:choose>
+				1회 8개 구매 가능
 			</td>
 		</tr>
 		<tr>
@@ -105,9 +107,8 @@ function cnt(type){
 			</td>
 			<td colspan="2">
 				<c:choose>
-					<c:when test="${test }"></c:when>
-					<c:when test="${test }"></c:when>
-					<c:otherwise></c:otherwise>
+					<c:when test="${dto.field eq 'giftCard' }">구매일로부터 366일 이내 취소 가능하며, 부분취소는 불가능</c:when>
+					<c:otherwise>구매일로부터 10일 이내 취소 가능하며, 부분취소는 불가능</c:otherwise>
 				</c:choose>
 			</td>
 		</tr>
@@ -133,15 +134,16 @@ function cnt(type){
 	</table>
 	<table class="table">
 		<tr>
-			<td>
+			<td style="text-align: center;">
 			<c:choose>
-				<c:when test="${SugChk eq 0 }">
-					<button type="button" class="btn btn-outline-primary" onclick="location.href='';">상품추천</button>
+				<c:when test="${SugChk eq 0 || empty SugChk}">
+					<button type="button" class="btn btn-outline-primary" onclick="location.href='../movie/stsug.do?mode=plus&idx=${dto.idx}';">상품추천</button>
 				</c:when>	
 				<c:otherwise>
-					<button type="button" class="btn btn-outline-primary" onclick="location.href='';">추천취소</button>
+					<button type="button" class="btn btn-outline-primary" onclick="location.href='../movie/stsug.do?mode=minus&idx=${dto.idx}';">추천취소</button>
 				</c:otherwise>
 			</c:choose>			
+			<button type="button" class="btn btn-outline-primary" onclick="location.href='';">구매하기</button>
 			</td>
 		</tr>
 	</table>

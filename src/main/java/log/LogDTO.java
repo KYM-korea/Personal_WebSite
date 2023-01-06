@@ -1,28 +1,22 @@
 package log;
 
 public class LogDTO {
-	//스토어 인덱스
-	private String g_idx;
-	//무비 인덱스
-	private String m_idx;
+	//인덱스
+	private String idx;
 	//분류
 	private String category;
 	//이름
 	private String name;
 	//사용자 아이디
 	private String id;
+	//필드(movie와 store 구분)
+	private String field;
 	
-	public String getG_idx() {
-		return g_idx;
+	public String getIdx() {
+		return idx;
 	}
-	public void setG_idx(String g_idx) {
-		this.g_idx = g_idx;
-	}
-	public String getM_idx() {
-		return m_idx;
-	}
-	public void setM_idx(String m_idx) {
-		this.m_idx = m_idx;
+	public void setIdx(String idx) {
+		this.idx = idx;
 	}
 	public String getCategory() {
 		return category;
@@ -41,6 +35,12 @@ public class LogDTO {
 	}
 	public void setId(String id) {
 		this.id = id;
+	}
+	public String getField() {
+		return field;
+	}
+	public void setField(String field) {
+		this.field = field;
 	}
 	
 	

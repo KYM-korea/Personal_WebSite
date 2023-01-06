@@ -93,6 +93,7 @@ public class StoreDAO extends JDBConnect {
 				dto.setIdx(rs.getString("idx"));
 				dto.setsName(rs.getString("sName"));
 				dto.setTitle(rs.getString("title"));
+				dto.setField(rs.getString("fd"));
 				dto.setCop(rs.getString("cop"));
 				dto.setPrice(rs.getInt("price"));
 			}
