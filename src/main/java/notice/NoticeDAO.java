@@ -24,8 +24,6 @@ public class NoticeDAO extends JDBConnect {
 		
 		String query = "SELECT COUNT(*) FROM notice WHERE flag='" + map.get("flag") + "'";
 		
-		System.out.println(map.get("flag"));
-		
 		if(map.get("searchWord") != null) {
 			query += " AND " + map.get("searchField") + " "
 					+ " LIKE '%" + map.get("searchWord") + "%'";
@@ -49,6 +47,7 @@ public class NoticeDAO extends JDBConnect {
 		List<NoticeDTO> bbs = new Vector<NoticeDTO>();
 		
         String query = "SELECT * FROM notice WHERE flag='" + map.get("flag") + "'"; 
+        
         if (map.get("searchWord") != null) {
             query += " AND " + map.get("searchField") + " "
                    + " LIKE '%" + map.get("searchWord") + "%' ";
