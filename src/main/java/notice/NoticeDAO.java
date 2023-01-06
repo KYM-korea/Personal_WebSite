@@ -88,16 +88,93 @@ public class NoticeDAO extends JDBConnect {
 		
 		//insert문 (idx, title, content, name, postdate, flag)
 		try {
-			String query = "INSERT INTO notice VALUES (seq_notice_num.NEXTVAL, ?, ?, ?, sysdate, ?)";
+			String query = "INSERT INTO notice (idx, title, content, name, postdate, flag) VALUES (seq_notice_num.NEXTVAL, ?, ?, ?, sysdate, ?)";
+			
+			psmt = con.prepareStatement(query);
 			
 			psmt.setString(1, dto.getTitle());
 			psmt.setString(2, dto.getContent());
 			psmt.setString(3, dto.getName());
 			psmt.setString(4, dto.getFlag());
+			
+			result = psmt.executeUpdate();
 		} 
 		catch (Exception e) {
+			System.out.println("게시물 입력 중 예외 발생");
 			e.printStackTrace();
 		}
 		return result;
 	}
+	
+	//게시물 수정하기
+		public int updateEdit(NoticeDTO dto) {
+			int result = 0;
+			
+			try {
+				//특정 일련번호에 해당하는 게시물을 수정한다.
+				String query = "UPDATE notice SET title=?, content=? WHERE idx=?";
+				
+				psmt = con.prepareStatement(query);
+				//인파라미터 설정하기
+				psmt.setString(1, dto.getTitle());
+				psmt.setString(2, dto.getContent());
+				psmt.setString(3, dto.getIdx());
+				//수정된 레코드의 갯수가 반환된다.
+				result = psmt.executeUpdate();
+			} 
+			catch (Exception e) {
+				System.out.println("게시물 수정 중 예외 발생");
+				e.printStackTrace();
+			}
+			return result;
+		}
+	
+	//게시물 삭제
+	public int deletePost(NoticeDTO dto) {
+		int result = 0;
+		
+		try {
+			//인파라미터가 있는 delete쿼리문 작성
+			String query = "DELETE FROM notice WHERE idx=?";
+			
+			psmt = con.prepareStatement(query);
+			psmt.setString(1, dto.getIdx());
+			
+			result = psmt.executeUpdate();
+		} 
+		catch (Exception e) {
+			System.out.println("게시물 삭제 중 예외 발생");
+			e.printStackTrace();
+		}
+		return result;
+	}
+	//인수로 전달된 게시물의 일련번호로 하나의 게시물을 인출한다.
+		public NoticeDTO selectView(String idx) {
+			//하나의 레코드 저장을 위한 DTO객체 생성
+			NoticeDTO dto = new NoticeDTO();
+			
+			String query = "SELECT * FROM notice WHERE idx=?";
+			try {
+				//인파라미터 설정 및 쿼리문 실행
+				psmt = con.prepareStatement(query);
+				psmt.setString(1, idx);
+				rs = psmt.executeQuery();
+
+				if(rs.next()) {
+					//DTO 객체에 레코드를 저장한다.
+					dto.setIdx(rs.getString(1));
+					dto.setTitle(rs.getString(2));
+					
+					dto.setContent(rs.getString("content"));
+					dto.setName(rs.getString("name"));
+					dto.setPostdate(rs.getDate("postdate"));
+					dto.setFlag(rs.getString(6));
+				}
+			} 
+			catch (Exception e) {
+				System.out.println("게시물 상세보기 중 예외 발생");
+				e.printStackTrace();
+			}
+			return dto;
+		}
 }
