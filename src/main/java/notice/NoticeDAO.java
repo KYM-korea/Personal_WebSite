@@ -88,18 +88,46 @@ public class NoticeDAO extends JDBConnect {
 		
 		//insert문 (idx, title, content, name, postdate, flag)
 		try {
-			String query = "INSERT INTO notice VALUES (seq_notice_num.NEXTVAL, ?, ?, ?, sysdate, ?)";
+			String query = "INSERT INTO notice (idx, title, content, name, postdate, flag) VALUES (seq_notice_num.NEXTVAL, ?, ?, ?, sysdate, ?)";
+			
+			psmt = con.prepareStatement(query);
 			
 			psmt.setString(1, dto.getTitle());
 			psmt.setString(2, dto.getContent());
 			psmt.setString(3, dto.getName());
 			psmt.setString(4, dto.getFlag());
+			
+			result = psmt.executeUpdate();
 		} 
 		catch (Exception e) {
+			System.out.println("게시물 입력 중 예외 발생");
 			e.printStackTrace();
 		}
 		return result;
 	}
+	
+	//게시물 수정하기
+		public int updateEdit(NoticeDTO dto) {
+			int result = 0;
+			
+			try {
+				//특정 일련번호에 해당하는 게시물을 수정한다.
+				String query = "UPDATE notice SET title=?, content=? WHERE idx=?";
+				
+				psmt = con.prepareStatement(query);
+				//인파라미터 설정하기
+				psmt.setString(1, dto.getTitle());
+				psmt.setString(2, dto.getContent());
+				psmt.setString(3, dto.getIdx());
+				//수정된 레코드의 갯수가 반환된다.
+				result = psmt.executeUpdate();
+			} 
+			catch (Exception e) {
+				System.out.println("게시물 수정 중 예외 발생");
+				e.printStackTrace();
+			}
+			return result;
+		}
 	
 	//게시물 삭제
 	public int deletePost(NoticeDTO dto) {
