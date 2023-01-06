@@ -3,8 +3,9 @@
 <%@page import="movie.MovieDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
-MovieDAO dao = new MovieDAO(application);
+MovieDAO dao = new MovieDAO();
 
 List<MovieDTO> mLists = dao.selectMovieList();
 
@@ -158,28 +159,36 @@ dao.close();
             <div>
                 <img class="card-img-top" src="../Image/<%= dto.getNfile() %>" alt="<%= dto.getNfile() %>" style="width:100%;" onmouseover="posterOver(<%= dto.getIdx() %>);">
             </div>
-            <div class="wrap" style="display: none; opacity: 1;">
+            <div class="wrap" style="display: ; opacity: 1;">
                 
-                <div class="summary score" style="clear: both;">
+                <%-- <div class="summary score" style="clear: both;">
                     <div class="preview">
                         <p class="tit">관람평</p>
-                        <p class="number"><%= dto.getGrade() %><span class="ir">점</span></p>
+                        <p class="number"><span class="ir">점</span></p>
                     </div>
                 </div>
                 <div class="summary" style="position: absolute; margin-top: -240px">
                     <%= dto.getSummary() %>
-                </div>
+                </div> --%>
             </div>
             <div>  
 		        <form name="like_change" action="LikeProcess.jsp" method="post">		                     	
-                	<a href="javascript:like_change.submit();" class="btn btn-outline-light" >
-                	<input type="hidden" id="" name="lIdx" value=""<%= dto.getIdx() %>>
-                	<input type="hidden" id="" name="lGenre" value="<%= dto.getGenre() %>">
-                	<input type="hidden" id="" name="lName" value="<%= dto.getName() %>">
-                	<input type="hidden" id="like" name="like" value="1">
-            		<i id="like_btn_f" name="like_btn_f" class="bi bi-heart-fill" style="display:none;" onclick="blankHeart();"></i>
-	                <i id="like_btn_b" name="like_btn_b" class="bi bi-heart" style="" onclick="fillHeart();" ></i><%= dto.getLikeCnt() %></a>
-                <a href="#" class="btn btn-primary">예매</a>
+                	<input type="hidden" name="lIdx" value="<%= dto.getIdx() %>">
+                	<input type="hidden" name="lGenre" value="<%= dto.getGenre() %>">
+                	<input type="hidden" name="lName" value="<%= dto.getName() %>">
+                	<c:choose>
+                		<c:when test="${not empty UserId }">
+		                	<button type="submit" class="btn btn-outline-primary">
+		                	<i id="like_btn_f" class="bi bi-heart-fill"></i><%= dto.getLikeCnt() %>
+		                	</button>
+                		</c:when>
+                		<c:otherwise>
+		                	<button type="submit" class="btn btn-outline-primary">
+		                	<i id="like_btn_f" class="bi bi-heart"></i><%= dto.getLikeCnt() %>
+		                	</button>
+                		</c:otherwise>
+                	</c:choose>
+                	<a href="#" class="btn btn-primary">예매</a>
             	</form>
             </div>
         </div>

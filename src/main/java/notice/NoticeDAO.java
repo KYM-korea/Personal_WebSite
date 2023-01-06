@@ -100,4 +100,53 @@ public class NoticeDAO extends JDBConnect {
 		}
 		return result;
 	}
+	
+	//게시물 삭제
+	public int deletePost(NoticeDTO dto) {
+		int result = 0;
+		
+		try {
+			//인파라미터가 있는 delete쿼리문 작성
+			String query = "DELETE FROM notice WHERE idx=?";
+			
+			psmt = con.prepareStatement(query);
+			psmt.setString(1, dto.getIdx());
+			
+			result = psmt.executeUpdate();
+		} 
+		catch (Exception e) {
+			System.out.println("게시물 삭제 중 예외 발생");
+			e.printStackTrace();
+		}
+		return result;
+	}
+	//인수로 전달된 게시물의 일련번호로 하나의 게시물을 인출한다.
+		public NoticeDTO selectView(String idx) {
+			//하나의 레코드 저장을 위한 DTO객체 생성
+			NoticeDTO dto = new NoticeDTO();
+			
+			String query = "SELECT * FROM notice WHERE idx=?";
+			try {
+				//인파라미터 설정 및 쿼리문 실행
+				psmt = con.prepareStatement(query);
+				psmt.setString(1, idx);
+				rs = psmt.executeQuery();
+
+				if(rs.next()) {
+					//DTO 객체에 레코드를 저장한다.
+					dto.setIdx(rs.getString(1));
+					dto.setTitle(rs.getString(2));
+					
+					dto.setContent(rs.getString("content"));
+					dto.setName(rs.getString("name"));
+					dto.setPostdate(rs.getDate("postdate"));
+					dto.setFlag(rs.getString(6));
+				}
+			} 
+			catch (Exception e) {
+				System.out.println("게시물 상세보기 중 예외 발생");
+				e.printStackTrace();
+			}
+			return dto;
+		}
 }

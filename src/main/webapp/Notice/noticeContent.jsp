@@ -59,7 +59,7 @@ dao.close();
 <title>공지사항 내용</title>
 </head>
 <body>
-	<div id="notice" class="container tab-pane active">
+	<%-- <div id="notice" class="container tab-pane active">
 		<table class="table table-hover">
                <thead class=" text-center">
                    <tr>
@@ -96,6 +96,6 @@ dao.close();
 			}
 			%>
         </table>
-	</div>
+	</div> --%>
 </body>
 </html>
