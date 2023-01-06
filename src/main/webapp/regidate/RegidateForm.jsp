@@ -146,7 +146,6 @@ function idCheck(fn) {
 		alert("중복없음");
 		idch = 1;
 	}
-	
 }
 </script>
 <!-- 자바소스 -->

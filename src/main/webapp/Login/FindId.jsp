@@ -33,9 +33,15 @@ function validateForm(form) {
 		return false;
 	}
 }
-function idFind(){
+/* function idFind(){
 	var ifn = document.myForm;
 	ifn.action="FinderProcess.jsp";
+} */
+
+function idFind(frm){
+	var url = "FinderProcess.jsp?name="+myForm.name.value+"&email="+myForm.email.value+"&phone="+myForm.phone.value;
+	var option = "width=500, height=300, top=200"
+	window.open(url,"", option);
 }
 </script>
 <body align="center">
@@ -67,7 +73,7 @@ function idFind(){
 				</tr>
 				<tr>
 					<td colspan="2" align="center">
-						<input type="submit" value="확인" onclick="idFind();"/>
+						<input type="button" value="확인" onclick="idFind(this);"/>
 						 <input type="reset" value="취소" onclick="location.href='../Main/HomeMain.jsp'" />
 					</td>
 				</tr>
