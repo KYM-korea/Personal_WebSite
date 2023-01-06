@@ -21,8 +21,8 @@ public class MovieDAO extends JDBConnect {
 		List<MovieDTO> mItem = new Vector<MovieDTO>();
 		
 		String query = "SELECT * FROM movie_info M "
-				+ " LEFT JOIN (SELECT m_idx, COUNT(*) likeCnt FROM sug_like_log "
-				+ " GROUP BY m_idx ) L ON M.idx=L.m_idx";
+				+ " LEFT JOIN (SELECT idx, COUNT(*) likeCnt FROM sug_like_log "
+				+ " GROUP BY idx ) L ON M.idx=L.idx";
 		
 		try {
 			stmt = con.createStatement();
@@ -41,10 +41,7 @@ public class MovieDAO extends JDBConnect {
 				dto.setOfile(rs.getString("ofile"));
 				dto.setNfile(rs.getString("nfile"));
 				dto.setrDate(rs.getDate("rDate"));
-				System.out.println(dto.getIdx());
-				System.out.println(dto.getGenre());
-				System.out.println(dto.getName());
-				System.out.println(dto.getLikeCnt());
+				
 				mItem.add(dto);
 			}
 		} 

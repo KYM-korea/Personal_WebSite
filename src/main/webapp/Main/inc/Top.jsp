@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <style>
 	.right-link{
 	    float: right;
@@ -20,7 +21,14 @@
 	    <div class="util-area">
 			<!-- 로그인 전 -->
 			<div class="before right-link">
-			    <a href="#" class="util-menu" onclick="location.href='../Login/LoginForm.jsp';">로그인</a>
+				<c:choose>
+					<c:when test="${empty sessionScope.UserId }">
+			    		<a href="#" class="util-menu" onclick="location.href='../Login/LoginForm.jsp';">로그인</a>
+				    </c:when>
+				    <c:otherwise>
+			    		<a href="#" class="util-menu" onclick="location.href='../Login/Logout.jsp';">로그아웃</a>
+				    </c:otherwise>
+			    </c:choose>
 			    <a href="#" class="util-menu" onclick="location.href='../regidate/RegidateForm.jsp';">회원가입</a>
 			</div>
 			<!--로고-->

@@ -8,17 +8,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/Sellcnt.do")
-public class StoreSellController extends HttpServlet{
+@WebServlet("/movie/stsug.do")
+public class StSugUpdateController extends HttpServlet{
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		boolean result = false;
-		int buycnt = Integer.parseInt(req.getParameter("buycnt"));
+		String mode = req.getParameter("mode");
+		System.out.println(mode);
 		
-		if(buycnt!=1 || buycnt!=8) {
-			result = true;
-		}
-		
-		req.setAttribute("result", result);
+		req.getRequestDispatcher("/Store/Goods.jsp").forward(req, resp);
 	}
 }
