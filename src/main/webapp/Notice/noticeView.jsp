@@ -32,7 +32,9 @@ function deletePost() {
 
 <div class="container">
 <form name="writeFrm">
-<input type="hid-den" name="idx" value="<%= idx %>" />  
+<!-- idx숨겨놓기 -->
+<input type="hidden" name="idx" value="<%= idx %>" /> 
+	<%= dto.getIdx() %>
     <table border="1" width="90%">
         <tr>
             <td>번호</td>
@@ -43,8 +45,6 @@ function deletePost() {
         <tr>
             <td>작성일</td>
             <td><%= dto.getPostdate() %></td>
-<%--             <td>플래그</td>
-			<td><%= dto.getFlag() %></td>  --%>
         </tr>
         <tr>
             <td>제목</td>
@@ -53,7 +53,7 @@ function deletePost() {
         <tr>
             <td>내용</td>
             <td colspan="3" height="100">
-				<%= dto.getContent() %>
+				<%= dto.getContent().replace("\r\n", "<br/>") %>
             </td> 
         </tr>
         <tr>
@@ -62,7 +62,7 @@ function deletePost() {
 				<button type="button" onclick="location.href='Edit.jsp?idx=<%= dto.getIdx() %>';">
 					수정하기</button>
 				<button type="button" onclick="deletePost();">삭제하기</button> 
-                <button type="button" onclick="location.href='noticeMain.jsp';">
+                <button type="button" onclick="location.href='noticeMain.jsp?flag=con';">
                     목록 보기
                 </button>
                 <button type="button" onclick="location.href='../Main/HomeMain.jsp';">
