@@ -53,55 +53,58 @@ dao.close();
 				<a class="nav-link active" href="./noticeMain.jsp?flag=con">공지사항</a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link" href="./event.jsp?flag=eve" style="color : black;">이벤트</a>
+				<a class="nav-link" href="./event.jsp?flag=eve" style="color : gray;">이벤트</a>
 			</li>
 		</ul>
 	</div>	
 	<!-- 공지사항  -->
-			<table class="table table-hover">
-                <thead class=" text-center">
-                    <tr>
-                        <th>번호</th>
-                        <th>제목</th>
-                        <th>작성자</th>
-                        <th>작성일</th>
-                    </tr>
-                </thead>
-                <%
-				if (boardLists.isEmpty()) {
-				%>
-				<tr>
-					<td colspan="5" align="center">등록된 게시물이 없습니다.</td>
-				</tr>
-				<%
-				} else {
-				int virtualNum = 0;
-
-				for (NoticeDTO dto : boardLists) {
-					virtualNum = totalCount--;
-				%>
-                   <tr>
-	                    <td><%= virtualNum %></td>
-	                    <td>
-	                 		<a href="noticeView.jsp?idx=<%= dto.getIdx()%>">
-	                 			<%= dto.getTitle() %></a> 
-	                 	</td>
-	                    <td><%= dto.getName() %></td>
-	                    <td><%= dto. getPostdate() %></td>
-                   </tr>
-                   <%
-					}
-				}
-				%>
-	        </table>
-		<table>
-			<tr align="right">
-				<td>
-					<button type="button" onclick="#Main">홈으로</button> 
-					<button type="button" onclick="location.href='noticeWrite.jsp';">글쓰기</button> 
-				</td>
-			</tr>
-		</table>
+	<table class="table table-hover">
+        <thead class=" text-center">
+            <tr>
+                <th>번호</th>
+                <th>제목</th>
+                <th>작성자</th>
+                <th>작성일</th>
+            </tr>
+        </thead>
+        <%
+		if (boardLists.isEmpty()) {
+		%>
+		<tr>
+			<td colspan="5" align="center">등록된 게시물이 없습니다.</td>
+		</tr>
+		<%
+		} else {
+			int virtualNum = 0;
+		
+			for (NoticeDTO dto : boardLists) {
+				virtualNum = totalCount--;
+		%>
+        <tr>
+	        <td><%= virtualNum %></td>
+	        <td>
+	     		<a href="noticeView.jsp?idx=<%= dto.getIdx()%>">
+	     			<%= dto.getTitle() %></a> 
+       		</td>
+	        <td><%= dto.getName() %></td>
+	        <td><%= dto. getPostdate() %></td>
+        </tr>
+        <%
+			}
+		}
+		%>
+    </table>
+	<table>
+		<tr align="right">
+			<td>
+				<button type="button" onclick="#Main">홈으로</button> 
+				<button type="button" onclick="location.href='noticeWrite.jsp';">글쓰기</button> 
+			</td>
+		</tr>
+	</table>
+	
+	<!-- 자주 묻는 질문 -->
+	<%@ include file ="FAQ.jsp" %>
 
 	
 <!-- Footer -->
