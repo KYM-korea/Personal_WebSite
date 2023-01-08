@@ -46,7 +46,7 @@ public class MovieDAO extends JDBConnect {
 			}
 		} 
 		catch (Exception e) {
-			System.out.println("영화 정보 추출 중 예외 발생");
+			System.out.println("영화 리스트 추출 중 예외 발생");
 			e.printStackTrace();
 		}
 		return mItem;
@@ -75,6 +75,39 @@ public class MovieDAO extends JDBConnect {
 			e.printStackTrace();
 		}
 		return iResult;
+	}
+	
+	public MovieDTO selectMoive(String idx) {
+		
+		MovieDTO dto = new MovieDTO();
+		
+		try {
+			String query = "SELECT * FROM movie_info M "
+					+ " LEFT JOIN (SELECT idx, COUNT(*) likeCnt FROM sug_like_log "
+					+ " GROUP BY idx ) L ON M.idx=L.idx WHERE M.idx="+idx;
+
+			stmt = con.createStatement();
+			rs = stmt.executeQuery(query);
+			
+			while(rs.next()) {
+			
+			dto.setIdx(rs.getString("idx"));
+			dto.setName(rs.getString("name"));
+			dto.setGenre(rs.getString("genre"));
+			dto.setSummary(rs.getString("summary"));
+			dto.setGrade(rs.getInt("grade"));
+			dto.setLikeCnt(rs.getInt("likeCnt"));
+			dto.setOfile(rs.getString("ofile"));
+			dto.setNfile(rs.getString("nfile"));
+			dto.setrDate(rs.getDate("rDate"));
+				
+			}
+		}
+		catch (Exception e) {
+			System.out.println("영화 상세 추출 중 예외 발생");
+			e.printStackTrace();
+		}
+		return dto;
 	}
 	
 }
