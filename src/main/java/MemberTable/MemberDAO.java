@@ -13,7 +13,9 @@ public class MemberDAO extends JDBConnect{
 	public MemberDAO() {
 		super();
 	}
-	
+	public MemberDAO(String drv, String url, String id, String pw) {
+		super(drv, url, id, pw);
+	}
 	//application 내장객체만 매개변수로 전달후 DB에 연결한다.
 	public MemberDAO(ServletContext application) {
 		super(application);
