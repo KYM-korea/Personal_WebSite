@@ -24,17 +24,18 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">  
 	
 <script type="text/javascript">
-var idch = 0;
 function validateForm(form) {
 	if(form.id.value==""){
 		alert("아이디를 입력하세요");
 		form.id.focus();
 		return false;
 	}
-	if(idch == 0){
+	
+	if(form.iduchk.value != 1){
 		alert("중복체크해주세요.");
 		return false;
 	}
+	
 	if(form.pass.value==""){
 		alert("비밀번호를 입력하세요");
 		form.pass.focus();
@@ -107,6 +108,8 @@ function validateForm(form) {
 		return false;
 	}
 	
+	form.submit();
+	
 }
 function inputEmail(frm){
     var domain = frm.email_domain.value;
@@ -123,7 +126,9 @@ function inputEmail(frm){
         frm.email2.value = domain;//선택한 도메인을 입력한다. 
         frm.email2.readOnly = true;//입력된 값을 수정할 수 없도록 readonly속성을 활성화한다. 
     }
-}  
+}
+
+<%--
 function idCheck(fn) {
 	
 	var id = document.getElementById("id").value;
@@ -147,6 +152,38 @@ function idCheck(fn) {
 		idch = 1;
 	}
 }
+--%>
+
+<%-- 아이디 중복체크 추가하는 부분 --%>
+function winopen(){
+	var myForm = document.getElementById("myForm");
+	//새창을 열어서 페이지를 오픈 후 -> 회원아이디정보를 가지고 중복체크
+	//1. 아이디가 없으면 알림창과 진행x
+	if(myForm.id.value =="" || document.fr.id.value.length < 0){
+		alert("아이디를 입력해주세요");
+		document.fr.id.focus();
+	}else{
+		//2. 회원정보아이디를 가지고 있는 지 체크하려면 DB에 접근해야한다.
+		//자바스크립트로 어떻게 DB에 접근할까? => 파라미터로 id값을 가져가서 jsp페이지에서 진행하면 된다.
+		window.open("../usercontrol.do?id="+document.fr.id.value,"","width=500, height=300");
+	}
+}
+
+</script>
+
+
+<style>
+
+#chk{
+	width:75px;
+	height:34px;
+	border-radius: 5px;
+	border : solid 1px;
+	background-color : #337AB7;
+	font-weight : bold;
+}
+
+
 </script>
 <!-- 자바소스 -->
 <%%>
@@ -174,14 +211,15 @@ function idCheck(fn) {
 	
 	<h1>회원가입</h1>
 	
-	<form name="myForm" method="post" action="RegidateProcess.jsp" onsubmit="return validateForm(this);">
+	<form name="fr" id="myForm" method="post" action="RegidateProcess.jsp" onsubmit="return validateForm(this);">
 		<table class="table">
 			<tr>
 				<th><span class="c_imp">*</span>아이디</th>
 				<td>
-					<input type="text" style="width: 120px;" name="id"
-					id="id"/>
-					<button type="button" class="btn_search" onclick="idCheck(this.form);">중복확인</button>
+					<input type="text" style="width: 120px;" name="id" />
+					<button type="button" class="btn_search" id="chk" name="idchk" onclick="winopen()">중복확인</button>
+					<input type="hid den" name="idch" value="0">
+					
 					<!-- 아이디가 중복된다면 지워지게 하기 이미 PK라서 괜찮나? 어차피 안 만들어질텐데 흠 -->
 				</td>
 			</tr>

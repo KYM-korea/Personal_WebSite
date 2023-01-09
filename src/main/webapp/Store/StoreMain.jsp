@@ -5,6 +5,7 @@
 <%@page import="Store.StoreDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <%
 StoreDAO dao = new StoreDAO(application);
@@ -19,29 +20,6 @@ dao.close();
 <title>스토어 - 상품구매</title>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-<script>
-	function validateForm(form){
-		if(form.title.value==""){
-			alert("상품명을 입력하세요");
-			form.title.focus();
-			return false;
-		}
-		if(form.cop.value==""){
-			alert("상품구성을 입력하세요");
-			form.cop.focus();
-			return false;
-		}
-		if(form.price.value==""){
-			alert("상품가격을 입력하세요");
-			form.price.focus();
-			return false;
-		}
-		if(form.goodsImg.value==""){
-			alert("첨부파일을 등록하세요");
-			return false;
-		}
-	}
-</script>
 <style type="text/css">
 .card:focus, .card:hover {
 	border-color: #503396;
@@ -60,20 +38,6 @@ a:visited{
 	<!-- Header -->
     <%@ include file ="../Main/inc/Top.jsp" %>
     
-	<br /><br />
-	<form method="post" name="RegiGoods" enctype="multipart/form-data"
-	action="RegiGoodsProcess.jsp" onsubmit="return validateForm(this);">
-		상품명 : <input type="text" name="title" /><br />
-		상품구성 : <input type="text" name="cop" /><br />
-		상품가격 : <input type="text" name="price" /><br />
-		상품분야 : <select name="field" >
-					<option value="snack">스낵</option>
-					<option value="gift">기프티콘</option>
-					<option value="ticket">관람권</option>
-				</select>
-		상품이미지 : <input type="file" name="goodsImg" /><br />
-		<input type="submit" value="전송" />
-	</form>
 	<br /><br />
 		<h2>스토어</h2>
 		<div class="fixed">
@@ -156,9 +120,7 @@ a:visited{
 					for(StoreDTO sd : sList){
 						request.setAttribute("snackObj", sd);
 				%>
-						
 						<jsp:include page="StoreSnack.jsp" />
-						
 				<%
 					}
 				%>
@@ -189,9 +151,14 @@ a:visited{
 					}
 				%>
 				</div>
-			</div>
+			</div><br />
+			<c:if test="${sessionScope.UserId eq 'admin' }">
+				<div align="right" style="margin-right: 10%">
+					<button type="button" class="btn btn-primary" onclick="location.href='../movie/insert.do?mode=insert';">등록</button>
+				</div>
+			</c:if>
+			<br />
 		</div>
-	
 	<!-- Footer -->
 	<%@ include file ="../Main/inc/Bottom.jsp" %>
 </body>
