@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -26,7 +27,7 @@
 			<div class="btn-util">
 				<c:choose>
 					<c:when test="${not empty UserId && LikeChk==1 }">
-						<form method="post" action="../LikeController.do?mode=insert">
+						<form method="post" action="<%= request.getContextPath() %>/LikeController.do?mode=delete">
 						<input type="hidden" name="idx" value="${ dto.idx }">
 						<input type="hidden" name="name" value="${ dto.name }">
 						<input type="hidden" name="category" value="${ dto.genre }">
@@ -36,7 +37,7 @@
 						</form>
 					</c:when>
 					<c:otherwise>
-						<form method="post" action="../LikeController.do?mode=delete">
+						<form method="post" action="<%= request.getContextPath() %>/LikeController.do?mode=insert">
 						<input type="hidden" name="idx" value="${ dto.idx }">
 						<input type="hidden" name="name" value="${ dto.name }">
 						<input type="hidden" name="category" value="${ dto.genre }">
