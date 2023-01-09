@@ -15,6 +15,7 @@
 			<strong>FAQ:</strong> 고객들이 자주 묻는 질문에 대한 빠른 답변을 받을 수 있습니다.
 		</p>
 		<div id="accordion">
+			<!-- 1번 -->
 			<div class="card">
 				<div class="card-header">
 					<a class="btn" data-bs-toggle="collapse" href="#collapseOne">
@@ -31,6 +32,7 @@
 					</div>
 				</div>
 			</div>
+			<!-- 2번 -->
 			<div class="card">
 				<div class="card-header">
 					<a class="collapsed btn" data-bs-toggle="collapse" href="#collapseTwo">
@@ -59,6 +61,7 @@
 					</div>
 				</div>
 			</div>
+			<!-- 3번 -->
 			<div class="card">
 				<div class="card-header">
 					<a class="collapsed btn" data-bs-toggle="collapse" href="#collapseThree"> 
@@ -80,6 +83,7 @@
 					</div>
 				</div>
 			</div>
+			<!-- 4번 -->
 			<div class="card">
 				<div class="card-header">
 					<a class="collapsed btn" data-bs-toggle="collapse" href="#collapseFour"> 
@@ -94,6 +98,7 @@
 					</div>
 				</div>
 			</div>
+			<!-- 5번 -->
 			<div class="card">
 				<div class="card-header">
 					<a class="collapsed btn" data-bs-toggle="collapse" href="#collapseFive"> 
@@ -109,6 +114,7 @@
 					</div>
 				</div>
 			</div>
+			<!-- 6번 -->
 			<div class="card">
 				<div class="card-header">
 					<a class="collapsed btn" data-bs-toggle="collapse" href="#collapseSix"> 
