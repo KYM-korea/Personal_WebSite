@@ -50,14 +50,7 @@ public class LikeController extends HttpServlet {
 			}
 			ldao.close();
 			
-			MovieDAO mdao = new MovieDAO();
-			MovieDTO mdto = new MovieDTO();
-			
-			mdto = mdao.selectMoive(idx);
-			mdao.close();
-			
-			req.setAttribute("dto", mdto);
-			req.getRequestDispatcher("/Main/MovieView.jsp?idx="+idx).forward(req, resp);	
+			resp.sendRedirect("./MovieViewController.do?idx="+idx);
 		}
 	}
 }

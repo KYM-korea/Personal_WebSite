@@ -40,6 +40,6 @@ public class MovieViewController extends HttpServlet {
 		dao.close();
 		
 		req.setAttribute("dto", dto);
-		req.getRequestDispatcher("/Main/MovieView.jsp").forward(req, resp);
+		req.getRequestDispatcher("/Main/MovieView.jsp?idx="+idx).forward(req, resp);
 	}
 }
