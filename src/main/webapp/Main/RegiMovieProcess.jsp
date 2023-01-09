@@ -37,13 +37,13 @@
 		oldFile.renameTo(newFile);
 		
  		String name = mr.getParameter("mName");
-		String genre = mr.getParameter("mGenre");
+		String category = mr.getParameter("mGenre");
 		String summary = mr.getParameter("mSummary");
 	
 		
 		MovieDTO dto = new MovieDTO();
 		dto.setName(name);
-		dto.setGenre(genre);
+		dto.setCategory(category);
 		dto.setSummary(summary);
 		dto.setOfile(fileName);
 		dto.setNfile(newFileName);

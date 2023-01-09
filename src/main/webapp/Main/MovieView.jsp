@@ -30,7 +30,7 @@
 						<form method="post" action="<%= request.getContextPath() %>/LikeController.do?mode=delete">
 						<input type="hidden" name="idx" value="${ dto.idx }">
 						<input type="hidden" name="name" value="${ dto.name }">
-						<input type="hidden" name="category" value="${ dto.genre }">
+						<input type="hidden" name="category" value="${ dto.category }">
 						<button type="submit" class="btn btn-outline-primary">
 							<i id="like_btn_f" class="bi bi-heart-fill"></i>${ dto.likeCnt }
 						</button>
@@ -40,7 +40,7 @@
 						<form method="post" action="<%= request.getContextPath() %>/LikeController.do?mode=insert">
 						<input type="hidden" name="idx" value="${ dto.idx }">
 						<input type="hidden" name="name" value="${ dto.name }">
-						<input type="hidden" name="category" value="${ dto.genre }">
+						<input type="hidden" name="category" value="${ dto.category }">
 						<button type="submit" class="btn btn-outline-primary">
 							<i id="like_btn_f" class="bi bi-heart"></i>${ dto.likeCnt }
 						</button>
