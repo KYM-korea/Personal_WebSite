@@ -218,7 +218,7 @@ function winopen(){
 				<td>
 					<input type="text" style="width: 120px;" name="id" />
 					<button type="button" class="btn_search" id="chk" name="idchk" onclick="winopen()">중복확인</button>
-					<input type="hid den" name="idch" value="0">
+					<input type="hidden" name="idch" value="0">
 					
 					<!-- 아이디가 중복된다면 지워지게 하기 이미 PK라서 괜찮나? 어차피 안 만들어질텐데 흠 -->
 				</td>

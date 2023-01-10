@@ -154,7 +154,7 @@ a:visited{
 			</div><br />
 			<c:if test="${sessionScope.UserId eq 'admin' }">
 				<div align="right" style="margin-right: 10%">
-					<button type="button" class="btn btn-primary" onclick="location.href='../movie/insert.do?mode=insert';">등록</button>
+					<button type="button" class="btn btn-primary" onclick="location.href='../store/insert.do?mode=insert';">등록</button>
 				</div>
 			</c:if>
 			<br />

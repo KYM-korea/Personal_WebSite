@@ -139,10 +139,10 @@ function cnt(type){
 					<td style="text-align: center;">
 						<c:choose>
 							<c:when test="${SugChk eq 0 || empty SugChk}">
-								<button type="button" class="btn btn-outline-primary" onclick="location.href='../movie/stsug.do?mode=plus&idx=${dto.idx}';">상품추천</button>
+								<button type="button" class="btn btn-outline-primary" onclick="location.href='../store/stsug.do?mode=plus&idx=${dto.idx}';">상품추천</button>
 							</c:when>	
 							<c:otherwise>
-								<button type="button" class="btn btn-outline-primary" onclick="location.href='../movie/stsug.do?mode=minus&idx=${dto.idx}';">추천취소</button>
+								<button type="button" class="btn btn-outline-primary" onclick="location.href='../store/stsug.do?mode=minus&idx=${dto.idx}';">추천취소</button>
 							</c:otherwise>
 						</c:choose>			
 						<button type="button" class="btn btn-outline-primary" onclick="location.href='';">구매하기</button>
@@ -152,8 +152,8 @@ function cnt(type){
 				<c:if test="${sessionScope.UserId eq 'admin' }">
 				<tr>
 					<td style="text-align: center;">
-							<button type="button" class="btn btn-outline-primary" onclick="location.href='../movie/insert.do?mode=edit';">수정하기</button>
-							<button type="button" class="btn btn-outline-primary" onclick="location.href='../movie/insert.do?mode=delete';">삭제하기</button>
+							<button type="button" class="btn btn-outline-primary" onclick="location.href='../store/insert.do?mode=edit&idx=${dto.idx}';">수정하기</button>
+							<button type="button" class="btn btn-outline-primary" onclick="location.href='../store/insert.do?mode=delete&idx=${dto.idx}';">삭제하기</button>
 					</td>
 				</tr>
 				</c:if>

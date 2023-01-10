@@ -29,21 +29,18 @@
 			return false;
 		}
 	}
-	function thil(frm){
-		if(frm.files && frm.files[0]) {
-	        const reader = new FileReader();
-	        
-	        reader.onload = e => {
-	            const previewImage = document.getElementById("thum")
-	            previewImage.src = e.target.result
-	        }
-	        reader.readAsDataURL(input.files[0])
-		}
+	function setThumbnail(event) {
+		var reader = new FileReader();
+		
+		reader.onload = function(event) {
+			var img = document.createElement("img");
+			img.setAttribute("src", event.target.result);
+			document.getElementById("image_container").innerHTML='';
+			document.querySelector("div#image_container").appendChild(img);          
+		};
+		
+		reader.readAsDataURL(event.target.files[0]);
 	}
-	const inputImage = document.getElementById("gImg");
-	inputImage.addEventListener("change", e => {
-		thil(e.target);
-	});
 </script>
 <style type="text/css">
 .card:focus, .card:hover {
@@ -57,6 +54,13 @@ a:visited{
 	color: black;
 	text-decoration: none;
 }
+#image_container{
+	text-align: center;
+}
+#image_container>img{
+	width: 300px;
+	heigh: 400px;
+}
 </style>
 </head>
 <body>
@@ -65,7 +69,7 @@ a:visited{
     
 	<br /><br />
 	<form method="post" name="RegiGoods" enctype="multipart/form-data"
-	action="RegiGoodsProcess.jsp" onsubmit="return validateForm(this);">
+	action="../store/insert.do?mode=insert" onsubmit="return validateForm(this);">
 		<table class="table">
 			<colgroup>
 				<col width="40%"/>
@@ -73,8 +77,8 @@ a:visited{
 				<col width="*%"/>
 			</colgroup>
 			<tr>
-				<td rowspan="6" id="preview_img">
-					<img src="" id="thum"/>
+				<td rowspan="6">
+					<div id="image_container"></div>
 				</td>
 			</tr>
 			<tr>
@@ -107,8 +111,7 @@ a:visited{
 			</tr>
 			<tr>
 				<th>상품이미지</th>
-				<td><input type="file" id="gImg" name="goodsImg" onchange="thil(event);"/></td>
-				
+				<td><input type="file" id="gImg" accept="image/*" name="goodsImg" onchange="setThumbnail(event);"/></td>
 			</tr>
 		</table>
 		<table class="table">
