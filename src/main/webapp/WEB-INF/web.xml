@@ -54,9 +54,9 @@
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
   
-   <context-param>
-  	<param-name>INIT_PARAM</param-name>	
-  	<param-value>web.xml에 저장한 초기화 매개변수</param-value>
+  <context-param>
+  	<param-name>POSTMAXSIZE</param-name>	
+  	<param-value>1024000</param-value>
   </context-param>
   
   <!-- 오라클 접속정보를 컨텍스트 초기화 파라미터로 설정함. 해당 정보는 application내장객체를 통해 값을 읽을 수 있음. -->

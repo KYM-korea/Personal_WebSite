@@ -23,30 +23,26 @@
 			<div class="before right-link">
 				<c:choose>
 					<c:when test="${empty sessionScope.UserId }">
-			    		<a href="#" class="util-menu" onclick="location.href='../Login/LoginForm.jsp';">로그인</a>
+			    		<a href="#" class="util-menu" onclick="location.href='<%= request.getContextPath() %>/Login/LoginForm.jsp';">로그인</a>
+					    <a href="#" class="util-menu" onclick="location.href='<%= request.getContextPath() %>/regidate/RegidateForm.jsp';">회원가입</a>
 				    </c:when>
 				    <c:otherwise>
-			    		<a href="#" class="util-menu" onclick="location.href='../Login/Logout.jsp';">로그아웃</a>
+			    		<a href="#" class="util-menu" onclick="location.href='<%= request.getContextPath() %>/Login/Logout.jsp';">로그아웃</a>
+					    <a href="#" class="util-menu" onclick="location.href='<%= request.getContextPath() %>/mypage/mypageMain.jsp'">마이페이지</a>
 				    </c:otherwise>
 			    </c:choose>
-			    <a href="#" class="util-menu" onclick="location.href='../regidate/RegidateForm.jsp';">회원가입</a>
 			</div>
 			<!--로고-->
-			<a href="../Main/HomeMain.jsp"><img style="width: 150px; margin-left: 40%; display: block;" src="../Image/logo.jpg" alt="">
+			<a href="<%= request.getContextPath() %>/Main/HomeMain.jsp"><img style="width: 150px; margin-left: 40%; display: block;" src="<%= request.getContextPath() %>/Image/logo.jpg" alt="">
 			</a>
-			<!-- 로그인 후 -->
-			<div class="after" style="display: none;">
-			    <a href="" class="util-menu">마이페이지</a>
-			    <a href="" class="util-menu">로그아웃</a>
-			</div>
 	    </div>
 	
 	    <!-- 메인 메뉴 -->
 	    <div class="nav row">
 	        <div class="col-lg-3"><a href="" class="nav-link">검색</a></div>
 	        <div class="col-lg-3"><a href="" class="nav-link">개봉예정</a></div>
-	        <div class="col-lg-3"><a href="../Store/StoreMain.jsp" class="nav-link">스토어</a></div>
-	        <div class="col-lg-3"><a href="../Notice/noticeMain.jsp?flag=con" class="nav-link">공지</a></div>
+	        <div class="col-lg-3"><a href="<%= request.getContextPath() %>/Store/StoreMain.jsp" class="nav-link">스토어</a></div>
+	        <div class="col-lg-3"><a href="<%= request.getContextPath() %>/Notice/noticeMain.jsp?flag=con" class="nav-link">공지</a></div>
 	    </div>
 	</div>
 </header>

@@ -7,7 +7,7 @@ public class MovieDTO {
 	//영화 이름
 	private String name;
 	//영화 장르
-	private String genre;
+	private String category;
 	//영화 설명
 	private String summary;
 	//평점
@@ -37,11 +37,12 @@ public class MovieDTO {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public String getGenre() {
-		return genre;
+	
+	public String getCategory() {
+		return category;
 	}
-	public void setGenre(String genre) {
-		this.genre = genre;
+	public void setCategory(String category) {
+		this.category = category;
 	}
 	public String getSummary() {
 		return summary;

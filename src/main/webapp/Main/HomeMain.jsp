@@ -150,6 +150,10 @@ dao.close();
 </div>
 
 <!-- 카드형 아이템 -->
+
+<c:if test="${not empty UserId and UserId eq 'admin'}" var="result">
+	<a href="./MovieRegist.jsp" class="btn btn-primary">등록</a><br>
+</c:if>
 <div class="row">
 		<%
 		   for (MovieDTO dto : mLists)
@@ -172,24 +176,19 @@ dao.close();
                 </div> --%>
             </div>
             <div>  
-		        <form name="like_change" action="LikeProcess.jsp" method="post">		                     	
-                	<input type="hidden" name="lIdx" value="<%= dto.getIdx() %>">
-                	<input type="hidden" name="lGenre" value="<%= dto.getGenre() %>">
-                	<input type="hidden" name="lName" value="<%= dto.getName() %>">
-                	<c:choose>
-                		<c:when test="${not empty UserId }">
-		                	<button type="submit" class="btn btn-outline-primary">
-		                	<i id="like_btn_f" class="bi bi-heart-fill"></i><%= dto.getLikeCnt() %>
-		                	</button>
-                		</c:when>
-                		<c:otherwise>
-		                	<button type="submit" class="btn btn-outline-primary">
-		                	<i id="like_btn_f" class="bi bi-heart"></i><%= dto.getLikeCnt() %>
-		                	</button>
-                		</c:otherwise>
-                	</c:choose>
-                	<a href="#" class="btn btn-primary">예매</a>
-            	</form>
+               	<c:choose>
+               		<c:when test="${not empty UserId }">
+	                	<button type="submit" disabled class="btn btn-outline-primary">
+	                	<i id="like_btn_f" class="bi bi-heart-fill"></i><%= dto.getLikeCnt() %>
+	                	</button>
+               		</c:when>
+               		<c:otherwise>
+	                	<button type="submit" disabled class="btn btn-outline-primary">
+	                	<i id="like_btn_f" class="bi bi-heart"></i><%= dto.getLikeCnt() %>
+	                	</button>
+               		</c:otherwise>
+               	</c:choose>
+               	<a href="#" class="btn btn-primary">예매</a>
             </div>
         </div>
         <%

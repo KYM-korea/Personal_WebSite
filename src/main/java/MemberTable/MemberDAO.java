@@ -141,29 +141,29 @@ public class MemberDAO extends JDBConnect{
 	
 	
 	//아이디중복체크 메서드
-		public int joinIdCheck(String id){
-			int result = 0;
-			String sql="";
-			
-			try {
-				//2. sql 구문 & psmt생성
-				sql = " select count(*) from member where id = ? ";
-				psmt = con.prepareStatement(sql);
-				psmt.setString(1, id);
-				System.out.println("===ID : "+id);
-				//3. 실행 -> select -> rs저장
-				rs=psmt.executeQuery();
-				//4. 데이터처리
-				rs.next();
-				System.out.println("====rs:"+rs.getInt(1));
-				result = rs.getInt(1);
+	public int joinIdCheck(String id){
+		int result = 0;
+		String sql="";
+		
+		try {
+			//2. sql 구문 & psmt생성
+			sql = " select count(*) from member where id = ? ";
+			psmt = con.prepareStatement(sql);
+			psmt.setString(1, id);
+			System.out.println("===ID : "+id);
+			//3. 실행 -> select -> rs저장
+			rs=psmt.executeQuery();
+			//4. 데이터처리
+			rs.next();
+			System.out.println("====rs:"+rs.getInt(1));
+			result = rs.getInt(1);
 
-				System.out.println("아이디 중복체크결과 : "+result);
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			return result;
-		}//joinIdCheck 메서드닫음
+			System.out.println("아이디 중복체크결과 : "+result);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return result;
+	}//joinIdCheck 메서드닫음
 	
 }

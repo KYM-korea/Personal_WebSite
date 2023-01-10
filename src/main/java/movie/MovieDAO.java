@@ -21,8 +21,8 @@ public class MovieDAO extends JDBConnect {
 		List<MovieDTO> mItem = new Vector<MovieDTO>();
 		
 		String query = "SELECT * FROM movie_info M "
-				+ " LEFT JOIN (SELECT idx, COUNT(*) likeCnt FROM sug_like_log "
-				+ " GROUP BY idx ) L ON M.idx=L.idx";
+				+ " LEFT JOIN (SELECT idx, COUNT(*) likeCnt FROM sug_like_log WHERE field='movie' "
+				+ " GROUP BY idx ) L ON M.idx=L.idx ";
 		
 		try {
 			stmt = con.createStatement();
@@ -34,7 +34,7 @@ public class MovieDAO extends JDBConnect {
 				
 				dto.setIdx(rs.getString("idx"));
 				dto.setName(rs.getString("name"));
-				dto.setGenre(rs.getString("genre"));
+				dto.setCategory(rs.getString("category"));
 				dto.setSummary(rs.getString("summary"));
 				dto.setGrade(rs.getInt("grade"));
 				dto.setLikeCnt(rs.getInt("likeCnt"));
@@ -57,13 +57,13 @@ public class MovieDAO extends JDBConnect {
 		int iResult = 0;
 		try {
 			String query = "INSERT INTO movie_info ( "
-					+ " idx, name, genre, summary, ofile, nfile) "
+					+ " idx, name, category, summary, ofile, nfile) "
 					+ " VALUES ( "
 					+ " seq_movie_num.nextval, ?, ?, ?, ?, ?)";
 			
 			psmt = con.prepareStatement(query);
 			psmt.setString(1, dto.getName());
-			psmt.setString(2, dto.getGenre());
+			psmt.setString(2, dto.getCategory());
 			psmt.setString(3, dto.getSummary());
 			psmt.setString(4, dto.getOfile());
 			psmt.setString(5, dto.getNfile());
@@ -93,7 +93,7 @@ public class MovieDAO extends JDBConnect {
 			
 			dto.setIdx(rs.getString("idx"));
 			dto.setName(rs.getString("name"));
-			dto.setGenre(rs.getString("genre"));
+			dto.setCategory(rs.getString("category"));
 			dto.setSummary(rs.getString("summary"));
 			dto.setGrade(rs.getInt("grade"));
 			dto.setLikeCnt(rs.getInt("likeCnt"));
