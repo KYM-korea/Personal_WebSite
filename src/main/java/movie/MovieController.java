@@ -16,7 +16,12 @@ import log.LogDAO;
 public class MovieController extends HttpServlet {
 	
 	@Override
-	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
+		String idx = req.getParameter("idx");
+		MovieDAO dao = new MovieDAO();
+		MovieDTO dto = dao.selectMoive(idx);
+		req.setAttribute("dto", dto);
+		req.getRequestDispatcher("./MovieEdit.jsp").forward(req, resp);
 	}
 }

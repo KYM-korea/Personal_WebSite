@@ -38,36 +38,10 @@
 				<div class="movie-detail-cont">
 					<!-- 개봉 예매가능-->
 					<p class="title">${ dto.name }</p>
-					<div class="btn-util">
-						<c:choose>
-							<c:when test="${not empty UserId && LikeChk==1 }">
-								<form method="post"
-									action="<%=request.getContextPath()%>/LikeController.do?mode=delete">
-									<input type="hidden" name="idx" value="${ dto.idx }"> <input
-										type="hidden" name="name" value="${ dto.name }"> <input
-										type="hidden" name="category" value="${ dto.category }">
-									<button type="submit" class="btn btn-outline-primary">
-										<i id="like_btn_f" class="bi bi-heart-fill"></i>${ dto.likeCnt }
-									</button>
-								</form>
-							</c:when>
-							<c:otherwise>
-								<form method="post"
-									action="<%=request.getContextPath()%>/LikeController.do?mode=insert">
-									<input type="hidden" name="idx" value="${ dto.idx }"> <input
-										type="hidden" name="name" value="${ dto.name }"> <input
-										type="hidden" name="category" value="${ dto.category }">
-									<button type="submit" class="btn btn-outline-primary">
-										<i id="like_btn_f" class="bi bi-heart"></i>${ dto.likeCnt }
-									</button>
-								</form>
-							</c:otherwise>
-						</c:choose>
-					</div>
 					<!-- info -->
 					<div class="info">
 						<div class="score">
-							<p class="tit" style="float:left;">실관람 평점</p>
+							<p class="tit" style="float: left;">실관람 평점</p>
 							<div class="number gt" id="mainMegaScore">
 								<p title="실관람 평점" class="before">
 									<em>9.4</em><span class="ir">점</span>
@@ -75,7 +49,7 @@
 							</div>
 						</div>
 						<div class="rate">
-							<p class="tit" style="float:left;">예매율</p>
+							<p class="tit" style="float: left;">예매율</p>
 							<p class="cont">
 								<em>1</em>위 (36.5%)
 							</p>
@@ -86,14 +60,49 @@
 							</p>
 						</div>
 					</div>
-					<!--// info -->
-					<div class="reserve screen-type col-2">
-						<div class="reserve">
-							<a href="#" class="btn btn-primary">예매</a>
-						</div>
+					<div>${ dto.summary }</div>
+					<div style="float: left">
+						<c:choose>
+							<c:when test="${not empty UserId and UserId eq 'admin'}">
+								<a href="./Main/MovieEdit.jsp?idx=${ dto.idx }" class="btn btn-primary">수정하기</a>							
+								<a href="#" class="btn btn-primary">삭제하기</a>							
+							</c:when>
+							<c:otherwise>
+								<c:choose>
+									<c:when test="${not empty UserId && LikeChk==1 }">
+										<form method="post" style="float:left"
+											action="<%=request.getContextPath()%>/LikeController.do?mode=delete">
+											<input type="hidden" name="idx" value="${ dto.idx }">
+											<input type="hidden" name="name" value="${ dto.name }">
+											<input type="hidden" name="category"
+												value="${ dto.category }">
+											<button type="submit" class="btn btn-outline-primary">
+												<i id="like_btn_f" class="bi bi-heart-fill"></i>${ dto.likeCnt }
+											</button>
+										</form>
+										<a href="#" class="btn btn-primary">예매</a>
+									</c:when>
+									<c:otherwise>
+										<form method="post" style="float:left"
+											action="<%=request.getContextPath()%>/LikeController.do?mode=insert">
+											<input type="hidden" name="idx" value="${ dto.idx }">
+											<input type="hidden" name="name" value="${ dto.name }">
+											<input type="hidden" name="category"
+												value="${ dto.category }">
+											<button type="submit" class="btn btn-outline-primary">
+												<i id="like_btn_f" class="bi bi-heart"></i>${ dto.likeCnt }
+											</button>
+										</form>
+										<a href="#" class="btn btn-primary">예매</a>
+									</c:otherwise>
+								</c:choose>
+							</c:otherwise>
+						</c:choose>
+
 					</div>
-					<div>
-						${ dto.summary }
+					<!--// info -->
+					<div class="">
+
 					</div>
 				</div>
 			</div>
