@@ -28,7 +28,7 @@
 				    </c:when>
 				    <c:otherwise>
 			    		<a href="#" class="util-menu" onclick="location.href='../Login/Logout.jsp';">로그아웃</a>
-					    <a href="#" class="util-menu" onclick="#">마이페이지</a>
+					    <a href="#" class="util-menu" onclick="location.href='../mypage/mypage_list.jsp'">마이페이지</a>
 				    </c:otherwise>
 			    </c:choose>
 			</div>
