@@ -80,7 +80,7 @@ dao.close();
 			for (NoticeDTO dto : boardLists) {
 				virtualNum = totalCount--;
 		%>
-        <tr>
+        <tr align="center">
 	        <td><%= virtualNum %></td>
 	        <td>
 	     		<a href="noticeView.jsp?idx=<%= dto.getIdx()%>">
