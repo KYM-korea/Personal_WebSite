@@ -13,7 +13,7 @@ import log.LogDAO;
 import log.LogDTO;
 import utils.JSFunction;
 
-@WebServlet("/movie/stsug.do")
+@WebServlet("/store/stsug.do")
 public class StSugUpdateController extends HttpServlet{
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -42,7 +42,7 @@ public class StSugUpdateController extends HttpServlet{
 			}
 			dao.close();
 			
-			resp.sendRedirect("../movie/goods.do?idx="+idx);
+			resp.sendRedirect("../store/goods.do?idx="+idx);
 		}
 	}
 }

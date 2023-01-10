@@ -24,21 +24,17 @@
 				<c:choose>
 					<c:when test="${empty sessionScope.UserId }">
 			    		<a href="#" class="util-menu" onclick="location.href='<%= request.getContextPath() %>/Login/LoginForm.jsp';">로그인</a>
+					    <a href="#" class="util-menu" onclick="location.href='<%= request.getContextPath() %>/regidate/RegidateForm.jsp';">회원가입</a>
 				    </c:when>
 				    <c:otherwise>
 			    		<a href="#" class="util-menu" onclick="location.href='<%= request.getContextPath() %>/Login/Logout.jsp';">로그아웃</a>
+					    <a href="#" class="util-menu" onclick="location.href='<%= request.getContextPath() %>/mypage/mypageMain.jsp'">마이페이지</a>
 				    </c:otherwise>
 			    </c:choose>
-			    <a href="#" class="util-menu" onclick="location.href='<%= request.getContextPath() %>/regidate/RegidateForm.jsp';">회원가입</a>
 			</div>
 			<!--로고-->
 			<a href="<%= request.getContextPath() %>/Main/HomeMain.jsp"><img style="width: 150px; margin-left: 40%; display: block;" src="<%= request.getContextPath() %>/Image/logo.jpg" alt="">
 			</a>
-			<!-- 로그인 후 -->
-			<div class="after" style="display: none;">
-			    <a href="" class="util-menu">마이페이지</a>
-			    <a href="" class="util-menu">로그아웃</a>
-			</div>
 	    </div>
 	
 	    <!-- 메인 메뉴 -->

@@ -12,7 +12,7 @@ import javax.servlet.http.HttpSession;
 import log.LogDAO;
 import utils.JSFunction;
 
-@WebServlet("/movie/goods.do")
+@WebServlet("/store/goods.do")
 public class StoreViewController extends HttpServlet{
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

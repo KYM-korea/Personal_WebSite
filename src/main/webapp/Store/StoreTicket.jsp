@@ -4,7 +4,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <div class="card m-2" style="width:240px">
-	<a href="../movie/goods.do?idx=${ticketObj.idx}">
+	<a href="../store/goods.do?idx=${ticketObj.idx}">
 		<img class="card-img-top mt-2" src="../Image/${ticketObj.sName}" style="width:100%; height:260px;">
 	<div class="card-body">
 	    <h4 class="card-title">${ticketObj.title }</h4>
