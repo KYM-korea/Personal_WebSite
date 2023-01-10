@@ -34,11 +34,12 @@ public class MovieViewController extends HttpServlet {
 		}
 		
 		MovieDAO dao = new MovieDAO();
-		
 		MovieDTO dto = new MovieDTO();
+		
 		dto = dao.selectMoive(idx);
+		dao.close();
 		
 		req.setAttribute("dto", dto);
-		req.getRequestDispatcher("/Main/MovieView.jsp").forward(req, resp);
+		req.getRequestDispatcher("/Main/MovieView.jsp?idx="+idx).forward(req, resp);
 	}
 }

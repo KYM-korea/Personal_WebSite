@@ -174,7 +174,7 @@ dao.close();
             <div>  
 		        <form name="like_change" action="LikeProcess.jsp" method="post">		                     	
                 	<input type="hidden" name="lIdx" value="<%= dto.getIdx() %>">
-                	<input type="hidden" name="lGenre" value="<%= dto.getGenre() %>">
+                	<input type="hidden" name="lGenre" value="<%= dto.getCategory() %>">
                 	<input type="hidden" name="lName" value="<%= dto.getName() %>">
                 	<c:choose>
                 		<c:when test="${not empty UserId }">
