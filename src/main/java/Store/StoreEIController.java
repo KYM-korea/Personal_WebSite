@@ -42,7 +42,6 @@ public class StoreEIController extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String mode = req.getParameter("mode");
-		System.out.println(mode);
 		String sd = req.getServletContext().getRealPath("/Image");
 		
 		ServletContext application = this.getServletContext();
@@ -83,13 +82,11 @@ public class StoreEIController extends HttpServlet {
 		if(mode.equals("insert")) {
 			result = dao.insertStore(dto);
 		}else if(mode.equals("edit")) {
-			String prevDfile = mr.getParameter("prevDfile");
 			String prevSfile = mr.getParameter("prevSfile");
 			String idx = mr.getParameter("idx");
 			dto.setIdx(idx);
 			
 			FileUtil.deleteFile(req, "/Image", prevSfile);
-			FileUtil.deleteFile(req, "/Image", prevDfile);
 			
 			result = dao.updateGoods(dto);
 		}
