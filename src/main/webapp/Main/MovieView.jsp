@@ -64,7 +64,7 @@
 					<div style="float: left">
 						<c:choose>
 							<c:when test="${not empty UserId and UserId eq 'admin'}">
-								<a href="./Main/MovieEdit.jsp?idx=${ dto.idx }" class="btn btn-primary">수정하기</a>							
+								<a href="<%=request.getContextPath()%>/MovieController.do?idx=${ dto.idx }" class="btn btn-primary">수정하기</a>							
 								<a href="#" class="btn btn-primary">삭제하기</a>							
 							</c:when>
 							<c:otherwise>

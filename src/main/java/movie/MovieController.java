@@ -22,6 +22,6 @@ public class MovieController extends HttpServlet {
 		MovieDAO dao = new MovieDAO();
 		MovieDTO dto = dao.selectMoive(idx);
 		req.setAttribute("dto", dto);
-		req.getRequestDispatcher("./MovieEdit.jsp").forward(req, resp);
+		req.getRequestDispatcher("/Main/MovieEdit.jsp").forward(req, resp);
 	}
 }
