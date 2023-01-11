@@ -55,6 +55,9 @@ dao.close();
 			<li class="nav-item">
 				<a class="nav-link active" href="./event.jsp?flag=eve">이벤트</a>
 			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="../inquiry/inquiryList.do" style="color : gray;">1대1문의</a>
+			</li>
 		</ul>
 	</div>
 

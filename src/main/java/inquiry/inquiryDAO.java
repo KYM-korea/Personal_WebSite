@@ -14,6 +14,7 @@ public class inquiryDAO extends DBConnPool{
 	public int selectCount(Map<String, Object> map) {
 		int totalCount = 0;
 		
+		System.out.println("123");
 		String query = "SELECT COUNT(*) FROM inquiry ";
 		if (map.get("searchWord") != null) {
 			query += " WHERE " + map.get("searchField") + " "
@@ -29,6 +30,7 @@ public class inquiryDAO extends DBConnPool{
 			System.out.println("게시물 카운트 중 예외 발생");
 			e.printStackTrace();
 		}
+		System.out.println("456");
 		return totalCount;
 	}
 	//검색 조건에 맞는 게시물 목록을 반환
@@ -43,7 +45,7 @@ public class inquiryDAO extends DBConnPool{
 		
 		if (map.get("searchWord") != null) 
 		{
-			query += " WHERE "+ map.get("searchField")
+			query += " WHERE " + map.get("searchField")
 					+ " LIKE '%" + map.get("searchWord") + "%' ";
 		}
 		query += " ORDER BY idx DESC "
@@ -52,6 +54,7 @@ public class inquiryDAO extends DBConnPool{
 				+ " WHERE rNUM BETWEEN ? AND ?";
 		
 		try {
+			
 			psmt = con.prepareStatement(query);
 			
 			psmt.setString(1, map.get("start").toString());

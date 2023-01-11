@@ -3,27 +3,19 @@
 	xmlns="http://xmlns.jcp.org/xml/ns/javaee" 
 	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd" 
 	id="WebApp_ID" version="4.0">
-  <display-name>gitTest02</display-name>
-  
-  <welcome-file-list>
-    <welcome-file>index.html</welcome-file>
-    <welcome-file>index.jsp</welcome-file>
-    <welcome-file>index.htm</welcome-file>
-    <welcome-file>default.html</welcome-file>
-    <welcome-file>default.jsp</welcome-file>
-    <welcome-file>default.htm</welcome-file>
-  </welcome-file-list>
-  
-  <!-- 문의 목록 매핑하기용 -->
-  <servlet>
-  	<servlet-name>inquiryList</servlet-name>
-  	<servlet-class>inquiry.ListController</servlet-class>
-  </servlet>
-  <servlet-mapping>
-  	<servlet-name>inquiryList</servlet-name>
-  	<url-pattern>/inquiry/inquiryList.do</url-pattern>
-  </servlet-mapping>
-  <!-- 게시판 페이징 처리를 위한 파라미터 추가 -->
+	<display-name>gitTest02</display-name>
+	 
+	<welcome-file-list>
+		<welcome-file>index.html</welcome-file>
+		<welcome-file>index.jsp</welcome-file>
+		<welcome-file>index.htm</welcome-file>
+		<welcome-file>default.html</welcome-file>
+		<welcome-file>default.jsp</welcome-file>
+		<welcome-file>default.htm</welcome-file>
+	</welcome-file-list>
+
+
+  	<!-- 게시판 페이징 처리를 위한 파라미터 추가 -->
 	<!-- 한 페이지에 출력할 게시물의 갯수 설정 : 10개씩 출력 -->
 	<context-param>
 		<param-name>POSTS_PER_PAGE</param-name>
@@ -36,7 +28,7 @@
 	</context-param>
   
   
-  <!-- 
+  	<!-- 
 	한글깨짐에 대한 필터설정 : 현재 개발중인 웹 애플리케이션 전체에
 		해당 필터를 적용한다. 웹 애플리케이션으로 들어오는 모든
 		요청에 대해 문자 인코딩을 UTF-8로 하겠다는 필터 설정이다.
