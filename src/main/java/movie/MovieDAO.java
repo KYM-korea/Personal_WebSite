@@ -131,4 +131,21 @@ public class MovieDAO extends JDBConnect {
 			e.printStackTrace();
 		}
 	}
+	
+	public int deleteMovie (String idx) {
+		
+		int result = 0;
+		try {
+			String query = "DELETE FROM movie_info WHERE idx=?";
+			psmt = con.prepareStatement(query);
+			psmt.setString(1, idx);
+			result = psmt.executeUpdate();
+			
+		} 
+		catch (Exception e) {
+			System.out.println("영화 삭제 중 예외 발생");
+			e.printStackTrace();
+		}
+		return result;
+	}
 }

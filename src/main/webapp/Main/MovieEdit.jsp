@@ -72,7 +72,7 @@
 			</div>
 			<div class="col-lg-9">
 			<form method="post" name="RegiMoive" enctype="multipart/form-data" 
-				action="<%= request.getContextPath() %>/MovieController.do" onsubmit="return validateForm(this);">
+				action="<%= request.getContextPath() %>/MovieController.do?mode=edit" onsubmit="return validateForm(this);">
 			<input type="hidden" name="idx" value="${ dto.idx }">
 			<input type="hidden" name="prevOfile" value="${ dto.ofile }">
 			<input type="hidden" name="prevsfile" value="${ dto.nfile }">
@@ -107,7 +107,6 @@
 				<th></th>
 				<td style="text-align : center;"><input type="submit" value="수정완료"/></td>
 			</tr>
-			
 			</table>
 			</form>
 			</div>
