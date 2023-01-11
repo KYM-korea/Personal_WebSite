@@ -49,7 +49,7 @@
 		dto.setNfile(newFileName);
 		
 		MovieDAO dao = new MovieDAO();
-		dao.insertMoive(dto);
+		dao.insertMovie(dto);
 		dao.close();
 		
 		response.sendRedirect("HomeMain.jsp");

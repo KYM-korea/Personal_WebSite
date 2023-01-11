@@ -72,7 +72,10 @@
 			</div>
 			<div class="col-lg-9">
 			<form method="post" name="RegiMoive" enctype="multipart/form-data" 
-				action="RegiMovieProcess.jsp" onsubmit="return validateForm(this);">
+				action="<%= request.getContextPath() %>/MovieController.do" onsubmit="return validateForm(this);">
+			<input type="hidden" name="idx" value="${ dto.idx }">
+			<input type="hidden" name="prevOfile" value="${ dto.ofile }">
+			<input type="hidden" name="prevsfile" value="${ dto.nfile }">
 			<table>
 			<tr>
 				<th>영화명 : </th>
@@ -94,7 +97,7 @@
 			</tr>
 			<tr>
 				<th>이미지 : </th>
-				<td><input type="file" name="movieImg"/></td>
+				<td><input type="file" name="mImg"/></td>
 			</tr>
 			<tr>
 				<th>설명 : </th>
@@ -102,7 +105,7 @@
 			</tr>
 			<tr>
 				<th></th>
-				<td style="text-align : center;"><input type="submit" value="등록"/></td>
+				<td style="text-align : center;"><input type="submit" value="수정완료"/></td>
 			</tr>
 			
 			</table>
