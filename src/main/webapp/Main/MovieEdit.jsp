@@ -67,20 +67,24 @@
 		<div class="row">
 			<div class="col-lg-3">
 				<div class="wrap">
-					<img src="">
+					<img src="./Image/${ dto.nfile }" style="width:300px;">
 				</div>
 			</div>
 			<div class="col-lg-9">
 			<form method="post" name="RegiMoive" enctype="multipart/form-data" 
-				action="RegiMovieProcess.jsp" onsubmit="return validateForm(this);">
+				action="<%= request.getContextPath() %>/MovieController.do?mode=edit" onsubmit="return validateForm(this);">
+			<input type="hidden" name="idx" value="${ dto.idx }">
+			<input type="hidden" name="prevOfile" value="${ dto.ofile }">
+			<input type="hidden" name="prevsfile" value="${ dto.nfile }">
 			<table>
 			<tr>
 				<th>영화명 : </th>
-				<td><input type="text" name="mName" value="${ dto.idx }"/></td>
+				<td><input type="text" name="mName" value="${ dto.name }"/></td>
 			</tr>
 			<tr>
 				<th>장르 : </th>
-				<td><select name="mGenre" >
+				<td><select name="mGenre">
+					<option value="${ dto.category }" selected>${ dto.category }</option>
 					<option value="action">액션</option>
 					<option value="melo">멜로</option>
 					<option value="sf">SF</option>
@@ -93,17 +97,16 @@
 			</tr>
 			<tr>
 				<th>이미지 : </th>
-				<td><input type="file" name="movieImg" /></td>
+				<td><input type="file" name="mImg"/></td>
 			</tr>
 			<tr>
 				<th>설명 : </th>
-				<td><textarea rows="10" cols="50" name="mSummary"></textarea></td>
+				<td><textarea rows="10" cols="50" name="mSummary">${ dto.summary }</textarea></td>
 			</tr>
 			<tr>
 				<th></th>
-				<td style="text-align : center;"><input type="submit" value="등록"/></td>
+				<td style="text-align : center;"><input type="submit" value="수정완료"/></td>
 			</tr>
-			
 			</table>
 			</form>
 			</div>

@@ -53,7 +53,7 @@ public class MovieDAO extends JDBConnect {
 	}
 
 	//영화 정보 등록을 위한 메서드
-	public int insertMoive(MovieDTO dto) {
+	public int insertMovie(MovieDTO dto) {
 		int iResult = 0;
 		try {
 			String query = "INSERT INTO movie_info ( "
@@ -77,7 +77,7 @@ public class MovieDAO extends JDBConnect {
 		return iResult;
 	}
 	
-	public MovieDTO selectMoive(String idx) {
+	public MovieDTO selectMovie(String idx) {
 		
 		MovieDTO dto = new MovieDTO();
 		
@@ -100,7 +100,7 @@ public class MovieDAO extends JDBConnect {
 			dto.setOfile(rs.getString("ofile"));
 			dto.setNfile(rs.getString("nfile"));
 			dto.setrDate(rs.getDate("rDate"));
-				
+			
 			}
 		}
 		catch (Exception e) {
@@ -110,4 +110,42 @@ public class MovieDAO extends JDBConnect {
 		return dto;
 	}
 	
+	public void updateMovie(MovieDTO dto) {
+		try {
+			String query = "UPDATE movie_info "
+					+ " SET name=?, category=?, summary=?, ofile=?, nfile=? "
+					+ " WHERE idx=? ";
+			
+			psmt = con.prepareStatement(query);
+			psmt.setString(1, dto.getName());
+			psmt.setString(2, dto.getCategory());
+			psmt.setString(3, dto.getSummary());
+			psmt.setString(4, dto.getOfile());
+			psmt.setString(5, dto.getNfile());
+			psmt.setString(6, dto.getIdx());
+			
+			psmt.executeUpdate();		
+		}
+		catch (Exception e) {
+			System.out.println("UPDATE 중 예외 발생");
+			e.printStackTrace();
+		}
+	}
+	
+	public int deleteMovie (String idx) {
+		
+		int result = 0;
+		try {
+			String query = "DELETE FROM movie_info WHERE idx=?";
+			psmt = con.prepareStatement(query);
+			psmt.setString(1, idx);
+			result = psmt.executeUpdate();
+			
+		} 
+		catch (Exception e) {
+			System.out.println("영화 삭제 중 예외 발생");
+			e.printStackTrace();
+		}
+		return result;
+	}
 }
