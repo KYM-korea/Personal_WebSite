@@ -31,10 +31,10 @@ a:visited{
     
 	<br /><br />
 		<h2>마이페이지</h2>
-		<div class="fixed">
+		<div>
 			<ul class="nav nav-tabs" role="tablist">
 	            <li class="nav-item">
-	                <a class="nav-link active" data-bs-toggle="tab" href="#mypage_member">회원정보수정</a>
+	                <a class="nav-link active" data-bs-toggle="tab" href="#memberedit.jsp" >회원정보수정</a>
 	            </li>
 	            <li class="nav-item">
 	                <a class="nav-link" data-bs-toggle="tab" href="#mypage_moveie">영화</a>
@@ -48,6 +48,7 @@ a:visited{
 			<div id="mypage_member" class="tab-pane active">
 				<h2>회원정보수정</h2>
 				<div class="row">
+				<a href="../MemberUpdateController.do">회원정보수정</a>
 				</div>
 			</div>	
 			<div id="mypage_moveie" class="tab-pane fade">

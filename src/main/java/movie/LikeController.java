@@ -16,7 +16,6 @@ import utils.JSFunction;
 @WebServlet("/LikeController.do")
 public class LikeController extends HttpServlet {
 	
-	
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		

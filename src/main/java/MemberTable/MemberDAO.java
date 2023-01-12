@@ -116,6 +116,7 @@ public class MemberDAO extends JDBConnect{
 		}
 		return result;
 	}
+	
 	//비번찾기
 	public String findPw(String id, String name, String email, String phone) {
 		String  result = null;
@@ -166,4 +167,69 @@ public class MemberDAO extends JDBConnect{
 		return result;
 	}//joinIdCheck 메서드닫음
 	
+	
+	//회원정보 수정할때 회원정보가져오기.
+	public MemberDTO getMemberDTO(String id) {
+		System.out.println("회원정보수정할때 사용하는 getMemberDTO메서드 호출됨.");
+				//로그인을 위한 쿼리문을 실행한 후 회원정보를 저장하기 위해
+				//생성
+			MemberDTO dto = new MemberDTO();
+			//회원 로그인을 인파라미터가 있는 동적 쿼리문 작성
+			String query = " SELECT * FROM member WHERE id=? ";
+			System.out.println(query);
+			
+			try {
+				//쿼리문 실행을 위한 prepared객체 생성 및 인파라미터 설정
+				psmt = con.prepareStatement(query);
+				psmt.setString(1, id);
+				//select쿼리문을 실행한 후 ResultSet으로 반환받는다.
+				rs = psmt.executeQuery();
+				
+				//반환된 ResultSet객체를 통해 회원정보가 있는지 확인한다.
+				if(rs.next()) {
+					//정보가 있다면 DTO객체에 회원정보를 저장한다.
+					dto.setId(rs.getString("Id"));
+					dto.setPass(rs.getString("Pass"));
+					dto.setBirth(rs.getString("Birth"));
+					dto.setSex(rs.getString("Sex"));
+					dto.setEmail(rs.getString("Email"));
+					dto.setPhone(rs.getString("Phone"));
+					dto.setInterest1(rs.getString("Interest1"));
+				}
+			}
+			catch (Exception e) {
+				e.printStackTrace();
+			}
+			//호출한 지점으로 DTO객체를 반환한다.
+			return dto;
+		}
+	
+	//회원정보 수정
+	public int updateMember(MemberDTO dto) {
+		
+		int result = 0;
+		try {
+			String query = " Update member SET "
+					+ " pass=?, email=?, phone=?, "
+					+ " interest = ? "
+					+ " where id= ? ";
+
+			psmt = con.prepareStatement(query);
+				
+			psmt.setString(1,dto.getPass());
+			psmt.setString(2,dto.getEmail());
+			psmt.setString(3,dto.getPhone());
+			psmt.setString(4,dto.getInterest1());
+			psmt.setString(5,dto.getId());
+			
+			result = psmt.executeUpdate();
+			
+			
+		}
+		catch (Exception e) {
+			System.out.println("회원정보 수정 중 예외 발생");
+			e.printStackTrace();
+		}
+		return result;
+	}
 }
