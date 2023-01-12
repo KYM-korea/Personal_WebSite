@@ -112,7 +112,7 @@ dao.close();
 			   }
 		%>
         <a href="#">
-            <img src="../Image/<%= dto.getNfile() %>" class="d-block ">
+            <img src="../Image/<%= dto.getNfile() %>" class="d-block " style="width:300px;">
         </a>
         </div>
         <%
