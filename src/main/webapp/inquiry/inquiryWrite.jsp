@@ -103,7 +103,7 @@
 								<th scope="row"><label for="name">이름</label> <em
 									class="font-orange">*</em></th>
 								<td><input type="text" id="name" name="inqurNm"
-									class="input-text w150px" value="" maxlength="15"></td>
+									class="input-text w150px" value="" maxlength="15">><%=session.getAttribute("UserName") %></td>
 								<th scope="row"><label for="qnaRpstEmail">이메일</label> <em
 									class="font-orange">*</em></th>
 								<td><input type="text" name="rpstEmail" id="qnaRpstEmail"

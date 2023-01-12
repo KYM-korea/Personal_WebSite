@@ -13,6 +13,21 @@
 <script src="../common/jquery/jquery-3.6.1.min.js"></script>
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
+<script type="text/javascript">
+function deletePost() {
+	
+    var confirmed = confirm("정말로 삭제하겠습니까?"); 
+    
+    if (confirmed) {
+    	
+    	var form = document.deleteFrm;      
+        form.method = "post"; 
+        form.action = "MovieController.do?mode=delete"; 
+        form.submit();  
+        
+    }
+}
+</script>
 <title>Insert title here</title>
 </head>
 <body>
@@ -28,9 +43,7 @@
 		<div class="row">
 			<div class="poster col-lg-3">
 				<div class="wrap">
-					<img
-						src="https://img.megabox.co.kr/SharedImg/2022/12/16/9vUySe7DNMro6tdYRPEbjzF2ebr48MwE_420.jpg"
-						onerror="noImg(this)" alt="아바타: 물의 길">
+					<img src="./Image/${ dto.nfile }" style="width:300px;">
 				</div>
 			</div>
 			<div class="poster col-lg-9">
@@ -64,8 +77,11 @@
 					<div style="float: left">
 						<c:choose>
 							<c:when test="${not empty UserId and UserId eq 'admin'}">
-								<a href="./Main/MovieEdit.jsp?idx=${ dto.idx }" class="btn btn-primary">수정하기</a>							
-								<a href="#" class="btn btn-primary">삭제하기</a>							
+								<a href="<%=request.getContextPath()%>/MovieController.do?idx=${ dto.idx }" class="btn btn-primary">수정하기</a>							
+								<form name="deleteFrm" action="">
+									<input type="hidden" name="idx" value="${ dto.idx }">
+									<button class="btn btn-primary" onclick="deletePost();">삭제하기</button>
+								</form>
 							</c:when>
 							<c:otherwise>
 								<c:choose>

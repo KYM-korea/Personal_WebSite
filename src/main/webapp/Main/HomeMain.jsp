@@ -79,25 +79,6 @@ dao.close();
 
 <!-- Header -->
 <%@ include file ="./inc/Top.jsp" %>
-
-<form method="post" name="RegiMoive" enctype="multipart/form-data" style="color:white;"
-	action="RegiMovieProcess.jsp" onsubmit="return validateForm(this);">
-	영화명 : <input type="text" name="mName" /><br />
-	장르 : <select name="mGenre" >
-					<option value="action">액션</option>
-					<option value="melo">멜로</option>
-					<option value="sf">SF</option>
-					<option value="horror">공포</option>
-					<option value="fantasy">판타지</option>
-					<option value="thriller">스릴러</option>	
-					<option value="inference">추리</option>
-					<option value="comedy">코미디</option>
-				</select><br />
-	이미지 : <input type="file" name="movieImg" /><br />
-	설명 : <textarea rows="" cols="" name="mSummary"></textarea><br />
-		<input type="submit" value="전송" />
-</form>
-
 <!-- Body -->
 <!-- 슬라이드 배너 -->
 <!-- 
