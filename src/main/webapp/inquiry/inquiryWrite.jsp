@@ -11,8 +11,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
 </head>
 <body>
-	<div class="inner-wrap">
-		
+	<div class="container">
 		<div id="contents" class="location-fixed">
 			<h2 class="tit">1:1 문의</h2>
 			<div class="mypage-infomation mb30">
@@ -37,7 +36,7 @@
 					<!-- btn-layer-open -->
 				</div>
 			</div>
-	
+		
 			<form name="regFrm" method="post">
 				<input type="hidden" name="inqLclCd" value="INQD01"> 
 				<input type="hidden" name="custInqStatCd" value="INQST1"> 
