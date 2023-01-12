@@ -43,7 +43,7 @@ function deletePost() {
 		<div class="row">
 			<div class="poster col-lg-3">
 				<div class="wrap">
-					<img src="./Image/${ dto.nfile }" style="width:300px;">
+					<img src="./Image/${ dto.nfile }" style="width:90%;">
 				</div>
 			</div>
 			<div class="poster col-lg-9">
@@ -77,8 +77,8 @@ function deletePost() {
 					<div style="float: left">
 						<c:choose>
 							<c:when test="${not empty UserId and UserId eq 'admin'}">
-								<a href="<%=request.getContextPath()%>/MovieController.do?idx=${ dto.idx }" class="btn btn-primary">수정하기</a>							
 								<form name="deleteFrm" action="">
+									<a href="<%=request.getContextPath()%>/MovieController.do?idx=${ dto.idx }" class="btn btn-primary">수정하기</a>							
 									<input type="hidden" name="idx" value="${ dto.idx }">
 									<button class="btn btn-primary" onclick="deletePost();">삭제하기</button>
 								</form>
