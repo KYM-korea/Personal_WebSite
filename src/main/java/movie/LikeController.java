@@ -53,7 +53,7 @@ public class LikeController extends HttpServlet {
 			}
 			ldao.close();
 			
-			resp.sendRedirect("./MovieViewController.do?idx="+idx);
+			resp.sendRedirect("./MovieView.do?idx="+idx);
 		}
 	}
 }
