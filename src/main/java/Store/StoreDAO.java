@@ -22,10 +22,13 @@ public class StoreDAO extends JDBConnect {
 		List<StoreDTO> list = new Vector<StoreDTO>();
 		
 		//상품 분류를 넘겨 받아 개수 카운트
-		String query = "SELECT * FROM store "
-				+ " WHERE fd = '" + fd +"' "
+		String query = "SELECT store.idx, sname, store.title, "
+				+ " cop, store.price, NVL(m.scnt,0) cnt FROM store store "
+				+ " LEFT JOIN ( SELECT idx, SUM(mypage_number) scnt FROM mypage_store_list "
+				+ " GROUP BY idx ) m ON store.idx=m.idx "
+				+ " WHERE fd = '" + fd + "' "
 				+ " ORDER BY sug DESC";
-		
+		 
 		try {
 			stmt = con.createStatement();
 			rs = stmt.executeQuery(query);
@@ -38,6 +41,7 @@ public class StoreDAO extends JDBConnect {
 				sdb.setTitle(rs.getString("title"));
 				sdb.setCop(rs.getString("cop"));
 				sdb.setPrice(rs.getInt("price"));
+				sdb.setPur_cnt(rs.getInt("cnt"));
 				
 				list.add(sdb);
 			}
@@ -107,9 +111,15 @@ public class StoreDAO extends JDBConnect {
 	}
 	
 	//상품 추천
-	public void updatePlusSug(String idx) {
-		String query = "UPDATE store SET "
-				+ " sug=sug+1 WHERE idx=? ";
+	public void updateSug(String idx,String mode) {
+		String query = "UPDATE store SET ";
+		if(mode.equals("plus")) {
+			query  += " sug=sug+1 ";
+		}else if(mode.equals("minus")) {
+			query  += " sug=sug-1 ";
+		}
+		query += " WHERE idx = ?";
+		
 		try {
 			psmt = con.prepareStatement(query);
 			psmt.setString(1, idx);
@@ -156,4 +166,31 @@ public class StoreDAO extends JDBConnect {
 		}
 		return result;
 	}
+	
+	//상품 구매 시 mypage_store_list에 추가
+	public int purchaseStore(Map<String, Object> map) {
+		int result = 0;
+		
+		String query = "INSERT INTO mypage_store_list "
+				+ " (mypage_idx, id, fd, idx, title, price, mypage_number) "
+				+ " VALUES (3, ?, ?, ?, ?, ?, ?) ";
+		try {
+			psmt = con.prepareStatement(query);
+			
+			psmt.setString(1, map.get("UserId").toString());
+			psmt.setString(2, map.get("fd").toString());
+			psmt.setString(3, map.get("idx").toString());
+			psmt.setString(4, map.get("title").toString());
+			psmt.setString(5, map.get("price").toString());
+			psmt.setString(6, map.get("mypage_number").toString());
+			
+			result=psmt.executeUpdate();
+			
+		}catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("구매목록 추가 에러 발생");
+		}
+		return result;
+	}
+	
 }

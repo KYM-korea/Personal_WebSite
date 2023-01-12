@@ -3,6 +3,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <div class="card m-2" style="width:240px">
+	${snackObj.pur_cnt }
 	<a href="../store/goods.do?idx=${snackObj.idx}">
 	<img class="card-img-top mt-2" src="../Image/${snackObj.sName}" style="width:100%; height:260px;">
 	<div class="card-body">

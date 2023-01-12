@@ -21,9 +21,12 @@ public class LikeController extends HttpServlet {
 		
 		HttpSession session = req.getSession();
 		
+		
+		
 		if(session.getAttribute("UserId")==null) {
-			JSFunction.alertLocation(resp, "로그인이 필요한 서비스입니다.", "../Login/LoginForm.jsp");
+			JSFunction.alertLocation(resp, "로그인이 필요한 서비스입니다.", "./Login/LoginForm.jsp");
 		}
+		
 		else {
 			String mode = req.getParameter("mode");
 			String idx = req.getParameter("idx");
@@ -49,7 +52,7 @@ public class LikeController extends HttpServlet {
 			}
 			ldao.close();
 			
-			resp.sendRedirect("./MovieViewController.do?idx="+idx);
+			resp.sendRedirect("./MovieView.do?idx="+idx);
 		}
 	}
 }

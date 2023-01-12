@@ -15,7 +15,7 @@
 			<div class="col-lg-11 copy_info text-center mt-3" style="font-size: 12px; color: white;">
 			    (주)광화문 시네마(153-759) &nbsp;&nbsp;
 			    서울시 종로구 관철동 &nbsp;&nbsp;
-			    대표이사 : 김용민 김도형 이재필 정은솔 한세영 <br>
+			    대표이사 : 김용민 김도형 백용현 이재필 정은솔 한세영 <br>
 			    사업자등록번호 : 123-45-67890
 			    TEL : 02-1234-5678 &nbsp;&nbsp;
 			    FAX : 02-9876-5432 <br>

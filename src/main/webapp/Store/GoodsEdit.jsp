@@ -65,7 +65,6 @@ a:visited{
 	action="../store/insert.do?mode=edit" onsubmit="return validateForm(this);">
 		<input type="hidden" name="idx" value="${dto.idx }"/>
 		<input type="hidden" name="prevSfile" value="${dto.sName }" />
-		<input type="hidden" name="prevDfile" value="${dto.dName }" />
 		<table class="table">
 			<colgroup>
 				<col width="40%"/>
@@ -109,8 +108,7 @@ a:visited{
 			</tr>
 			<tr>
 				<th>상품이미지</th>
-				<td><input type="file" id="gImg" accept="image/*" name="goodsImg" onchange="setThumbnail(event);"
-						value="${dto.dName }"/></td>
+				<td><input type="file" id="gImg" accept="image/*" name="goodsImg" onchange="setThumbnail(event);"/></td>
 			</tr>
 		</table>
 		<table class="table">

@@ -19,7 +19,16 @@ public class StoreDTO {
 	private int sug;
 	//제품 등록일
 	private java.sql.Date regidate;
+	//판매카운트
+	private int pur_cnt;
 	
+	
+	public int getPur_cnt() {
+		return pur_cnt;
+	}
+	public void setPur_cnt(int pur_cnt) {
+		this.pur_cnt = pur_cnt;
+	}
 	public java.sql.Date getRegidate() {
 		return regidate;
 	}

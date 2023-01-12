@@ -55,6 +55,9 @@ dao.close();
 			<li class="nav-item">
 				<a class="nav-link" href="./event.jsp?flag=eve" style="color : gray;">이벤트</a>
 			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="../inquiry/inquiryList.do" style="color : gray;">1대1문의</a>
+			</li>
 		</ul>
 	</div>	
 	<!-- 공지사항  -->
@@ -80,7 +83,7 @@ dao.close();
 			for (NoticeDTO dto : boardLists) {
 				virtualNum = totalCount--;
 		%>
-        <tr>
+        <tr align="center">
 	        <td><%= virtualNum %></td>
 	        <td>
 	     		<a href="noticeView.jsp?idx=<%= dto.getIdx()%>">
