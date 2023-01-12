@@ -19,7 +19,8 @@ public class StorePurchaseController extends HttpServlet{
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		HttpSession session = req.getSession();
 		int result = 0;
-		
+
+		// 세션에 저장된 UserId의 유무로 로그인 여부 판단
 		if(session.getAttribute("UserId")==null) {
 			JSFunction.alertLocation(resp, "로그인이 필요한 서비스입니다.", "../Login/LoginForm.jsp");
 			return;
@@ -34,6 +35,7 @@ public class StorePurchaseController extends HttpServlet{
 			StoreDAO sdao = new StoreDAO();
 			sdto = sdao.selectGoods(idx);
 			
+			//넘겨 받은 가격과 구매수량 파악
 			String price = req.getParameter("price");
 			String mypage_number= req.getParameter("buycnt");
 			

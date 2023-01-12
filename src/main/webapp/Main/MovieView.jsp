@@ -43,7 +43,7 @@ function deletePost() {
 		<div class="row">
 			<div class="poster col-lg-3">
 				<div class="wrap">
-					<img src="./Image/${ dto.nfile }" style="width:300px;">
+					<img src="./Image/${ dto.nfile }" style="width:90%;">
 				</div>
 			</div>
 			<div class="poster col-lg-9">
@@ -57,7 +57,7 @@ function deletePost() {
 							<p class="tit" style="float: left;">실관람 평점</p>
 							<div class="number gt" id="mainMegaScore">
 								<p title="실관람 평점" class="before">
-									<em>9.4</em><span class="ir">점</span>
+									<em>${dto.grade }</em><span class="ir">점</span>
 								</p>
 							</div>
 						</div>
@@ -77,8 +77,8 @@ function deletePost() {
 					<div style="float: left">
 						<c:choose>
 							<c:when test="${not empty UserId and UserId eq 'admin'}">
-								<a href="<%=request.getContextPath()%>/MovieController.do?idx=${ dto.idx }" class="btn btn-primary">수정하기</a>							
 								<form name="deleteFrm" action="">
+									<a href="<%=request.getContextPath()%>/MovieController.do?idx=${ dto.idx }" class="btn btn-primary">수정하기</a>							
 									<input type="hidden" name="idx" value="${ dto.idx }">
 									<button class="btn btn-primary" onclick="deletePost();">삭제하기</button>
 								</form>
@@ -114,13 +114,88 @@ function deletePost() {
 								</c:choose>
 							</c:otherwise>
 						</c:choose>
-
 					</div>
 					<!--// info -->
-					<div class="">
-
-					</div>
 				</div>
+			</div>
+			<div class="">
+				<style>
+					#myform fieldset{
+					    display: inline-block;
+					    direction: rtl;
+					    border:0;
+					}
+					#myform fieldset legend{
+					    text-align: right;
+					}
+					#myform input[type=radio]{
+					    display: none;
+					}
+					/* 체크되지 않은 별 색상 */
+					#myform label{
+					    font-size: 3em;
+					    color: transparent;
+					    text-shadow: 0 0 0 #C8C8C8;
+					}
+					/* 마우스 over시 별 색상 */
+					#myform label:hover{
+					    text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
+					}
+					#myform label:hover ~ label{
+					    text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
+					}
+					/* 체크된 별 색상 */
+					#myform input[type=radio]:checked ~ label{
+					    text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
+					}
+					#reviewContents {
+					    width: 100%;
+					    height: 150px;
+					    padding: 10px;
+					    box-sizing: border-box;
+					    border: solid 1.5px #D3D3D3;
+					    border-radius: 5px;
+					    font-size: 16px;
+					    resize: none;
+					}
+				</style>
+				<form action="" method="post" name="myform" id="myform" onsubmit="return commentChk(this);">
+					<input type="hidden" name="id" value="${sessionScope.UserId }" />
+					<input type="hidden" name="idx" value="${dto.idx }" />
+					<table class="table table-striped">
+						<colgroup>
+							<col width="*"/>
+							<col width="10%"/>
+						</colgroup>
+						<tr>
+							<td colspan="2">
+								<fieldset>
+									<span class="text-bold">별점을 선택해주세요</span>
+									<input type="radio" name="reviewStar" value="10" id="rate1"><label
+										for="rate1">★</label>
+									<input type="radio" name="reviewStar" value="8" id="rate2"><label
+										for="rate2">★</label>
+									<input type="radio" name="reviewStar" value="6" id="rate3"><label
+										for="rate3">★</label>
+									<input type="radio" name="reviewStar" value="4" id="rate4"><label
+										for="rate4">★</label>
+									<input type="radio" name="reviewStar" value="2" id="rate5"><label
+										for="rate5">★</label>
+								</fieldset>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<input type="text" style="height: 100px;"
+		                        class="form-control" placeholder="영화 관람자만 남기실 수 있습니다."
+		                        name="rcomment">
+							</td>
+							<td>
+								<button class="btn btn-secondary" style="margin-top: 30%;">등록</button>
+							</td>
+						</tr>
+					</table>
+				</form>
 			</div>
 			<!--// movie-detail-cont -->
 		</div>
