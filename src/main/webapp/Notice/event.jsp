@@ -10,17 +10,9 @@ NoticeDAO dao = new NoticeDAO(application);
 
 Map<String, Object> param = new HashMap<String, Object>();
 
-String searchField = request.getParameter("searchField");
-String searchWord = request.getParameter("searchWord");
-
 String flag = request.getParameter("flag");
 param.put("flag", flag);
 
-if (searchWord != null) {
-	/* Map컬렉션에 컬럼명과 검색어를 추가한다. */
-	param.put("searchField", searchField);
-	param.put("searchWord", searchWord);
-}
 //게시물 갯수 카운트용
 int totalCount = dao.selectCount(param);
 

@@ -5,30 +5,6 @@
 <%@page import="java.util.Map"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%
-NoticeDAO dao = new NoticeDAO(application);
-
-Map<String, Object> param = new HashMap<String, Object>();
-
-String searchField = request.getParameter("searchField");
-String searchWord = request.getParameter("searchWord");
-
-String flag = request.getParameter("flag");
-param.put("flag", flag);
-
-if (searchWord != null) {
-	/* Map컬렉션에 컬럼명과 검색어를 추가한다. */
-	param.put("searchField", searchField);
-	param.put("searchWord", searchWord);
-}
-//게시물 갯수 카운트용
-int totalCount = dao.selectCount(param);
-
-//목록에 출력할 게시물을 추출하여 반환받는다. 
-List<NoticeDTO> boardLists = dao.selectList(param);
-//자원해제
-dao.close();
-%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -86,7 +62,7 @@ dao.close();
         <tr align="center">
 	        <td><%= virtualNum %></td>
 	        <td>
-	     		<a href="noticeView.jsp?idx=<%= dto.getIdx()%>">
+	     		<a href="/Notice/noticeView.do?idx=<%= dto.getIdx()%>">
 	     			<%= dto.getTitle() %></a> 
        		</td>
 	        <td><%= dto.getName() %></td>
