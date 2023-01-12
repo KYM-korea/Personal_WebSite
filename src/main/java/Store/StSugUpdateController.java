@@ -25,22 +25,26 @@ public class StSugUpdateController extends HttpServlet{
 			String id = session.getAttribute("UserId").toString();
 			String mode = req.getParameter("mode");
 			String idx = req.getParameter("idx");
-			System.out.println(mode);
 			
 			LogDTO dto = new LogDTO();
 			LogDAO dao = new LogDAO();
+			StoreDAO sdao = new StoreDAO();
 			if(mode.equals("plus")) {
 				dto.setIdx(idx);
 				dto.setId(id);
 				dto.setField("store");
 				dao.insertLike(dto);
+				sdao.updateSug(idx,mode);
 			}else if(mode.equals("minus")) {
 				dto.setIdx(idx);
 				dto.setId(id);
 				dto.setField("store");
 				dao.deleteLike(dto);
+				sdao.updateSug(idx,mode);
 			}
+			sdao.close();
 			dao.close();
+			
 			
 			resp.sendRedirect("../store/goods.do?idx="+idx);
 		}
