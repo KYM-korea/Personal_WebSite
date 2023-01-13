@@ -13,8 +13,8 @@ import log.LogDAO;
 import log.LogDTO;
 import utils.JSFunction;
 
-@WebServlet("/LikeController.do")
-public class LikeController extends HttpServlet {
+@WebServlet("/MovieLikeController.do")
+public class MovieLikeController extends HttpServlet {
 	
 	
 	@Override
@@ -53,7 +53,7 @@ public class LikeController extends HttpServlet {
 			}
 			ldao.close();
 			
-			resp.sendRedirect("./MovieView.do?idx="+idx);
+			resp.sendRedirect("./MovieViewController.do?idx="+idx);
 		}
 	}
 }

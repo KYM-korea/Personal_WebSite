@@ -39,7 +39,11 @@
 	
 	    <!-- 메인 메뉴 -->
 	    <div class="nav row">
-	        <div class="col-lg-3"><a href="" class="nav-link">검색</a></div>
+	        <div class="col-lg-3 ">
+		       <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#myModal">
+	    			<i class="bi bi-search" style="color:white;"></i>
+				</button>
+	        </div>
 	        <div class="col-lg-3"><a href="" class="nav-link">개봉예정</a></div>
 	        <div class="col-lg-3"><a href="<%= request.getContextPath() %>/Store/StoreMain.jsp" class="nav-link">스토어</a></div>
 	        <%-- <div class="col-lg-3"><a href="<%= request.getContextPath() %>/Notice/noticeMain.jsp?flag=con" class="nav-link">공지</a></div> --%>
