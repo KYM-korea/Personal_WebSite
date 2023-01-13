@@ -21,7 +21,7 @@
 <body>
 <!-- Header -->
 <%@ include file ="../Main/inc/Top.jsp" %>
-    
+<br /><br /> 
 <div class="container">
 	<div>
 		<ul class="nav nav-tabs" role="tablist">
@@ -31,12 +31,24 @@
 			<li class="nav-item">
 				<a class="nav-link active" href="../Notice/List.do?flag=eve">이벤트</a>
 			</li>
-			<li class="nav-item">
-				<a class="nav-link" href="../inquiry/inquiryList.do" style="color : gray;">1대1문의</a>
-			</li>
 		</ul>
 	</div>
-
+	<!-- 검색기능 -->
+	<form method="get">  
+    <table>
+    <tr>
+        <td align="left" style="padding-left: 10px">
+            <input type="hidden" name="flag" value="<%= flag %>" />
+            <select name="searchField"> 
+                <option value="title">제목</option> 
+                <option value="content">내용</option>
+            </select>
+            <input type="text" name="searchWord" />
+            <input type="submit" value="검색하기" />
+        </td>
+    </tr>   
+    </table>
+    </form>
 	<!-- 이벤트 -->
 	<table class="table table-hover">
         <thead class=" text-center">

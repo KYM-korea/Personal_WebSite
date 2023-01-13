@@ -4,8 +4,6 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 <title>자주 묻는 질문</title>
 </head>
 <body>
@@ -17,12 +15,12 @@
 		<div id="accordion">
 			<!-- 1번 -->
 			<div class="card">
-				<div class="card-header">
-					<a class="btn" data-bs-toggle="collapse" href="#collapseOne">
+				<a class="btn" data-bs-toggle="collapse" href="#collapseOne">
+					<div class="card-header" align="left">
 						<strong>Q.</strong>
 						인터넷 예매시 부분환불/교환이 가능한가요?
-					</a>
-				</div>
+					</div>
+				</a>
 				<div id="collapseOne" class="collapse" data-bs-parent="#accordion">
 					<div class="card-body">
 						<strong>A.</strong>
@@ -34,12 +32,12 @@
 			</div>
 			<!-- 2번 -->
 			<div class="card">
-				<div class="card-header">
-					<a class="collapsed btn" data-bs-toggle="collapse" href="#collapseTwo">
-						<strong>Q.</strong>
-						통신사 할인해택은 어떻게 되나요?
-					</a>
-				</div>
+				<a class="collapsed btn" data-bs-toggle="collapse" href="#collapseTwo">
+					<div class="card-header" align="left">
+					<strong>Q.</strong>
+					통신사 할인해택은 어떻게 되나요?
+					</div>
+				</a>
 				<div id="collapseTwo" class="collapse" data-bs-parent="#accordion">
 					<div class="card-body">
 						<strong>A.</strong>
@@ -63,12 +61,12 @@
 			</div>
 			<!-- 3번 -->
 			<div class="card">
-				<div class="card-header">
-					<a class="collapsed btn" data-bs-toggle="collapse" href="#collapseThree"> 
+				<a class="collapsed btn" data-bs-toggle="collapse" href="#collapseThree"> 
+					<div class="card-header" align="left">
 					<strong>Q.</strong>
 					통신사 할인과 문화상품권을 동시에 적용할 수 있나요?
-					</a>
-				</div>
+					</div>
+				</a>
 				<div id="collapseThree" class="collapse" data-bs-parent="#accordion">
 					<div class="card-body">
 						<strong>A.</strong>
@@ -85,12 +83,12 @@
 			</div>
 			<!-- 4번 -->
 			<div class="card">
-				<div class="card-header">
-					<a class="collapsed btn" data-bs-toggle="collapse" href="#collapseFour"> 
+				<a class="collapsed btn" data-bs-toggle="collapse" href="#collapseFour"> 
+					<div class="card-header" align="left">
 					<strong>Q.</strong>
 					회원가입에 문제가 생기면 어떻게 하나요?
-					</a>
-				</div>
+					</div>
+				</a>
 				<div id="collapseFour" class="collapse" data-bs-parent="#accordion">
 					<div class="card-body">
 						<strong>A.</strong>
@@ -100,12 +98,12 @@
 			</div>
 			<!-- 5번 -->
 			<div class="card">
-				<div class="card-header">
-					<a class="collapsed btn" data-bs-toggle="collapse" href="#collapseFive"> 
+				<a class="collapsed btn" data-bs-toggle="collapse" href="#collapseFive"> 
+					<div class="card-header" align="left">
 					<strong>Q.</strong>
 					스토에서 상품 구매 후 오류가 발생했는데 어떻게 하나요?
-					</a>
-				</div>
+					</div>
+				</a>
 				<div id="collapseFive" class="collapse" data-bs-parent="#accordion">
 					<div class="card-body">
 						<strong>A.</strong>
@@ -116,12 +114,12 @@
 			</div>
 			<!-- 6번 -->
 			<div class="card">
-				<div class="card-header">
-					<a class="collapsed btn" data-bs-toggle="collapse" href="#collapseSix"> 
+				<a class="collapsed btn" data-bs-toggle="collapse" href="#collapseSix"> 
+					<div class="card-header" align="left">
 					<strong>Q.</strong>
 					로그인에 문제가 생기면 어떻게 하나요?
-					</a>
-				</div>
+					</div>
+				</a>
 				<div id="collapseSix" class="collapse" data-bs-parent="#accordion">
 					<div class="card-body">
 						<strong>A.</strong>
