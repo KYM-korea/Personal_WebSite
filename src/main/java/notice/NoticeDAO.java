@@ -143,26 +143,26 @@ public class NoticeDAO extends JDBConnect {
 		return result;
 	}
 	//인수로 전달된 게시물의 일련번호로 하나의 게시물을 인출한다.
-		public NoticeDTO selectView(String flag) {
+		public NoticeDTO selectView(String idx) {
 			//하나의 레코드 저장을 위한 DTO객체 생성
 			NoticeDTO dto = new NoticeDTO();
 			
-			String query = "SELECT * FROM notice WHERE flag=?";
+			String query = "SELECT * FROM notice WHERE idx=?";
 			try {
 				//인파라미터 설정 및 쿼리문 실행
 				psmt = con.prepareStatement(query);
-				psmt.setString(1, flag);
+				psmt.setString(1, idx);
 				rs = psmt.executeQuery();
 
-				if(rs.next()) {
+				while(rs.next()) {
 					//DTO 객체에 레코드를 저장한다.
 					dto.setIdx(rs.getString("idx"));
 					dto.setTitle(rs.getString("title"));
-					
 					dto.setContent(rs.getString("content"));
 					dto.setName(rs.getString("name"));
 					dto.setPostdate(rs.getDate("postdate"));
 					dto.setFlag(rs.getString("flag"));
+					System.out.println("완전잘됌");
 				}
 			} 
 			catch (Exception e) {

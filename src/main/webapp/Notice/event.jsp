@@ -5,22 +5,6 @@
 <%@page import="java.util.Map"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%
-NoticeDAO dao = new NoticeDAO(application);
-
-Map<String, Object> param = new HashMap<String, Object>();
-
-String flag = request.getParameter("flag");
-param.put("flag", flag);
-
-//게시물 갯수 카운트용
-int totalCount = dao.selectCount(param);
-
-//목록에 출력할 게시물을 추출하여 반환받는다. 
-List<NoticeDTO> boardLists = dao.selectList(param);
-//자원해제
-dao.close();
-%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -42,10 +26,10 @@ dao.close();
 	<div>
 		<ul class="nav nav-tabs" role="tablist">
 			<li class="nav-item">
-				<a class="nav-link" href="./noticeMain.jsp?flag=con" style="color : gray;">공지사항</a>
+				<a class="nav-link" href="../Notice/List.do?flag=con" style="color : gray;">공지사항</a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link active" href="./event.jsp?flag=eve">이벤트</a>
+				<a class="nav-link active" href="../Notice/List.do?flag=eve">이벤트</a>
 			</li>
 			<li class="nav-item">
 				<a class="nav-link" href="../inquiry/inquiryList.do" style="color : gray;">1대1문의</a>
@@ -63,32 +47,31 @@ dao.close();
                 <th>작성일</th>
             </tr>
         </thead>
-        <%
-		if (boardLists.isEmpty()) {
-		%>
-		<tr>
-			<td colspan="5" align="center">등록된 게시물이 없습니다.</td>
-		</tr>
-		<%
-		} else {
-		int virtualNum = 0;
-		
-		for (NoticeDTO dto : boardLists) {
-			virtualNum = totalCount--;
-		%>
-		<tr align="center">
-		 <td><%= virtualNum %></td>
-		<td>
-			<a href="noticeView.jsp?idx=<%= dto.getIdx()%>">
-		<%= dto.getTitle() %></a>
-		</td>
-		<td><%= dto.getName() %></td>
-		<td><%= dto. getPostdate() %></td>
-		</tr>
-		<%
-			}
-		}
-		%>
+       
+	<c:choose>
+		<c:when test="${empty Lists }">
+			<tr>
+				<td colspan="5" align="center">등록된 게시물이 없습니다.</td>
+			</tr>
+		</c:when>
+		<c:otherwise>
+			<c:forEach items="${Lists }" var="row" varStatus="loop">
+				<tr align="center">
+				 <td>
+					 ${ map.totalCount - (((map.pageNum-1) * map.pageSize)
+                         + loop.index) }
+                 </td>
+				<td>
+					<a href="../Notice/noticeView.do?idx=${row.idx }">
+						${row.title }</a>
+				</td>
+				<td>${row.name }</td>
+				<td>${row.postdate }</td>
+				</tr>
+				D
+			</c:forEach>
+		</c:otherwise>
+	</c:choose>
 	</table>
 
 	<table>

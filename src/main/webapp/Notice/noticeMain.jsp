@@ -23,21 +23,21 @@
 <%@ include file ="../Main/inc/Top.jsp" %>
     
 <div class="container">
-	<div>
-		<ul class="nav nav-tabs" role="tablist">
-			<li class="nav-item">
-				<a class="nav-link active" href="./noticeMain.jsp?flag=con">공지사항</a>
-			</li>
-			<li class="nav-item">
-				<a class="nav-link" href="./event.jsp?flag=eve" style="color : gray;">이벤트</a>
-			</li>
-			<li class="nav-item">
-				<a class="nav-link" href="../inquiry/inquiryList.do" style="color : gray;">1대1문의</a>
-			</li>
-		</ul>
-	</div>	
-	<!-- 공지사항  -->
-	<table class="table table-hover">
+   <div>
+      <ul class="nav nav-tabs" role="tablist">
+         <li class="nav-item">
+            <a class="nav-link active" href="../Notice/List.do?flag=con">공지사항</a>
+         </li>
+         <li class="nav-item">
+            <a class="nav-link" href="../Notice/List.do?flag=eve" style="color : gray;">이벤트</a>
+         </li>
+         <li class="nav-item">
+            <a class="nav-link" href="../inquiry/inquiryList.do" style="color : gray;">1대1문의</a>
+         </li>
+      </ul>
+   </div>   
+   <!-- 공지사항  -->
+   <table class="table table-hover">
         <thead class=" text-center">
             <tr>
                 <th>번호</th>
@@ -46,46 +46,46 @@
                 <th>작성일</th>
             </tr>
         </thead>
-        <%
-		if (boardLists.isEmpty()) {
-		%>
-		<tr>
-			<td colspan="5" align="center">등록된 게시물이 없습니다.</td>
-		</tr>
-		<%
-		} else {
-			int virtualNum = 0;
-		
-			for (NoticeDTO dto : boardLists) {
-				virtualNum = totalCount--;
-		%>
-        <tr align="center">
-	        <td><%= virtualNum %></td>
-	        <td>
-	     		<a href="/Notice/noticeView.do?idx=<%= dto.getIdx()%>">
-	     			<%= dto.getTitle() %></a> 
-       		</td>
-	        <td><%= dto.getName() %></td>
-	        <td><%= dto. getPostdate() %></td>
-        </tr>
-        <%
-			}
-		}
-		%>
+        
+    <c:choose>
+       <c:when test="${empty Lists }">
+         <tr>
+            <td colspan="5" align="center">
+               등록된 게시물이 없습니다.
+            </td>
+         </tr>
+      </c:when>
+      <c:otherwise>
+         <c:forEach items="${Lists }" var="row" varStatus="loop">
+              <tr align="center">
+                 <td>
+                  ${ map.totalCount - (((map.pageNum-1) * map.pageSize)
+                         + loop.index) }
+               </td>
+                 <td>
+                    <a href="../Notice/noticeView.do?idx=${row.idx }">
+                       ${row.title }</a> 
+                   </td>
+                 <td>${row.name }</td>
+                 <td>${row.postdate }</td>
+              </tr>
+         </c:forEach>
+      </c:otherwise>
+   </c:choose>
     </table>
-	<table>
-		<tr align="right">
-			<td>
-				<button type="button" onclick="#Main">홈으로</button> 
-				<button type="button" onclick="location.href='noticeWrite.jsp';">글쓰기</button> 
-			</td>
-		</tr>
-	</table>
-	
-	<!-- 자주 묻는 질문 -->
-	<%@ include file ="FAQ.jsp" %>
+   <table>
+      <tr align="right">
+         <td>
+            <button type="button" onclick="#Main">홈으로</button> 
+            <button type="button" onclick="location.href='noticeWrite.jsp';">글쓰기</button> 
+         </td>
+      </tr>
+   </table>
+   
+   <!-- 자주 묻는 질문 -->
+   <%@ include file ="FAQ.jsp" %>
 
-	
+   
 <!-- Footer -->
 <%@ include file ="../Main/inc/Bottom.jsp" %>
 </div>

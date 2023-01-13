@@ -12,13 +12,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/Notice/List.do")
-public class noticeListController extends HttpServlet{
+@WebServlet("/Notice/eventList.do")
+public class eventListController extends HttpServlet{
    @Override
    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
       NoticeDAO dao = new NoticeDAO();
       String flag = req.getParameter("flag");
-      System.out.println(flag);
       Map<String, Object> map = new HashMap<String, Object>();
       
       //게시물 갯수 카운트용
@@ -41,18 +40,13 @@ public class noticeListController extends HttpServlet{
       map.put("flag", flag);
       
       //목록에 출력할 게시물을 추출하여 반환받는다. 
-      List<NoticeDTO> Lists = dao.selectList(map);
+      List<NoticeDTO> noticeLists = dao.selectList(map);
       
       dao.close();
       
       req.setAttribute("map", map);
-      req.setAttribute("Lists", Lists);
-      if(flag.equals("con")) {
-    	  req.getRequestDispatcher("/Notice/noticeMain.jsp").forward(req, resp);
-      }
-      else {
-    	  req.getRequestDispatcher("/Notice/event.jsp").forward(req, resp);
-      }
+      req.setAttribute("noticeLists", noticeLists);
+      req.getRequestDispatcher("/Notice/noticeMain.jsp").forward(req, resp);
    }
 }
 
