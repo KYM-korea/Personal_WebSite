@@ -59,7 +59,7 @@ public class MovieDAO extends JDBConnect {
 			String query = "INSERT INTO movie_info ( "
 					+ " idx, name, category, summary, ofile, nfile) "
 					+ " VALUES ( "
-					+ " seq_movie_num.nextval, ?, ?, ?, ?, ?)";
+					+ " 2, ?, ?, ?, ?, ?)";
 			
 			psmt = con.prepareStatement(query);
 			psmt.setString(1, dto.getName());
@@ -85,7 +85,10 @@ public class MovieDAO extends JDBConnect {
 		try {
 			String query = "SELECT * FROM movie_info M "
 					+ " LEFT JOIN (SELECT idx, COUNT(*) likeCnt FROM sug_like_log "
-					+ " GROUP BY idx ) L ON M.idx=L.idx WHERE M.idx="+idx;
+					+ " GROUP BY idx ) L ON M.idx=L.idx "
+					+ " LEFT JOIN ( SELECT idx, AVG(grade) mgrade FROM movie_grade"
+					+ " GROUP BY idx ) G ON M.idx=G.idx "
+					+ " WHERE M.idx="+idx;
 
 			stmt = con.createStatement();
 			rs = stmt.executeQuery(query);
@@ -96,7 +99,7 @@ public class MovieDAO extends JDBConnect {
 			dto.setName(rs.getString("name"));
 			dto.setCategory(rs.getString("category"));
 			dto.setSummary(rs.getString("summary"));
-			dto.setGrade(rs.getInt("grade"));
+			dto.setGrade(rs.getFloat("mgrade"));
 			dto.setLikeCnt(rs.getInt("likeCnt"));
 			dto.setOfile(rs.getString("ofile"));
 			dto.setNfile(rs.getString("nfile"));

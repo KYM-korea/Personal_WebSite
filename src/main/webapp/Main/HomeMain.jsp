@@ -6,9 +6,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
 MovieDAO dao = new MovieDAO();
-
 List<MovieDTO> mLists = dao.selectMovieList();
-
 dao.close();
 %>
 <!DOCTYPE html>
@@ -183,7 +181,7 @@ dao.close();
 		%>
          <div class=" card me-4 bg-dark" style="width:200px">
             <div>
-                <a href="../MovieViewController.do?idx=<%= dto.getIdx() %>"><img class="card-img-top" src="../Image/<%= dto.getNfile() %>" alt="<%= dto.getNfile() %>" style="width:100%;" onmouseover="posterOver(<%= dto.getIdx() %>);"></a>
+                <a href="../MovieView.do?idx=<%= dto.getIdx() %>"><img class="card-img-top" src="../Image/<%= dto.getNfile() %>" alt="<%= dto.getNfile() %>" style="width:100%;" onmouseover="posterOver(<%= dto.getIdx() %>);"></a>
             </div>
             <div class="wrap" style="display: ; opacity: 1;">
                 

@@ -11,7 +11,7 @@ public class MovieDTO {
 	//영화 설명
 	private String summary;
 	//평점
-	private int grade;
+	private float grade;
 	//좋아요 수
 	private int likeCnt;
 	//기존 이미지 파일명
@@ -50,10 +50,10 @@ public class MovieDTO {
 	public void setSummary(String summary) {
 		this.summary = summary;
 	}
-	public int getGrade() {
+	public float getGrade() {
 		return grade;
 	}
-	public void setGrade(int grade) {
+	public void setGrade(float grade) {
 		this.grade = grade;
 	}
 	public int getLikeCnt() {

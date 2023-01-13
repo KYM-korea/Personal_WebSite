@@ -14,7 +14,6 @@ public class inquiryDAO extends DBConnPool{
 	public int selectCount(Map<String, Object> map) {
 		int totalCount = 0;
 		
-		System.out.println("123");
 		String query = "SELECT COUNT(*) FROM inquiry ";
 		if (map.get("searchWord") != null) {
 			query += " WHERE " + map.get("searchField") + " "
@@ -30,7 +29,6 @@ public class inquiryDAO extends DBConnPool{
 			System.out.println("게시물 카운트 중 예외 발생");
 			e.printStackTrace();
 		}
-		System.out.println("456");
 		return totalCount;
 	}
 	//검색 조건에 맞는 게시물 목록을 반환
@@ -48,13 +46,12 @@ public class inquiryDAO extends DBConnPool{
 			query += " WHERE " + map.get("searchField")
 					+ " LIKE '%" + map.get("searchWord") + "%' ";
 		}
-		query += " ORDER BY idx DESC "
+		query += " ORDER BY postdate DESC "
 				+ "	) Tb"
 				+ " ) "
 				+ " WHERE rNUM BETWEEN ? AND ?";
 		
 		try {
-			
 			psmt = con.prepareStatement(query);
 			
 			psmt.setString(1, map.get("start").toString());
@@ -77,11 +74,42 @@ public class inquiryDAO extends DBConnPool{
 				
 				inquiry.add(dto);
 			}
-		} catch (Exception e) {
+		} 
+		catch (Exception e) {
 			System.out.println("게시물 조회 중 예외 발생");
 			e.printStackTrace();
 		}
 		return inquiry;
+	}
+	//내용보기를 위해 일련번호를 인수로 받아 게시물을 인출한다.
+	public inquiryDTO selectView(String idx) {
+		inquiryDTO dto = new inquiryDTO();
+		
+		String query = "SELECT * FROM inquiry WHERE idx=?";
+		try {
+			psmt = con.prepareStatement(query);
+			psmt.setString(1, idx);
+			rs = psmt.executeQuery();
+			
+			//하나의 게시물
+			if (rs.next()) {
+				dto.setIdx(rs.getString("idx"));
+				dto.setAsk_type(rs.getString("ask_type"));
+				dto.setName(rs.getString("name"));
+				dto.setPhone(rs.getString("phone"));
+				dto.setEmail(rs.getString("email"));
+				dto.setTitle(rs.getString("title"));
+				dto.setContent(rs.getString("content"));
+				dto.setPostdate(rs.getDate("postdate"));
+				dto.setOfile(rs.getString("ofile"));
+				dto.setSfile(rs.getString("sfile"));
+			}
+		} 
+		catch (Exception e) {
+			System.out.println("게시물 상세보기 중 예외 발생");
+			e.printStackTrace();
+		}
+		return dto;
 	}
 }
 
