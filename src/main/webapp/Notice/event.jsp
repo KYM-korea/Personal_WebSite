@@ -33,22 +33,6 @@
 			</li>
 		</ul>
 	</div>
-	<!-- 검색기능 -->
-	<form method="get">  
-    <table>
-    <tr>
-        <td align="left" style="padding-left: 10px">
-            <input type="hidden" name="flag" value="<%= flag %>" />
-            <select name="searchField"> 
-                <option value="title">제목</option> 
-                <option value="content">내용</option>
-            </select>
-            <input type="text" name="searchWord" />
-            <input type="submit" value="검색하기" />
-        </td>
-    </tr>   
-    </table>
-    </form>
 	<!-- 이벤트 -->
 	<table class="table table-hover">
         <thead class=" text-center">
