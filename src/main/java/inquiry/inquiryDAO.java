@@ -111,6 +111,46 @@ public class inquiryDAO extends DBConnPool{
 		}
 		return dto;
 	}
+	
+	//게시글 삽입용
+	public int insertWrite(inquiryDTO dto) {
+		int result = 0;
+		
+		try {
+			String query ="INSERT INTO inquiry ( "
+					+ " idx, ask_type, name, phone, email, title, content, postdate, ofile, sfile ) "
+					+ " VALUES ( "
+					+ " seq_inquiry_num.NEXTVAL, ?, ?, ?, ?, ?, ?, sysdate, ?, ?)";
+			
+			psmt = con.prepareStatement(query);
+			psmt.setString(1, dto.getAsk_type());
+			psmt.setString(2, dto.getName());
+			psmt.setString(3, dto.getPhone());
+			psmt.setString(4, dto.getEmail());
+			psmt.setString(5, dto.getTitle());
+			psmt.setString(6, dto.getContent());
+			psmt.setString(7, dto.getOfile());
+			psmt.setString(8, dto.getSfile());
+			
+			result = psmt.executeUpdate();
+		} 
+		catch (Exception e) {
+			System.out.println("문의Insert 중 예외 발생");
+			e.printStackTrace();
+		}
+		return result;
+	}
+	//상품 삭제
+		public void deleteInquiry(String idx) {
+			String query = "DELETE FROM inquiry WHERE idx = ? ";
+			try {
+				psmt=con.prepareStatement(query);
+				psmt.setString(1, idx);
+				psmt.execute();
+			}catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
 }
 
 

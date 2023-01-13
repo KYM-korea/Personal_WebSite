@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="Utf-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>	
+<%@ include file="../Login/IsLoggedIn.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,10 +13,12 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
 </head>
 <body>
+<!-- Header -->
+<%@ include file ="../Main/inc/Top.jsp" %>
 	<div class="container">
 		<div id="contents" class="location-fixed">
 			<h2 class="tit">1:1 문의</h2>
-			<div class="mypage-infomation mb30">
+<!-- 			<div class="mypage-infomation mb30">
 				<ul class="dot-list">
 					<li>
 						<span style="font-weight: bold;">고객님의 문의에 답변하는 직원은
@@ -31,18 +35,14 @@
 				</ul>
 
 				<div class="btn-group right">
-					<!-- 나의 문의내역으로 이동 -->
+					나의 문의내역으로 이동
 					<a href="#my_inquiry" class="button purple" id="myQnaBtn" title="나의 문의내역 페이지로 이동">나의 문의내역</a>
-					<!-- btn-layer-open -->
+					btn-layer-open
 				</div>
 			</div>
-		
-			<form name="regFrm" method="post">
-				<input type="hidden" name="inqLclCd" value="INQD01"> 
-				<input type="hidden" name="custInqStatCd" value="INQST1"> 
-				<input type="hidden" name="cdLvl" value="3"> 
-				<input type="hidden" name="fileNo" value="1131482">
-
+			 -->
+		<h2>문의 작성 게시판</h2>
+			<form name="regFrm" method="post" action="../inquiry/inquiryWrite.do?mode=insert">
 				<div class="table-wrap mt10">
 					<table class="board-form va-m">
 						<colgroup>
@@ -56,26 +56,14 @@
 								<th scope="row"><label for="ask-type">문의유형</label> <em class="font-orange">*</em></th>
 								<td colspan="3">
 									<div class="dropdown bootstrap-select small bs3">
-										<select name="inqSclCd" id="ask-type" class="small"
-											tabindex="-98">
-
+										<select name="inqSclCd" id="ask-type" class="small" tabindex="-98">
 											<option value="">문의유형 선택</option>
 											<option value="QDBR01">일반문의</option>
 											<option value="QDBR02">칭찬</option>
 											<option value="QDBR03">불만</option>
 											<option value="QDBR04">제안</option>
 										</select>
-										<button type="button"
-											class="btn dropdown-toggle bs-placeholder btn-default"
-											data-toggle="dropdown" role="button" data-id="ask-type"
-											title="문의유형 선택" aria-disabled="false" aria-expanded="false">
-											<div class="filter-option">
-												<div class="filter-option-inner">
-													<div class="filter-option-inner-inner">문의유형 선택</div>
-												</div>
-											</div>
-											<span class="bs-caret"><span class="caret"></span></span>
-										</button>
+										
 										<div class="dropdown-menu open" role="combobox"
 											style="overflow: hidden;">
 											<div class="inner open" role="listbox" aria-expanded="false"
@@ -102,7 +90,7 @@
 								<th scope="row"><label for="name">이름</label> <em
 									class="font-orange">*</em></th>
 								<td><input type="text" id="name" name="inqurNm"
-									class="input-text w150px" value="" maxlength="15">><%=session.getAttribute("UserName") %></td>
+									class="input-text w150px" value="" maxlength="15"></td>
 								<th scope="row"><label for="qnaRpstEmail">이메일</label> <em
 									class="font-orange">*</em></th>
 								<td><input type="text" name="rpstEmail" id="qnaRpstEmail"
@@ -218,5 +206,7 @@
 			</form>
 		</div>
 	</div>
+<!-- Footer -->
+<%@ include file ="../Main/inc/Bottom.jsp" %>
 </body>
 </html>
