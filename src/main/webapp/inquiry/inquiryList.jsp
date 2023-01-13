@@ -1,6 +1,36 @@
+<%@page import="notice.NoticeDTO"%>
+<%@page import="java.util.List"%>
+<%@page import="java.util.HashMap"%>
+<%@page import="java.util.Map"%>
+<%@page import="notice.NoticeDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%
+NoticeDAO dao = new NoticeDAO(application);
+
+Map<String, Object> param = new HashMap<String, Object>();
+
+String searchField = request.getParameter("searchField");
+String searchWord = request.getParameter("searchWord");
+
+String flag = request.getParameter("flag");
+param.put("flag", flag);
+
+if (searchWord != null) {
+	/* Map컬렉션에 컬럼명과 검색어를 추가한다. */
+	
+	param.put("searchField", searchField);
+	param.put("searchWord", searchWord);
+}
+//게시물 갯수 카운트용
+int totalCount = dao.selectCount(param);
+
+//목록에 출력할 게시물을 추출하여 반환받는다. 
+List<NoticeDTO> boardLists = dao.selectList(param);
+//자원해제
+dao.close();
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,20 +48,21 @@
 <br /><br />
 <h2>문의 게시판</h2>
 	<!-- 검색폼 -->
-	<form method="get">
-	<table>
-		<tr>
-			<td align="left" style="padding-left: 10px">
-				<select name="searchField">
-					<option value="title">제목</option>
-					<option value="content">내용</option>
-				</select>
-				<input type="text" name="searchWord">
-				<input type="submit" value="검색하기">
-			</td>
-		</tr>
-	</table>
-	</form>
+	<form method="get">  
+    <table>
+    <tr>
+        <td align="left" style="padding-left: 10px">
+            <input type="hidden" name="flag" value="${ flag }" />
+            <select name="searchField"> 
+                <option value="title">제목</option> 
+                <option value="content">내용</option>
+            </select>
+            <input type="text" name="searchWord" />
+            <input type="submit" value="검색하기" />
+        </td>
+    </tr>   
+    </table>
+    </form>
 	
 	<!-- 목록 테이블 -->
 	<table class="table table-hover" border="1" width="90%">

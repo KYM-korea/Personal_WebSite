@@ -2,13 +2,7 @@
 <%@page import="notice.NoticeDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%
-String idx = request.getParameter("idx");
-NoticeDAO dao = new  NoticeDAO(application);
-NoticeDTO dto = dao.selectView(idx);
 
-dao.close();
-%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -38,36 +32,36 @@ function deletePost() {
 <h2>상세보기</h2>
 <form name="writeFrm">
 <!-- idx숨겨놓기 -->
-<input type="hidden" name="idx" value="<%= idx %>" /> 
-	<%= dto.getIdx() %>
+<input type="hidden" name="idx" value="${dto.idx }" /> 
+	${dto.idx }
     <table border="1" width="90%">
         <tr>
             <td>번호</td>
-            <td><%= dto.getIdx() %></td>
+            <td>${dto.idx }</td>
             <td>작성자</td>
-            <td><%= dto.getName() %></td>
+            <td>${dto.name }</td>
         </tr>
         <tr>
             <td>작성일</td>
-            <td><%= dto.getPostdate() %></td>
+            <td>${dto.postdate }</td>
         </tr>
         <tr>
             <td>제목</td>
-            <td colspan="3"><%= dto.getTitle() %></td>
+            <td colspan="3">${dto.title }</td>
         </tr>
         <tr>
             <td>내용</td>
             <td colspan="3" height="100">
-				<%= dto.getContent().replace("\r\n", "<br/>") %>
+				${dto.content }
             </td> 
         </tr>
         <tr>
             <td colspan="4" align="center">
 
-				<button type="button" onclick="location.href='Edit.jsp?idx=<%= dto.getIdx() %>';">
+				<button type="button" onclick="location.href='Edit.jsp?idx=${dto.idx}';">
 					수정하기</button>
 				<button type="button" onclick="deletePost();">삭제하기</button> 
-                <button type="button" onclick="location.href='noticeMain.jsp?flag=con';">
+                <button type="button" onclick="location.href='../Notice/List.do?flag=con';">
                     목록 보기
                 </button>
                 <button type="button" onclick="location.href='../Main/HomeMain.jsp';">

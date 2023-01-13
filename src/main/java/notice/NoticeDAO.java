@@ -10,6 +10,10 @@ import common.JDBConnect;
 
 public class NoticeDAO extends JDBConnect {
 
+	public NoticeDAO() {
+		super();
+	}
+	
 	public NoticeDAO(String drv, String url, String id, String pw) {
 		super(drv, url, id, pw);
 	}
@@ -19,28 +23,24 @@ public class NoticeDAO extends JDBConnect {
 	}
 	
 	//게시물 확인용 게시물 갯수 카운트
-	public int selectCount(Map<String, Object> map) {
-		int totalCount = 0;
-		
-		String query = "SELECT COUNT(*) FROM notice WHERE flag='" + map.get("flag") + "'";
-		
-		if(map.get("searchWord") != null) {
-			query += " AND " + map.get("searchField") + " "
-					+ " LIKE '%" + map.get("searchWord") + "%'";
-		}
-		try {
-			stmt = con.createStatement();
-			rs = stmt.executeQuery(query);
-			rs.next();
+		public int selectCount(Map<String, Object> map) {
+			int totalCount = 0;
 			
-			totalCount = rs.getInt(1);
-		} 
-		catch (Exception e) {
-			System.out.println("게시물 수를 구하는 중 예외 발생");
-			e.printStackTrace();
+			String query = "SELECT COUNT(*) FROM notice WHERE flag='" + map.get("flag") + "'";
+			
+			try {
+				stmt = con.createStatement();
+				rs = stmt.executeQuery(query);
+				rs.next();
+				
+				totalCount = rs.getInt(1);
+			} 
+			catch (Exception e) {
+				System.out.println("게시물 수를 구하는 중 예외 발생");
+				e.printStackTrace();
+			}
+			return totalCount;
 		}
-		return totalCount;
-	}
 	
 	public List<NoticeDTO> selectList(Map<String, Object> map){
 		
@@ -48,13 +48,6 @@ public class NoticeDAO extends JDBConnect {
 		
         String query = "SELECT * FROM notice WHERE flag='" + map.get("flag") + "'"; 
         
-        if (map.get("searchWord") != null) {
-            query += " AND " + map.get("searchField") + " "
-                   + " LIKE '%" + map.get("searchWord") + "%' ";
-        }
-        query += " ORDER BY postdate DESC "; 
-
-		
 		try {
 			stmt = con.createStatement();
 			rs = stmt.executeQuery(query);
@@ -161,15 +154,15 @@ public class NoticeDAO extends JDBConnect {
 				psmt.setString(1, idx);
 				rs = psmt.executeQuery();
 
-				if(rs.next()) {
+				while(rs.next()) {
 					//DTO 객체에 레코드를 저장한다.
-					dto.setIdx(rs.getString(1));
-					dto.setTitle(rs.getString(2));
-					
+					dto.setIdx(rs.getString("idx"));
+					dto.setTitle(rs.getString("title"));
 					dto.setContent(rs.getString("content"));
 					dto.setName(rs.getString("name"));
 					dto.setPostdate(rs.getDate("postdate"));
-					dto.setFlag(rs.getString(6));
+					dto.setFlag(rs.getString("flag"));
+					System.out.println("완전잘됌");
 				}
 			} 
 			catch (Exception e) {

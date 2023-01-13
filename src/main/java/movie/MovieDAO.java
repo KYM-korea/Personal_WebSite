@@ -52,7 +52,7 @@ public class MovieDAO extends JDBConnect {
 		return mItem;
 	}
 
-	//영화 정보 등록을 위한 메서드
+	//영화 정보 등록
 	public int insertMovie(MovieDTO dto) {
 		int iResult = 0;
 		try {
@@ -77,6 +77,7 @@ public class MovieDAO extends JDBConnect {
 		return iResult;
 	}
 	
+	//영화 상세
 	public MovieDTO selectMovie(String idx) {
 		
 		MovieDTO dto = new MovieDTO();
@@ -113,6 +114,7 @@ public class MovieDAO extends JDBConnect {
 		return dto;
 	}
 	
+	//영화 수정
 	public void updateMovie(MovieDTO dto) {
 		try {
 			String query = "UPDATE movie_info "
@@ -135,6 +137,7 @@ public class MovieDAO extends JDBConnect {
 		}
 	}
 	
+	//영화 삭제
 	public int deleteMovie (String idx) {
 		
 		int result = 0;
@@ -150,5 +153,79 @@ public class MovieDAO extends JDBConnect {
 			e.printStackTrace();
 		}
 		return result;
+	}
+	
+	//영화 검색(해시태그-장르별) 리스트
+	public List<MovieDTO> selectSearchTagList(String category) {
+		
+		List<MovieDTO> mItem = new Vector<MovieDTO>();
+		
+		String query = "SELECT * FROM movie_info M "
+				+ " LEFT JOIN (SELECT idx, COUNT(*) likeCnt FROM sug_like_log WHERE field='movie' "
+				+ " GROUP BY idx ) L ON M.idx=L.idx WHERE category="+category;
+		
+		try {
+			stmt = con.createStatement();
+			rs = stmt.executeQuery(query);
+			
+			while(rs.next()) {
+				
+				MovieDTO dto = new MovieDTO();
+				
+				dto.setIdx(rs.getString("idx"));
+				dto.setName(rs.getString("name"));
+				dto.setCategory(rs.getString("category"));
+				dto.setSummary(rs.getString("summary"));
+				dto.setGrade(rs.getInt("grade"));
+				dto.setLikeCnt(rs.getInt("likeCnt"));
+				dto.setOfile(rs.getString("ofile"));
+				dto.setNfile(rs.getString("nfile"));
+				dto.setrDate(rs.getDate("rDate"));
+				
+				mItem.add(dto);
+			}
+		} 
+		catch (Exception e) {
+			System.out.println("해시태그 검색 리스트 추출 중 예외 발생");
+			e.printStackTrace();
+		}
+		return mItem;
+	}
+	
+	//영화 검색(키워드) 리스트
+	public List<MovieDTO> selectSearchList(String keword) {
+		
+		List<MovieDTO> mItem = new Vector<MovieDTO>();
+		
+		String query = "SELECT * FROM movie_info M "
+				+ " LEFT JOIN (SELECT idx, COUNT(*) likeCnt FROM sug_like_log WHERE field='movie' "
+				+ " GROUP BY idx ) L ON M.idx=L.idx WHERE name="+keword;
+		
+		try {
+			stmt = con.createStatement();
+			rs = stmt.executeQuery(query);
+			
+			while(rs.next()) {
+				
+				MovieDTO dto = new MovieDTO();
+				
+				dto.setIdx(rs.getString("idx"));
+				dto.setName(rs.getString("name"));
+				dto.setCategory(rs.getString("category"));
+				dto.setSummary(rs.getString("summary"));
+				dto.setGrade(rs.getInt("grade"));
+				dto.setLikeCnt(rs.getInt("likeCnt"));
+				dto.setOfile(rs.getString("ofile"));
+				dto.setNfile(rs.getString("nfile"));
+				dto.setrDate(rs.getDate("rDate"));
+				
+				mItem.add(dto);
+			}
+		} 
+		catch (Exception e) {
+			System.out.println("검색 리스트 추출 중 예외 발생");
+			e.printStackTrace();
+		}
+		return mItem;
 	}
 }
