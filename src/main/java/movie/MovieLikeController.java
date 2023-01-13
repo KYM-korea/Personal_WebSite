@@ -13,8 +13,8 @@ import log.LogDAO;
 import log.LogDTO;
 import utils.JSFunction;
 
-@WebServlet("/LikeController.do")
-public class LikeController extends HttpServlet {
+@WebServlet("/MovieLikeController.do")
+public class MovieLikeController extends HttpServlet {
 	
 	
 	@Override
