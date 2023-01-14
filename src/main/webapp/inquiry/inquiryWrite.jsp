@@ -11,201 +11,131 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="../common/jquery/jquery-3.6.1.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
+<script>
+	function validateForm(form) {
+		if(form.ask_type.value==""){
+			alert("문의유형을 입력하세요.");
+			form.ask_type.focus();
+			return false;
+		}
+		if(form.title.value==""){
+			alert("제목 입력하세요");
+			form.title.focus();
+			return false;
+		}
+		if(form.content.value==""){
+			alert("내용을 입력하세요");
+			form.content.focus();
+			return false;
+		}
+	}
+	function inputAsk_type(frm){
+	    var type = frm.ask_type.value;
+	    if(type==''){//--선택-- 부분을 선택했을때
+	        frm.ask_type.value = '';//모든 입력값을 지운다. 
+	    }
+	    else{//도메인을 선택했을때
+	        frm.ask_type.value = type;//선택한 도메인을 입력한다. 
+	        frm.ask_type.readOnly = true;//입력된 값을 수정할 수 없도록 readonly속성을 활성화한다. 
+	    }
+	}
+</script>
+<style type="text/css">
+	input:focus{
+		outline:none;
+	}
+	.table {
+		border: 2px solid;
+		border-bottom-color: black;
+		border-top-color: black;
+		border-right-color: white;
+		border-left-color: white;
+	}
+	tr, td {
+		padding-left: 12px;
+	}
+	th {
+		align: center;
+		padding-left: 10px;
+		padding-right: 10px;
+	}
+	.c_imp {
+		color: red;
+	}
+	.head {
+		border-color: gray;
+	}
+</style>
 </head>
 <body>
 <!-- Header -->
 <%@ include file ="../Main/inc/Top.jsp" %>
-	<div class="container">
-		<div id="contents" class="location-fixed">
-			<h2 class="tit">1:1 문의</h2>
-<!-- 			<div class="mypage-infomation mb30">
-				<ul class="dot-list">
-					<li>
-						<span style="font-weight: bold;">고객님의 문의에 답변하는 직원은
-							<span style="color: #EB323A;">고객 여러분의 가족 중 한 사람일 수 있습니다.</span>
-						</span>
-							<br> 
-							고객의 언어폭력(비하, 욕설, 협박, 성희롱 등)으로부터 직원을 보호하기 위해
-							<br> 
-							관련 법에 따라 수사기관에 필요한 조치를 요구할 수 있으며, 형법에 의해 처벌 대상이 될 수 있습니다.
-							<br>
-					</li>
-					<br>
-					<li>문의하시기 전 FAQ를 확인하시면 궁금증을 더욱 빠르게 해결하실 수 있습니다.</li>
-				</ul>
-
-				<div class="btn-group right">
-					나의 문의내역으로 이동
-					<a href="#my_inquiry" class="button purple" id="myQnaBtn" title="나의 문의내역 페이지로 이동">나의 문의내역</a>
-					btn-layer-open
-				</div>
-			</div>
-			 -->
-		<h2>문의 작성 게시판</h2>
-			<form name="regFrm" method="post" action="../inquiry/inquiryWrite.do?mode=insert">
-				<div class="table-wrap mt10">
-					<table class="board-form va-m">
-						<colgroup>
-							<col style="width: 150px;">
-							<col>
-							<col style="width: 150px;">
-							<col>
-						</colgroup>
-						<tbody>	
-							<tr>
-								<th scope="row"><label for="ask-type">문의유형</label> <em class="font-orange">*</em></th>
-								<td colspan="3">
-									<div class="dropdown bootstrap-select small bs3">
-										<select name="inqSclCd" id="ask-type" class="small" tabindex="-98">
-											<option value="">문의유형 선택</option>
-											<option value="QDBR01">일반문의</option>
-											<option value="QDBR02">칭찬</option>
-											<option value="QDBR03">불만</option>
-											<option value="QDBR04">제안</option>
-										</select>
-										
-										<div class="dropdown-menu open" role="combobox"
-											style="overflow: hidden;">
-											<div class="inner open" role="listbox" aria-expanded="false"
-												tabindex="-1" style="overflow-y: auto;">
-												<ul class="dropdown-menu inner">
-													<li class="selected active"><a role="option"
-														aria-disabled="false" tabindex="0" class="selected active"
-														aria-selected="true"><span class="text">문의유형 선택</span></a></li>
-													<li><a role="0option" aria-disabled="false"
-														tabindex="0" aria-selected="false"><span class="text">일반문의</span></a></li>
-													<li><a role="option" aria-disabled="false"
-														tabindex="0" aria-selected="false"><span class="text">칭찬</span></a></li>
-													<li><a role="option" aria-disabled="false"
-														tabindex="0" aria-selected="false"><span class="text">불만</span></a></li>
-													<li><a role="option" aria-disabled="false"
-														tabindex="0" aria-selected="false"><span class="text">제안</span></a></li>
-												</ul>
-											</div>
-										</div>
-									</div>
-								</td>
-							</tr>
-							<tr>
-								<th scope="row"><label for="name">이름</label> <em
-									class="font-orange">*</em></th>
-								<td><input type="text" id="name" name="inqurNm"
-									class="input-text w150px" value="" maxlength="15"></td>
-								<th scope="row"><label for="qnaRpstEmail">이메일</label> <em
-									class="font-orange">*</em></th>
-								<td><input type="text" name="rpstEmail" id="qnaRpstEmail"
-									class="input-text" value="" maxlength="50"></td>
-							</tr>
-							<tr>
-								<th scope="row"><label for="hpNum1">휴대전화</label> <em
-									class="font-orange">*</em></th>
-								<td colspan="3"><input type="text" name="hpNum1"
-									id="hpNum1" class="input-text w60px numType" maxlength="3"
-									title="핸드폰번호 첫자리 입력"> <span>-</span> <input type="text"
-									name="hpNum2" id="hpNum2" class="input-text w70px numType"
-									maxlength="4" title="핸드폰번호 중간자리 입력"> <span>-</span> <input
-									type="text" name="hpNum3" id="hpNum3"
-									class="input-text w70px numType" maxlength="4"
-									title="핸드폰번호 마지막자리 입력">
-									<button id="btnQnaMblpCertNoSend" type="button"
-										disabled="disabled" class="button gray w100px ml08 disabled">인증요청</button>
-									<div id="qnaMblpNo-error-text" class="alert"></div></td>
-							</tr>
-
-							<tr id="qnaMblpCertRow" style="display: none;">
-								<th scope="row"><label for="ibxQnaMblpCharCertNo">인증번호</label>
-									<em class="font-orange">*</em></th>
-								<td colspan="3">
-									<div class="chk-num">
-										<div class="line">
-											<input maxlength="4" type="text" id="ibxQnaMblpCharCertNo"
-												class="input-text w180px numType" title="인증번호 입력"
-												disabled="disabled">
-											<!--인증번호 입력-->
-											<div id="qnaTimer" class="time-limit">3:00</div>
-										</div>
-									</div>
-									<button id="btnQnaMblpCharCert" type="button"
-										class="button purple w100px ml08 disabled" disabled="disabled">
-										인증확인
-										<!--인증확인-->
-									</button>
-									<div id="qnaCertNo-error-text" class="alert"></div>
-								</td>
-							</tr>
-
-							<tr>
-								<th scope="row"><label for="qnaCustInqTitle">제목</label> <em
-									class="font-orange">*</em></th>
-								<td colspan="3"><input type="text" name="custInqTitle"
-									id="qnaCustInqTitle" class="input-text" maxlength="100"></td>
-							</tr>
-							<tr>
-								<th scope="row"><label for="textarea">내용</label> <em
-									class="font-orange">*</em></th>
-								<td colspan="3">
-									<div class="textarea">
-										<div id="textarea-notice"
-											style="color: #999999; margin-left: 10px;">
-											<ul>- 문의내용에 개인정보(이름,연락처,카드번호 등)가 포함되지 않도록 유의하시기 바랍니다.
-											</ul>
-											<ul style="font-weight: bold">- 비회원 문의시 이메일로 답변내용이 발송되오니
-												정확하게 작성부탁드립니다.
-											</ul>
-											<ul>- 회원로그인 후 문의작성시 나의 문의내역을 통해 답변을 확인하실 수 있습니다.
-											</ul>
-										</div>
-										<textarea id="textarea" name="custInqCn" rows="5" cols="30"
-											title="내용입력" class="input-textarea"></textarea>
-										<div class="util">
-											<p class="count">
-												<span id="textareaCnt">0</span> / 2000
-											</p>
-										</div>
-									</div>
-								</td>
-							</tr>
-							<!-- 2019-02-14 사진첨부 마크업 수정 -->
-							<tr>
-								<th scope="row">사진첨부</th>
-								<td colspan="3">
-									<div class="upload-image-box">
-
-										<div class="info-txt">
-											<p>* JPEG, PNG 형식의 5M 이하의 파일만 첨부 가능합니다. (최대 5개)</p>
-
-											<!-- to 개발 : 이미지 추가가 5개가 되면 버튼 숨김 -->
-											<button type="button" id="uploadBtn" class="btn-image-add">
-												<span>파일선택</span>
-											</button>
-											<!--// to 개발 : 이미지 추가가 5개가 되면 버튼 숨김 -->
-											<p>* 개인정보가 포함된 이미지 등록은 자제하여 주시기 바랍니다.</p>
-										</div>
-
-										<div id="imgList">
-											<p class="dw-link">
-												<a
-													href="https://www.megabox.co.kr/SharedImg/2023/01/07/RfHIi9Dcw4B2xPGuzXHRVAwnc4NOCGq8.jpeg"
-													title="첨부파일 다운로드">166d298a7ce14688e.jpeg</a>
-												<button type="button" class="btn-del" data-no="1131482"
-													data-sn="1">첨부파일 삭제</button>
-											</p>
-										</div>
-
-									</div>
-								</td>
-							</tr>
-							<!--// 2019-02-14 사진첨부 마크업 수정 -->
-						</tbody>
-					</table>
-				</div>
-
-				<div class="btn-group pt40">
-					<button type="submit" class="button purple large">등록</button>
-				</div>
-			</form>
-		</div>
-	</div>
+<div class="container">
+<br /><br />
+	<h2>1대1문의 게시판</h2>
+	<form action="../inquiry/inquiryWrite.do?mode=insert" name="writeFrm" method="post" enctype="multipart/form-data" onsubmit="return validateForm(this);">
+		<table class="table" width="90%" >
+			<tr class="head">
+				<th><span class="c_imp">*</span>문의유형</th>
+				<td colspan="4">
+					<select name="ask_type" onchange="inputAsk_type(this.form);" class="userSelect w100" >
+						<option value="">문의유형 선택</option>
+						<option value="일반문의">일반문의</option>
+						<option value="칭찬">칭찬</option>
+						<option value="불만">불만</option>
+						<option value="건의">건의</option>
+					</select>
+				</td>
+			</tr>
+			<tr class="head">
+				<th><span class="c_imp">*</span>이름</th>
+				<td>
+					<input type="text" name="name" style="width: 130px; border: none;" value="${ dto.name }" readonly/>
+				</td>
+				<th><span class="c_imp">*</span>이메일</th>
+				<td>
+					<input type="text" name="email" style="width: 150px; border: none;" value="${ dto.email }" readonly/>
+				</td>
+			</tr>
+			<tr class="head">
+				<th><span class="c_imp">*</span>휴대전화</th>
+				<td colspan="4">
+					<input type="text" maxlength="3" style="width: 150px; border: none;" name="phone" value="${ dto.phone }" readonly/>
+				</td>
+			</tr>
+			<tr class="head">
+				<th><span class="c_imp">*</span>제목</th>
+				<td colspan="4">
+					<input type="text" name="title" style="width:90%;" placeholder=" -제목을 입력하세요."/>
+				</td>
+			</tr>
+			<tr class="head">
+				<th><span class="c_imp">*</span>내용</th>
+				<td colspan="4">
+					<textarea name="content" style="width:90%;height:500px;" placeholder=" -내용을 입력하세요."></textarea>
+				</td>
+			</tr>
+			<tr class="head">
+				<th>사진첨부</th>
+				<td>
+                	<input type="file" name="ofile" style="width: 90%;"/>
+            	</td>
+			</tr>
+		</table>
+		<table class="table" width="90%">
+            <tr>
+                <td align="center" >                    
+                    <input type="submit" value="등록" class="btn btn-secondary" />
+                    &nbsp;&nbsp;
+                    <input type="reset" value="취소" class="btn btn-secondary" />
+                    &nbsp;&nbsp;
+                    <input type="button" value="뒤로가기" class="btn btn-secondary" onclick="history.back();" />
+                    
+                </td>
+            </tr>
+        </table> 
+	</form>
+</div>
 <!-- Footer -->
 <%@ include file ="../Main/inc/Bottom.jsp" %>
 </body>

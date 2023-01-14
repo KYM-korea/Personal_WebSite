@@ -140,17 +140,43 @@ public class inquiryDAO extends DBConnPool{
 		}
 		return result;
 	}
-	//상품 삭제
-		public void deleteInquiry(String idx) {
-			String query = "DELETE FROM inquiry WHERE idx = ? ";
-			try {
-				psmt=con.prepareStatement(query);
-				psmt.setString(1, idx);
-				psmt.execute();
-			}catch (Exception e) {
-				e.printStackTrace();
-			}
+	//게시물 삭제
+	public void deleteInquiry(String idx) {
+		String query = "DELETE FROM inquiry WHERE idx=? ";
+		try {
+			psmt=con.prepareStatement(query);
+			psmt.setString(1, idx);
+			psmt.execute();
+		}catch (Exception e) {
+			e.printStackTrace();
 		}
+	}
+	
+	//게시물 수정
+	public int updateInquiry(inquiryDTO dto) {
+		int result = 0;
+		
+		try {
+			String query = "UPDATE inquiry"
+					+ " SET ask_type=?, title=?, content=?, ofile=?, sfile=? "
+					+ " WHERE idx=?";
+			
+			psmt = con.prepareStatement(query);
+			psmt.setString(1, dto.getAsk_type());
+			psmt.setString(2, dto.getTitle());
+			psmt.setString(3, dto.getContent());
+			psmt.setString(4, dto.getOfile());
+			psmt.setString(5, dto.getSfile());
+			psmt.setString(6, dto.getIdx());
+			
+			result = psmt.executeUpdate();
+		} 
+		catch (Exception e) {
+			System.out.println("게시물 수정 중 예외 발생");
+			e.printStackTrace();
+		}
+		return result;
+	}
 }
 
 
