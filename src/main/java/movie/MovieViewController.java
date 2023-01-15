@@ -12,7 +12,7 @@ import javax.websocket.Session;
 
 import log.LogDAO;
 
-@WebServlet("/MovieView.do")
+@WebServlet("/MovieViewController.do")
 public class MovieViewController extends HttpServlet {
 	
 	@Override
