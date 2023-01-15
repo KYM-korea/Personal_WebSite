@@ -22,6 +22,22 @@
 <!-- Header -->
 <%@ include file ="../Main/inc/Top.jsp" %> 
 <br /><br />
+<!-- 검색폼 -->
+	<form method="get">  
+    <table>
+    <tr>
+        <td align="left" style="padding-left: 10px">
+            <input type="hidden" name="flag" value="${ flag }" />
+            <select name="searchField"> 
+                <option value="title">제목</option> 
+                <option value="content">내용</option>
+            </select>
+            <input type="text" name="searchWord" />
+            <input type="submit" value="검색하기" />
+        </td>
+    </tr>   
+    </table>
+    </form>
 <div class="container">
    <div>
       <ul class="nav nav-tabs" role="tablist">
@@ -73,32 +89,17 @@
       </c:otherwise>
    </c:choose>
     </table>
-<<<<<<< HEAD
    <table>
       <tr align="right">
          <td>
             <button type="button" onclick="#Main">홈으로</button> 
-            <button type="button" onclick="location.href='noticeWrite.jsp';">글쓰기</button> 
+            <button type="button" onclick="location.href='../Notice/write.do';">글쓰기</button> 
          </td>
       </tr>
    </table>
    
    <!-- 자주 묻는 질문 -->
    <%@ include file ="FAQ.jsp" %>
-
-   
-=======
-	<table>
-		<tr align="right">
-			<td>
-				<button type="button" onclick="#Main">홈으로</button> 
-				<button type="button" onclick="location.href='noticeWrite.jsp';">글쓰기</button> 
-			</td>
-		</tr>
-	</table>	
-	<!-- 자주 묻는 질문 -->
-	<%@ include file ="FAQ.jsp" %>
->>>>>>> branch 'main' of https://github.com/KYM-korea/Personal_WebSite.git
 <!-- Footer -->
 <%@ include file ="../Main/inc/Bottom.jsp" %>
 </div>

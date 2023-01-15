@@ -35,7 +35,7 @@ function validateForm(form) {  // 폼 내용 검증
 <body>
 <!-- Header -->
 <%@ include file ="../Main/inc/Top.jsp" %>
-<form name="writeFrm" method="post" action="writeProcess.jsp"
+<form name="writeFrm" method="post" action="/Notice/write.do"
       onsubmit="return validateForm(this);">
     <table border="1" width="90%">
         <tr>
@@ -61,7 +61,7 @@ function validateForm(form) {  // 폼 내용 검증
             <td colspan="2" align="center">
                 <button type="submit">작성 완료</button>
                 <button type="reset">다시 입력</button>
-                <button type="button" onclick="location.href='noticeMain.jsp';">목록 보기</button>
+                <button type="button" onclick="location.href='../Notice/List.do?flag=con';">목록 보기</button>
                 <button type="button" onclick="location.href='../Main/HomeMain.jsp';"> 홈으로</button>
             </td>
         </tr>

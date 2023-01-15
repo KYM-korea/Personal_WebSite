@@ -18,9 +18,14 @@ public class noticeListController extends HttpServlet{
    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
       NoticeDAO dao = new NoticeDAO();
       String flag = req.getParameter("flag");
-      System.out.println(flag);
       Map<String, Object> map = new HashMap<String, Object>();
       
+      String searchField = req.getParameter("searchField");
+      String searchWord = req.getParameter("searchWord");
+      if(searchWord != null) {
+    	  map.put("searchField", searchField);
+    	  map.put("searchWord", searchWord);
+      }
       //게시물 갯수 카운트용
       int totalCount = dao.selectCount(map);
       
@@ -50,9 +55,10 @@ public class noticeListController extends HttpServlet{
       if(flag.equals("con")) {
     	  req.getRequestDispatcher("/Notice/noticeMain.jsp").forward(req, resp);
       }
-      else {
-    	  req.getRequestDispatcher("/Notice/event.jsp").forward(req, resp);
+      else { 
+    	  req.getRequestDispatcher("/Notice/event.jsp").forward(req, resp); 
       }
+		 
    }
 }
 

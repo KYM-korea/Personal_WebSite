@@ -16,7 +16,6 @@
     <script src="../common/jquery/jquery-3.6.1.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
     <titler>공지사항 메인</title>
-   
 </head>
 <body>
 <!-- Header -->
@@ -64,7 +63,6 @@
 				<td>${row.name }</td>
 				<td>${row.postdate }</td>
 				</tr>
-				D
 			</c:forEach>
 		</c:otherwise>
 	</c:choose>
