@@ -31,12 +31,12 @@
 	}
 	function inputAsk_type(frm){
 	    var type = frm.ask_type.value;
-	    if(type==''){//--선택-- 부분을 선택했을때
-	        frm.ask_type.value = '';//모든 입력값을 지운다. 
+	    if(type==''){
+	        frm.ask_type.value = '';
 	    }
-	    else{//도메인을 선택했을때
-	        frm.ask_type.value = type;//선택한 도메인을 입력한다. 
-	        frm.ask_type.readOnly = true;//입력된 값을 수정할 수 없도록 readonly속성을 활성화한다. 
+	    else{
+	        frm.ask_type.value = type;
+	        frm.ask_type.readOnly = true;
 	    }
 	}
 </script>
@@ -73,12 +73,18 @@
 <div class="container">
 <br /><br />
 	<h2>1대1문의 게시판</h2>
-	<form action="../inquiry/inquiryWrite.do?mode=insert" name="writeFrm" method="post" enctype="multipart/form-data" onsubmit="return validateForm(this);">
+	<form action="../inquiry/inquiryWrite.do?mode=edit" name="writeFrm" method="post" enctype="multipart/form-data" onsubmit="return validateForm(this);">
+	<!-- 게시물 수정을 위한 일련번호 -->
+	<input type="hidden" name="idx" value="${ dto.idx }"/>
+	<!-- 기존의 원본파일명 -->
+	<input type="hidden" name="prevOfile" value="${ dto.ofile }"/>
+	<!-- 기존의 서버에 저장된 파일명 -->
+	<input type="hidden" name="prevSfile" value="${ dto.sfile }"/>
 		<table class="table" width="90%" >
 			<tr class="head">
 				<th><span class="c_imp">*</span>문의유형</th>
 				<td colspan="4">
-					<select name="ask_type" onchange="inputAsk_type(this.form);" class="userSelect w100" >
+					<select name="ask_type" onchange="inputAsk_type(this.form);" class="userSelect w100">
 						<option value="">문의유형 선택</option>
 						<option value="일반문의">일반문의</option>
 						<option value="칭찬">칭찬</option>
@@ -94,25 +100,26 @@
 				</td>
 				<th><span class="c_imp">*</span>이메일</th>
 				<td>
-					<input type="text" name="email" style="width: 150px; border: none;" value="${ dto.email }" readonly/>
+					<!-- 이메일 + @ + 도메인을 합쳐서 하나의 이메일에 들어갈 수 있도록 고쳐야 함 -->
+					<input type="text" name="email" style="width: 200px; border: none;" value="${ dto.email }" readonly/>
 				</td>
 			</tr>
 			<tr class="head">
 				<th><span class="c_imp">*</span>휴대전화</th>
 				<td colspan="4">
-					<input type="text" maxlength="3" style="width: 150px; border: none;" name="phone" value="${ dto.phone }" readonly/>
+					<input type="text" style="width: 200px; border: none;" name="phone" value="${ dto.phone }" readonly /> 
 				</td>
 			</tr>
 			<tr class="head">
 				<th><span class="c_imp">*</span>제목</th>
 				<td colspan="4">
-					<input type="text" name="title" style="width:90%;" placeholder=" -제목을 입력하세요."/>
+					<input type="text" name="title" style="width:90%;" value="${ dto.title }"/>
 				</td>
 			</tr>
 			<tr class="head">
 				<th><span class="c_imp">*</span>내용</th>
 				<td colspan="4">
-					<textarea name="content" style="width:90%;height:500px;" placeholder=" -내용을 입력하세요."></textarea>
+					<textarea name="content" style="width:90%;height:500px;">${ dto.content }</textarea>
 				</td>
 			</tr>
 			<tr class="head">
@@ -125,7 +132,7 @@
 		<table class="table" width="90%">
             <tr>
                 <td align="center" >                    
-                    <input type="submit" value="등록" class="btn btn-secondary" />
+                    <input type="submit" value="수정하기" class="btn btn-secondary" />
                     &nbsp;&nbsp;
                     <input type="reset" value="취소" class="btn btn-secondary" />
                     &nbsp;&nbsp;

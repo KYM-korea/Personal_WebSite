@@ -99,7 +99,7 @@ dao.close();
 						따라서 첨부파일이 있을때만 다운로드 링크를 출력한다. --> 
 						<!-- 근데 다운로드를 하게 해야하나??? -->
 						<c:if test="${ not empty row.ofile }">
-							<a href="/inquiry/download.do?ofile=${row.ofile }&sfile=${row.sfile }&idx=${row.idx}">[Down]</a>
+							<i class="bi bi-files"></i>
 						</c:if>
 					</td>
 				</tr>
@@ -113,7 +113,7 @@ dao.close();
 				${ map.pagingImg }
 			</td>
 			<td width="100">
-				<button type="button" onclick="location.href='../inquiry/inquiryWrite.do';">글쓰기</button>
+				<button type="button" onclick="location.href='../inquiry/inquiryWrite.do?mode=insert';">글쓰기</button>
 			</td>
 		</tr>
 	</table>

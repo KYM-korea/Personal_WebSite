@@ -46,23 +46,17 @@
 				<th width="15%">작성일</th><td colspan="2" align="left"> ${ dto.postdate }</td>		
 				<th>첨부파일</th>
 	            <td colspan="2" align="left">
-	            	<!-- 첨부된 파일이 있는 경우에는 파일명과 다운로드 링크를 
-	            	출력한다. 다운로드가 완료되면 다운로드 횟수를 1 증가시키기 위해
-	            	게시물의 일련번호를 파라미터로 전달한다. -->
-	            	<c:if test="${ not empty dto.ofile }">
 					${ dto.ofile }
-					<a href="../mvcboard/download.do?ofile=${ dto.ofile }&sfile=${ dto.sfile }&idx=${ dto.idx }">
-						[다운로드]	</a>
-	            	</c:if>
+
 	            </td>
 			</tr>
 		</tbody>
 		<tfoot>
 			<tr>
 	        	<td colspan="6" align="right">      	
-	        		<button type="button" onclick="location.href='../inquiry/pass.do?mode=edit&idx=${ param.idx}';">
+	        		<button type="button" onclick="location.href='../inquiry/inquiryWrite.do?mode=edit&idx=${ dto.idx}';">
 	        			수정하기</button>
-	        		<button type="button" onclick="location.href='../inquiry/pass.do?mode=delete&idx=${ param.idx}';">
+	        		<button type="button" onclick="location.href='../inquiry/inquiryWrite.do?mode=delete&idx=${ dto.idx}';">
 	        			삭제하기</button>
 	        		<button type="button" onclick="location.href='../inquiry/inquiryList.do';">
 	        			목록 바로가기</button>

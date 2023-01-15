@@ -85,14 +85,12 @@
 			<tr>
 				<th>장르 : </th>
 				<td><select name="mGenre" >
-					<option value="action">액션</option>
-					<option value="melo">멜로</option>
-					<option value="sf">SF</option>
-					<option value="horror">공포</option>
-					<option value="fantasy">판타지</option>
-					<option value="thriller">스릴러</option>	
-					<option value="inference">추리</option>
-					<option value="comedy">코미디</option>
+					<option value="액션">액션</option>
+					<option value="멜로">멜로</option>
+					<option value="SF">SF</option>
+					<option value="공포">공포</option>
+					<option value="판타지">판타지</option>
+					<option value="코미디">코미디</option>
 				</select></td>
 			</tr>
 			<tr>

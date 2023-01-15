@@ -7,6 +7,7 @@ import java.util.Vector;
 import javax.servlet.ServletContext;
 
 import common.JDBConnect;
+import inquiry.inquiryDTO;
 
 public class MemberDAO extends JDBConnect{
 	
@@ -20,7 +21,6 @@ public class MemberDAO extends JDBConnect{
 	public MemberDAO(ServletContext application) {
 		super(application);
 	}
-	
 	//회원가입용
 	public int insertMember(MemberDTO dto) {
 		
@@ -40,7 +40,7 @@ public class MemberDAO extends JDBConnect{
 			psmt.setString(6, dto.getEmail());
 			psmt.setString(7, dto.getPhone());
 			psmt.setString(8, dto.getInterest1());
-
+			
 			
 			result = psmt.executeUpdate();
 		} 
@@ -49,7 +49,6 @@ public class MemberDAO extends JDBConnect{
 		}
 		return result;
 	}
-	
 	//로그인용
 	public MemberDTO getMemberDTO(String uid, String upass) {
 		MemberDTO dto = new MemberDTO();
@@ -77,7 +76,6 @@ public class MemberDAO extends JDBConnect{
 		}
 		return dto;
 	}
-	
 	public List<String> idCheck() {
 		List<String> ilist = new Vector<String>();
 		String query = "SELECT id FROM member";
@@ -94,7 +92,6 @@ public class MemberDAO extends JDBConnect{
 		}
 		return ilist;
 	}
-	
 	//아이디찾기
 	public String findId(String name, String email, String phone) {
 		String  result = null;
@@ -138,8 +135,6 @@ public class MemberDAO extends JDBConnect{
 		}
 		return result;
 	}
-	
-	
 	//아이디중복체크 메서드
 	public int joinIdCheck(String id){
 		int result = 0;
@@ -166,4 +161,26 @@ public class MemberDAO extends JDBConnect{
 		return result;
 	}//joinIdCheck 메서드닫음
 	
+	public MemberDTO selectView(String id) {
+		MemberDTO dto = new MemberDTO();
+
+		String sql = "SELECT * FROM member WHERE id=?";
+		
+		try {
+			psmt = con.prepareStatement(sql);
+			psmt.setString(1, id);
+			rs = psmt.executeQuery();
+			
+			if (rs.next()) {
+				dto.setName(rs.getString("name"));
+				dto.setEmail(rs.getString("email"));
+				dto.setPhone(rs.getString("phone"));
+			}
+		} 
+		catch (Exception e) {
+			System.out.println("멤버찾기 중 에러");
+			e.printStackTrace();
+		}
+		return dto;
+	}	
 }
