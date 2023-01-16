@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import utils.JSFunction;
+
 @WebServlet("/MemberUpdateController.do")
 public class MemberUpdateController extends HttpServlet {
 	
@@ -19,18 +21,15 @@ public class MemberUpdateController extends HttpServlet {
 		//수정페이지로 전달된 일련번호를 통해 게시물을 인출한다.
 		//Request영역에 있는 Session을 가져온다.
 		HttpSession session = req.getSession();
-		resp.setCharacterEncoding("UTF-8");
-		
+			
 		String UserId = null;
 		String id = null;
 		if(session.getAttribute("UserId")!=null) {
 			id = session.getAttribute("UserId").toString();	
 		}else {
-			PrintWriter script = resp.getWriter();
-			script.println("<script>");
-			script.println("alert('로그인하세요.')");
-			script.println("location.href= './Login/LoginForm.jsp'");
-			script.println("</script>");
+			
+			JSFunction.alertLocation(resp, "로그인하세요.", "./Login/LoginForm.jsp" );
+			return;
 		}
 				
 		MemberDAO dao = new MemberDAO();
