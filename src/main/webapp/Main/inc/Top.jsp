@@ -15,6 +15,14 @@
 	    text-decoration: none;
 	    color: gray;
 	}
+    .hashdiv{
+        display: flex;
+    }
+    .hashtag{
+        font-weight: bold;
+        color: white;
+        text-decoration: none;
+    }        
 </style>
 <header class="bg-dark">
 	<div class="container">
@@ -61,3 +69,33 @@
 
 <!-- body 시작 -->
 <div class="container">
+
+<!-- 검색 -->
+<div class="modal" id="myModal">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content" style="background-color: #351f67;">
+            <img src="https://blog.kakaocdn.net/dn/cDTpif/btrbgnYMHUX/KskkZ9BgNaOp6a3Tgh8RFk/img.jpg"
+                style="width: 498px;">
+	        <!-- 셀렉트로 감싸면 화면이 망가져서 차라리 a태그들에 이벤트를 걸고 
+	            폼값을 보내서 script에서 처리하는 방식추천 -->
+            <form action="../MovieSearch.do" method="get" >
+                <div class="modal-header">
+                    <div class="input-group">
+                        <input name="searchWord" type="text" placeholder="영화를 검색하세요"
+                            style="font-weight: bold;  background-color: #351f67; border: none; color: white;">
+                        <button class="btn"><i class="bi bi-search" style="color: white;"></i></button>
+                    </div>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="hashdiv">
+                        <a class="hashtag" href="../MovieSearch.do?category=액션"># 액션 </a>&nbsp;
+                        <a class="hashtag" href="../MovieSearch.do?category=멜로"># 멜로 </a>&nbsp;
+                        <a class="hashtag" href="../MovieSearch.do?category=코미디"># 코미디 </a>&nbsp;
+                        <a class="hashtag" href="../MovieSearch.do?category=판타지"># 판타지 </a>&nbsp;
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

@@ -104,7 +104,6 @@ public class MovieDAO extends JDBConnect {
 			dto.setOfile(rs.getString("ofile"));
 			dto.setNfile(rs.getString("nfile"));
 			dto.setrDate(rs.getDate("rDate"));
-			
 			}
 		}
 		catch (Exception e) {
