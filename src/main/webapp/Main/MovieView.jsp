@@ -87,7 +87,7 @@ function deletePost() {
 								<c:choose>
 									<c:when test="${not empty UserId && LikeChk==1 }">
 										<form method="post" style="float:left"
-											action="<%=request.getContextPath()%>/LikeController.do?mode=delete">
+											action="<%=request.getContextPath()%>/MovieLikeController.do?mode=delete">
 											<input type="hidden" name="idx" value="${ dto.idx }">
 											<input type="hidden" name="name" value="${ dto.name }">
 											<input type="hidden" name="category"
@@ -100,7 +100,7 @@ function deletePost() {
 									</c:when>
 									<c:otherwise>
 										<form method="post" style="float:left"
-											action="<%=request.getContextPath()%>/LikeController.do?mode=insert">
+											action="<%=request.getContextPath()%>/MovieLikeController.do?mode=insert">
 											<input type="hidden" name="idx" value="${ dto.idx }">
 											<input type="hidden" name="name" value="${ dto.name }">
 											<input type="hidden" name="category"
