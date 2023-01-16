@@ -25,7 +25,6 @@ public class MemberDAO extends JDBConnect{
 	public int insertMember(MemberDTO dto) {
 		
 		int result= 0;
-		
 		//16개!
 		try {
 			String query = "INSERT INTO member VALUES(?,?,?,?,?,?,?,?)";
@@ -41,7 +40,6 @@ public class MemberDAO extends JDBConnect{
 			psmt.setString(7, dto.getPhone());
 			psmt.setString(8, dto.getInterest1());
 
-			
 			result = psmt.executeUpdate();
 		} 
 		catch (Exception e) {
@@ -188,12 +186,13 @@ public class MemberDAO extends JDBConnect{
 				//반환된 ResultSet객체를 통해 회원정보가 있는지 확인한다.
 				if(rs.next()) {
 					//정보가 있다면 DTO객체에 회원정보를 저장한다.
-					dto.setId(rs.getString("Id"));
-					dto.setPass(rs.getString("Pass"));
-					dto.setBirth(rs.getString("Birth"));
-					dto.setSex(rs.getString("Sex"));
-					dto.setEmail(rs.getString("Email"));
-					dto.setPhone(rs.getString("Phone"));
+					dto.setId(rs.getString("id"));
+					dto.setPass(rs.getString("pass"));
+					dto.setName(rs.getString("name"));
+					dto.setBirth(rs.getString("birth"));
+					dto.setSex(rs.getString("sex"));
+					dto.setEmail(rs.getString("email"));
+					dto.setPhone(rs.getString("phone"));
 					dto.setInterest1(rs.getString("Interest1"));
 				}
 			}
@@ -210,21 +209,22 @@ public class MemberDAO extends JDBConnect{
 		int result = 0;
 		try {
 			String query = " Update member SET "
-					+ " pass=?, email=?, phone=?, "
-					+ " interest = ? "
+					+ " email=?, phone=?, "
+					+ " interest1 = ? "
 					+ " where id= ? ";
 
 			psmt = con.prepareStatement(query);
 				
-			psmt.setString(1,dto.getPass());
-			psmt.setString(2,dto.getEmail());
-			psmt.setString(3,dto.getPhone());
-			psmt.setString(4,dto.getInterest1());
-			psmt.setString(5,dto.getId());
+			psmt.setString(1,dto.getEmail());
+			psmt.setString(2,dto.getPhone());
+			psmt.setString(3,dto.getInterest1());
+			psmt.setString(4,dto.getId());
 			
 			result = psmt.executeUpdate();
-			
-			
+			//복습을 위해 나중에 값 넘어오는지 확인하는 코드.
+//			System.out.println(result);
+//			System.out.println(dto.getEmail());
+//			System.out.println(dto.getPhone());
 		}
 		catch (Exception e) {
 			System.out.println("회원정보 수정 중 예외 발생");

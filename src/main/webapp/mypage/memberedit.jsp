@@ -29,19 +29,6 @@ function validateForm(form) {
 		form.pass.focus();
 		return false;
 	}
-	if(form.pass_check.value==""){
-		alert("비밀번호 재확인 해주세요");
-		form.pass_check.focus();
-		return false;
-	}
-	if(form.pass.value!=form.pass_check.value){
-        alert('패스워드가 일치하지 않습니다.')
-        form.pass.value='';
-        form.pass_check.value='';
-        form.pass.focus();
-        return false;
-    }
-		
 	if(form.email1.value==""){
 		alert("이메일을 입력하세요.");
 		form.email1.focus();
@@ -107,7 +94,6 @@ function inputEmail(frm){
 }
 
 </style>
-
 <!-- 자바소스 -->
 <%%>
 <!-- HTML소스 -->
@@ -125,7 +111,7 @@ function inputEmail(frm){
 		
 	<h1>회원정보수정</h1>
 	
-	<form name="fr" id="myForm" method="post" action="RegidateProcess.jsp" onsubmit="return validateForm(this);">
+	<form name="fr" id="myForm" method="post" action="../MemberUpdateController.do" onsubmit="return validateForm(this);">
 		<table class="table">
 			<tr>
 				<th><span class="c_imp">*</span>아이디</th>
@@ -140,25 +126,18 @@ function inputEmail(frm){
 			<tr>
 				<th><span class="c_imp">*</span>비밀번호</th>
 				<td>
-					<input type="password" name="pass" value="${request.Pass }"/>
-				</td>
-			</tr>
-			<tr>
-				<th><span class="c_imp">*</span>비밀번호 확인</th>
-				<td>
-					<input type="password" name="pass_check" value="${request.Pass }"/>
-					<!-- 비밀번호가 일치하지 않으면 일치하지 않는다는 alert 혹은 span으로 빨간 글씨가 나오게 하고 비밀번호 지워지게? -->
+					<input type="password" name="pass" value="${dto.pass }"/>
 				</td>
 			</tr>
 			<tr>
 				<th><span class="c_imp">*</span>이름</th>
 				<td>
-					<input type="text" style="width: 100px;" name="name" value="${sessionScope.UserName }" readonly />
+					<input type="text" style="width: 100px;" name="name" value="${dto.name }" readonly />
 				</td>
 			</tr>
 			
 			<!-- 생년월일 년 월 일 따로 했는데 이걸 어떻게 집어넣어줘야할까?  -->
-			<tr>
+			 <tr>
 				<th><span class="c_imp">*</span>생년월일</th>
 				<td>
 					<!-- 나이는 그 위아래로 숫자나와서 선택할 수 있게 하면 좋을듯-->
@@ -171,15 +150,11 @@ function inputEmail(frm){
 						
 					}
 					
-					
 					query1 += "</select>";
 					out.println(query1);
 					%>
-					<c:foreach begin="100" end="0" step="--1" var="i">
-						<p> 반복 ${i }입니다</p>
-					</c:foreach>
 					
-					${request.birth }
+					${dto.birth }
 					
 					<%
 					String query2 = "<select name='month'><option value=''>-선택-</option>";
@@ -191,7 +166,7 @@ function inputEmail(frm){
 					query2 += "</select>";
 					out.println(query2);
 					%>
-					<%-- foreach로 어케바꿈.......? --%>
+					
 					
 					<%
 					String query3 = "<select name='day'><option value=''>-선택-</option>";
@@ -204,21 +179,23 @@ function inputEmail(frm){
 					query3 += "</select>";
 					out.println(query3);
 					%>
+					
 				</td>
 			</tr>
 			<tr>
 				<th><span class="c_imp">*</span>성별</th>
 				<td>
-					<input type="radio" name="sex" value="남"/>남자
-					<input type="radio" name="sex" value="여"/>여자
+				<!--  ${param.mode eq 'U' ? '수정' : '등록'} -->
+					<input type="radio" name="sex" value="남"  ${dto.sex eq '남' ? "checked" : "" } />남자
+					<input type="radio" name="sex" value="여" ${dto.sex eq '여' ? "checked" : "" } />여자
 				</td>
 			</tr>
 			<tr>
 				<th><span class="c_imp">*</span>이메일</th>
 				<td>
-					<input type="text" name="email1"/>
+					<input type="text" name="email1" value="${email1}"/>
 					<span>@</span>
-					<input type="text" name="email2" style="width: 100px;"/>
+					<input type="text" name="email2" value="${email2}" style="width: 100px;" />
 					<!-- 도메인 선택할 수 있게 만들어주기  -->
 					<select name="email_domain" onchange="inputEmail(this.form);" class="userSelect w100">
                         <option value="" checked> -- 선택 --</option>
@@ -233,42 +210,48 @@ function inputEmail(frm){
 			</tr>
 			<tr>
 				<th><span class="c_imp">*</span>전화번호</th>
+				
+				
 				<td>
-					<input type="text" maxlength="3" style="width: 50px" name="phone1" /> - 
-					<input type="text" maxlength="4" style="width: 80px" name="phone2" /> - 
-					<input type="text" maxlength="4" style="width: 80px" name="phone3" />
+				<c:forEach var="phone" items="phoneArr" begin="0" end="2">
+					<input type="text" maxlength="3" style="width: 50px" name="phone1" value="${phoneArr0 }"/> - 
+					<input type="text" maxlength="4" style="width: 80px" name="phone2"  value="${phoneArr1 }" /> - 
+					<input type="text" maxlength="4" style="width: 80px" name="phone3"  value="${phoneArr2 }"/>
+				</c:forEach>
 				</td>
 			</tr>
 			<tr>
 				<th>관심장르</th>
 				<td>
-					<select name="interest1">
-						<option value="" value="${ requestScope.Interest1 }" checked>-장르선택1(필수)-</option>
-						<option value="액션" >액션</option>
-						<option value="멜로" >멜로</option>
-						<option value="SF" >SF</option>
-						<option value="공포" >공포</option>
-						<option value="판타지" >판타지</option>
-						<option value="코미디" >코미디</option>
-					</select>
-					<select name="interest2">
-						<option value="" checked>-장르선택2-</option>
-						<option value="액션" >액션</option>
-						<option value="멜로" >멜로</option>
-						<option value="SF" >SF</option>
-						<option value="공포" >공포</option>
-						<option value="판타지" >판타지</option>
-						<option value="코미디" >코미디</option>
-					</select>
-					<select name="interest3">
-						<option value="" checked>-장르선택3-</option>
-						<option value="액션" >액션</option>
-						<option value="멜로" >멜로</option>
-						<option value="SF" >SF</option>
-						<option value="공포" >공포</option>
-						<option value="판타지" >판타지</option>
-						<option value="코미디" >코미디</option>
-					</select>
+				 <select id="interestArr" name="interest">
+					<option value="" >-장르선택1(필수)-</option>
+					<option value="액션"  <c:if test="${interestArr0 eq '액션'}">selected</c:if>>액션</option>
+					<option value="멜로" <c:if test="${interestArr0 eq '멜로'}">selected</c:if>>멜로</option>
+					<option value="SF" <c:if test="${interestArr0 eq 'SF'}">selected</c:if>>SF</option>
+					<option value="공포" <c:if test="${interestArr0 eq '공포'}">selected</c:if>>공포</option>
+					<option value="판타지" <c:if test="${interestArr0 eq '판타지'}">selected</c:if>>판타지</option>
+					<option value="코미디" <c:if test="${interestArr0 eq '코미디'}">selected</c:if>>코미디</option>
+				</select> 
+					
+				<select id="interestArr" name="interest1" >
+					<option value="" >-장르선택2-</option>
+					<option value="액션"  <c:if test="${interestArr1 eq '액션'}">selected</c:if>>액션</option>
+					<option value="멜로" <c:if test="${interestArr1 eq '멜로'}">selected</c:if>>멜로</option>
+					<option value="SF" <c:if test="${interestArr1 eq 'SF'}">selected</c:if>>SF</option>
+					<option value="공포" <c:if test="${interestArr1 eq '공포'}">selected</c:if>>공포</option>
+					<option value="판타지" <c:if test="${interestArr1 eq '판타지'}">selected</c:if>>판타지</option>
+					<option value="코미디" <c:if test="${interestArr1 eq '코미디'}">selected</c:if>>코미디</option>
+				</select>
+				
+				<select id="interestArr" name="interest2" >
+					<option value="" >-장르선택3-</option>
+					<option value="액션"  <c:if test="${interestArr2 eq '액션'}">selected</c:if>>액션</option>
+					<option value="멜로" <c:if test="${interestArr2 eq '멜로'}">selected</c:if>>멜로</option>
+					<option value="SF" <c:if test="${interestArr2 eq 'SF'}">selected</c:if>>SF</option>
+					<option value="공포" <c:if test="${interestArr2 eq '공포'}">selected</c:if>>공포</option>
+					<option value="판타지" <c:if test="${interestArr2 eq '판타지'}">selected</c:if>>판타지</option>
+					<option value="코미디" <c:if test="${interestArr2 eq '코미디'}">selected</c:if>>코미디</option>
+				</select>
 				</td>
 			</tr>
 		</table>
