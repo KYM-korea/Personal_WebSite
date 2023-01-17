@@ -27,7 +27,7 @@
     <table>
     <tr>
         <td align="left" style="padding-left: 10px">
-            <input type="hidden" name="flag" value="${ flag }" />
+            <input type="hid den" name="flag" value="${ flag }" />
             <select name="searchField"> 
                 <option value="title">제목</option> 
                 <option value="content">내용</option>
@@ -91,6 +91,9 @@
     </table>
    <table>
       <tr align="right">
+         <td>
+         	${map.pagingImg }
+         </td>
          <td>
             <button type="button" onclick="#Main">홈으로</button> 
             <button type="button" onclick="location.href='../Notice/write.do';">글쓰기</button> 

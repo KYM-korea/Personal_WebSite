@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import utils.BoardPage;
+
 @WebServlet("/Notice/List.do")
 public class noticeListController extends HttpServlet{
    @Override
@@ -26,6 +28,7 @@ public class noticeListController extends HttpServlet{
     	  map.put("searchField", searchField);
     	  map.put("searchWord", searchWord);
       }
+      map.put("flag", flag);
       //게시물 갯수 카운트용
       int totalCount = dao.selectCount(map);
       
@@ -43,19 +46,29 @@ public class noticeListController extends HttpServlet{
       int end = pageNum * pageSize;
       map.put("start", start);
       map.put("end", end);
-      map.put("flag", flag);
       
       //목록에 출력할 게시물을 추출하여 반환받는다. 
       List<NoticeDTO> Lists = dao.selectList(map);
-      
       dao.close();
       
-      req.setAttribute("map", map);
-      req.setAttribute("Lists", Lists);
+      map.put("totalCount", totalCount);
+      map.put("pageSize", pageSize);
+      map.put("pageNum", pageNum);
+      
       if(flag.equals("con")) {
+    	  String pagingImg = BoardPage.pagingStr(totalCount, pageSize, 
+    			  blockPage, pageNum, "../Notice/List.do?flag=con");
+    	  map.put("pagingImg", pagingImg);
+          req.setAttribute("map", map);
+          req.setAttribute("Lists", Lists);
     	  req.getRequestDispatcher("/Notice/noticeMain.jsp").forward(req, resp);
       }
       else { 
+    	  String pagingImg = BoardPage.pagingStr(totalCount, pageSize, 
+    			  blockPage, pageNum, "../Notice/List.do?flag=eve");
+    	  map.put("pagingImg", pagingImg);
+          req.setAttribute("map", map);
+          req.setAttribute("Lists", Lists);
     	  req.getRequestDispatcher("/Notice/event.jsp").forward(req, resp); 
       }
 		 
