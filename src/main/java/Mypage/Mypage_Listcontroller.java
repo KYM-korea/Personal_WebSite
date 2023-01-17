@@ -10,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 @WebServlet("/mypage/mypage_storelist.do")
 public class Mypage_Listcontroller extends HttpServlet{
@@ -18,11 +19,15 @@ public class Mypage_Listcontroller extends HttpServlet{
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
 		MypageDAO dao = new MypageDAO();
+		HttpSession session = req.getSession();
 		
 		Map<String, Object> map = new HashMap<String, Object>();
 		
 		String searchField = req.getParameter("searchField");
 		String searchWord = req.getParameter("searchWord");
+		String id = session.getAttribute("UserId").toString();
+		
+		System.out.println(id);
 		System.out.println(searchField +"  "+ searchWord);
 		
 		if(searchWord != null){
@@ -33,6 +38,7 @@ public class Mypage_Listcontroller extends HttpServlet{
 		
 		int totalCount = dao.selectCount(map);
 		map.put("totalCount", totalCount);
+		map.put("id", id);
 		List<MypageDTO> mypageList = dao.selectList(map);
 		//커넥션풀에 자원 반납
 		dao.close();

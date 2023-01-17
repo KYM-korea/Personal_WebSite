@@ -42,7 +42,7 @@ public class Mypage_goodsviewcontroller extends HttpServlet{
 				
 				//request영역에 DTO객체를 저장한 후 View로 포워드한다.
 				req.setAttribute("dto", dto);
-				req.getRequestDispatcher("/test/Mypage_goods.jsp?mypage_idx="+mypage_idx).forward(req, resp);
+				req.getRequestDispatcher("/mypage/Mypage_goods.jsp?mypage_idx="+mypage_idx).forward(req, resp);
 	}
 }
 

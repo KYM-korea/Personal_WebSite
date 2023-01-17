@@ -40,7 +40,7 @@ a:visited{
 	                <a class="nav-link" style="color : gray;" href="./Mypage_movielist.jsp">영화</a>
 	            </li>
 	            <li class="nav-item">
-	                <a class="nav-link active" href="../test/mypage_storelist.do">스토어</a>
+	                <a class="nav-link active" href="../mypage/mypage_storelist.do">스토어</a>
 	            </li>
 	        </ul>
         </div>
@@ -99,7 +99,7 @@ a:visited{
 			        			 	</td>
 			        				<td align="left">
 			        					<!-- 제목을 클릭할 경우 내용보기 페이지로 이동한다. -->
-			        					<a href="../test/mypage_goodsview.do?mypage_idx=${row.mypage_idx }">${row.title }</a>
+			        					<a href="../mypage/mypage_goodsview.do?mypage_idx=${row.mypage_idx }">${row.title }</a>
 			        				</td>
 			        				<td>${row.price }</td>
 			        				<td>${row.mypage_number }</td>
