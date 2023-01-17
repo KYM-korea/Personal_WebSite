@@ -26,7 +26,7 @@ public class NoticeDAO extends JDBConnect {
 		public int selectCount(Map<String, Object> map) {
 			int totalCount = 0;
 			
-			String query = "SELECT COUNT(*) FROM notice WHERE flag='" + map.get("flag") + "'";
+			String query = "SELECT COUNT(*) FROM notice WHERE flag='" + map.get("flag")+"'";
 			
 			try {
 				stmt = con.createStatement();
