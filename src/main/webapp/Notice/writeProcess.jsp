@@ -25,7 +25,7 @@ try{
 	dao.close();
 	
 	if(iResult == 1){
-		response.sendRedirect("noticeMain.jsp");
+		response.sendRedirect("../Notice/List.do?flag=con");
 	}
 	else{
 		JSFunction.alertBack("글쓰기에 실패했습니다.", out);

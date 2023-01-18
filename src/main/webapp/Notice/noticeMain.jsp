@@ -31,9 +31,6 @@
          <li class="nav-item">
             <a class="nav-link" href="../Notice/List.do?flag=eve" style="color : gray;">이벤트</a>
          </li>
-         <li class="nav-item">
-            <a class="nav-link" href="../inquiry/inquiryList.do" style="color : gray;">1대1문의</a>
-         </li>
       </ul>
    </div>   
 	<!-- 공지사항  -->
@@ -73,21 +70,7 @@
       </c:otherwise>
    </c:choose>
     </table>
-<<<<<<< HEAD
-   <table>
-      <tr align="right">
-         <td>
-            <button type="button" onclick="#Main">홈으로</button> 
-            <button type="button" onclick="location.href='noticeWrite.jsp';">글쓰기</button> 
-         </td>
-      </tr>
-   </table>
-   
-   <!-- 자주 묻는 질문 -->
-   <%@ include file ="FAQ.jsp" %>
 
-   
-=======
 	<table>
 		<tr align="right">
 			<td>
@@ -98,7 +81,6 @@
 	</table>	
 	<!-- 자주 묻는 질문 -->
 	<%@ include file ="FAQ.jsp" %>
->>>>>>> branch 'main' of https://github.com/KYM-korea/Personal_WebSite.git
 <!-- Footer -->
 <%@ include file ="../Main/inc/Bottom.jsp" %>
 </div>

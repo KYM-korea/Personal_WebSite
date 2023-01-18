@@ -64,7 +64,6 @@
 				<td>${row.name }</td>
 				<td>${row.postdate }</td>
 				</tr>
-				D
 			</c:forEach>
 		</c:otherwise>
 	</c:choose>

@@ -107,14 +107,20 @@ dao.close();
 		</c:otherwise>
 		</c:choose>
 	</table>
-	<table border="1" width="100%">
+	<table border="0" width="100%">
 		<tr align="center">
 			<td>
 				${ map.pagingImg }
 			</td>
+			<%
+			if(session.getAttribute("UserId")!=null){
+			%>
 			<td width="100">
 				<button type="button" onclick="location.href='../inquiry/inquiryWrite.do?mode=insert';">글쓰기</button>
 			</td>
+			<%
+			}
+			%>
 		</tr>
 	</table>
 <!-- Footer -->

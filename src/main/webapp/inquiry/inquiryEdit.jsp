@@ -131,7 +131,7 @@
 		</table>
 		<table class="table" width="90%">
             <tr>
-                <td align="center" >                    
+                <td align="center" >                 
                     <input type="submit" value="수정하기" class="btn btn-secondary" />
                     &nbsp;&nbsp;
                     <input type="reset" value="취소" class="btn btn-secondary" />

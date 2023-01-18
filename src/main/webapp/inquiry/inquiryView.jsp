@@ -1,3 +1,6 @@
+<%@page import="inquiry.inquiryDTO"%>
+<%@page import="MemberTable.MemberDAO"%>
+<%@page import="MemberTable.MemberDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -53,16 +56,51 @@
 		</tbody>
 		<tfoot>
 			<tr>
-	        	<td colspan="6" align="right">      	
+	        	<td colspan="6" align="right"> 
+		        	<%
+		        	if(session.getAttribute("UserId")!=null){
+		        	%>
 	        		<button type="button" onclick="location.href='../inquiry/inquiryWrite.do?mode=edit&idx=${ dto.idx}';">
 	        			수정하기</button>
 	        		<button type="button" onclick="location.href='../inquiry/inquiryWrite.do?mode=delete&idx=${ dto.idx}';">
 	        			삭제하기</button>
+	        		
+	        		<%
+	        		}
+	        		%>
 	        		<button type="button" onclick="location.href='../inquiry/inquiryList.do';">
 	        			목록 바로가기</button>
 	        	</td>
 	        </tr>
 		</tfoot>
+	</table>
+	<!-- 작성된 댓글이 보이는 곳 -->
+	<table class="table table-hover" border="1">
+		<tr>
+			<th>
+				작성자 : ${ dto.name }
+			</th>
+			<td>
+				작성된 내용은 여기에서 보입니다! 진짜루!
+			</td>
+		</tr>
+	</table>
+	
+	<!-- 댓글창 -->
+	<table class="table table-hover" border="1" >
+		<tr class="comment">
+			<th>
+				<input type="text" name="name" style="width: 130px; border: none;" value="${ dto.name }" readonly/>
+			</th>
+			<td rowspan="2" align="center">
+				<button style="width: 50%; height: 80px;">작성</button>
+			</td>
+		</tr>
+		<tr class="comment">
+			<td >
+				<textarea name="content" style="width: 100%" placeholder=" -내용을 입력하세요."></textarea>
+			</td>
+		</tr>
 	</table>
 <!-- Footer -->
 <%@ include file ="../Main/inc/Bottom.jsp" %>
