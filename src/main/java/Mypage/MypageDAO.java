@@ -25,7 +25,6 @@ public class MypageDAO extends JDBConnect{
 	         query +=" AND "+ map.get("searchField") 
 	         			+ " LIKE '%"+ map.get("searchWord")+ "%' AND ";
 	      }
-	      System.out.println(query);
 	      try {
 	    	 stmt = con.createStatement();
 	         rs = stmt.executeQuery(query);

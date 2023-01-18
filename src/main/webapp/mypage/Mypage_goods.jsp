@@ -3,6 +3,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<fmt:formatDate var="today" value="${nowdate }" pattern="yyyy-MM-dd"/>
 <!DOCTYPE html>
 <html>
 <head>
@@ -63,11 +65,12 @@ a:visited{
 					</td>
 					<td colspan="2" style="padding-bottom: 0">
 						${dto.mypage_date }
+						${nowdate }
 						<div style="padding-top: 25px">
 							※ 유효기간:
 						<c:choose>
 							<c:when test="${dto.fd eq 'snack' }">구매일로부터 92일 이내 사용 가능</c:when>
-							<c:when test="${dto.fd eq 'giftCard' }">구매일로부터 24개월 이내 사용 가능</c:when>
+							<c:when test="${dto.fd eq 'giftcard' }">구매일로부터 24개월 이내 사용 가능</c:when>
 							<c:otherwise>구매일로부터 366일 이내 사용 가능</c:otherwise>
 						</c:choose>
 						</div>
@@ -95,17 +98,17 @@ a:visited{
 					</td>
 					<td colspan="2">
 						<c:choose>
-							<c:when test="${dto.fd eq 'giftCard' }">
+							<c:when test="${dto.fd eq 'giftcard' }">
 								구매일로부터 366일 이내 취소 가능하며, 부분취소는 불가능
-								<%-- <c:when test="${nowdate> dto.mypage_date+366}"> --%>
+								<c:if test="${nowdate - dto.mypage_date}"> 
 									<button type="button" class="btn btn-outline-primary">환불요청</button>
-								<%-- </c:when> --%>
+								< </c:if> 
 							</c:when>
 							<c:otherwise>
 								구매일로부터 10일 이내 취소 가능하며, 부분취소는 불가능
-								<%-- <c:when test="${nowdate> dto.mypage_date+366}"> --%>
+								<c:if test="${nowdate - dto.mypage_date }"> 
 									<button type="button" class="btn btn-outline-primary" >환불요청</button>
-								<%-- </c:when> --%>
+								</c:if> 
 							</c:otherwise>
 						</c:choose>
 					</td>
