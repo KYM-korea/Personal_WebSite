@@ -42,5 +42,8 @@ public class UserController extends HttpServlet {
 		//서블릿에서 jsp를 호출하면서 데이터를 같이 넘겨주는 객체 선언
 		req.getRequestDispatcher("/regidate/joinIdcheck.jsp").forward(req, resp);
 		
+		
+		
+		
 	}
 }

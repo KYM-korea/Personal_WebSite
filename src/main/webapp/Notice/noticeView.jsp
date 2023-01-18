@@ -58,10 +58,10 @@ function deletePost() {
         <tr>
             <td colspan="4" align="center">
 
-				<button type="button" onclick="location.href='Edit.jsp?idx=${dto.idx}';">
+				<button type="button" onclick="location.href='../Notice/Edit.do?idx=${dto.idx}';">
 					수정하기</button>
-				<button type="button" onclick="deletePost();">삭제하기</button> 
-                <button type="button" onclick="location.href='../Notice/List.do?flag=con';">
+				<button type="button" onclick="location.href='../Notice/Delete.do?flag=${dto.flag }&idx=${dto.idx}';">삭제하기</button> 
+                <button type="button" onclick="location.href='../Notice/List.do?flag=${dto.flag}';">
                     목록 보기
                 </button>
                 <button type="button" onclick="location.href='../Main/HomeMain.jsp';">

@@ -34,29 +34,19 @@ a:visited{
 		<div class="fixed">
 			<ul class="nav nav-tabs" role="tablist">
 	            <li class="nav-item">
-	                <a class="nav-link active" data-bs-toggle="tab" href="#mypage_member">회원정보수정</a>
+	                <a class="nav-link" style="color : gray;" href="./MypageMain.jsp">회원정보수정</a>
 	            </li>
 	            <li class="nav-item">
-	                <a class="nav-link" data-bs-toggle="tab" href="#mypage_moveie">영화</a>
+	                <a class="nav-link active"  href="./Mypage_movielist.jsp">영화</a>
 	            </li>
 	            <li class="nav-item">
-	                <a class="nav-link" data-bs-toggle="tab" href="#mypage_store">스토어</a>
+	                <a class="nav-link" style="color : gray;" href="../mypage/mypage_storelist.do">스토어</a>
 	            </li>
 	        </ul>
         </div>
 		<div class="tab-content">
-			<div id="mypage_member" class="tab-pane active">
-				<h2>회원정보수정</h2>
-				<div class="row">
-				</div>
-			</div>	
-			<div id="mypage_moveie" class="tab-pane fade">
-				<h2>영화</h2>
-				<div class="row">
-				</div>
-			</div>
-			<div id="mypage_store" class="tab-pane fade">
-				<h2>스토어</h2>
+			<div>
+				<h2>구매목록리스트 - 영화</h2>
 				<div class="row">
 				</div>
 			</div>

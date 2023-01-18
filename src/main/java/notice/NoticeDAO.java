@@ -26,7 +26,7 @@ public class NoticeDAO extends JDBConnect {
 		public int selectCount(Map<String, Object> map) {
 			int totalCount = 0;
 			
-			String query = "SELECT COUNT(*) FROM notice WHERE flag='" + map.get("flag") + "'";
+			String query = "SELECT COUNT(*) FROM notice WHERE flag='" + map.get("flag")+"'";
 			
 			try {
 				stmt = con.createStatement();
@@ -124,7 +124,7 @@ public class NoticeDAO extends JDBConnect {
 		}
 	
 	//게시물 삭제
-	public int deletePost(NoticeDTO dto) {
+	public int deletePost(String idx) {
 		int result = 0;
 		
 		try {
@@ -132,7 +132,7 @@ public class NoticeDAO extends JDBConnect {
 			String query = "DELETE FROM notice WHERE idx=?";
 			
 			psmt = con.prepareStatement(query);
-			psmt.setString(1, dto.getIdx());
+			psmt.setString(1, idx);
 			
 			result = psmt.executeUpdate();
 		} 

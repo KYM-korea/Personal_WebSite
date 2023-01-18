@@ -59,7 +59,7 @@ public class MovieDAO extends JDBConnect {
 			String query = "INSERT INTO movie_info ( "
 					+ " idx, name, category, summary, ofile, nfile) "
 					+ " VALUES ( "
-					+ " 2, ?, ?, ?, ?, ?)";
+					+ " 3, ?, ?, ?, ?, ?)";
 			
 			psmt = con.prepareStatement(query);
 			psmt.setString(1, dto.getName());
@@ -104,7 +104,6 @@ public class MovieDAO extends JDBConnect {
 			dto.setOfile(rs.getString("ofile"));
 			dto.setNfile(rs.getString("nfile"));
 			dto.setrDate(rs.getDate("rDate"));
-			
 			}
 		}
 		catch (Exception e) {
@@ -155,51 +154,21 @@ public class MovieDAO extends JDBConnect {
 		return result;
 	}
 	
-	//영화 검색(해시태그-장르별) 리스트
-	public List<MovieDTO> selectSearchTagList(String category) {
+	//영화 검색 리스트
+	public List<MovieDTO> selectSearchList(Map<String, Object> map) {
 		
 		List<MovieDTO> mItem = new Vector<MovieDTO>();
 		
 		String query = "SELECT * FROM movie_info M "
 				+ " LEFT JOIN (SELECT idx, COUNT(*) likeCnt FROM sug_like_log WHERE field='movie' "
-				+ " GROUP BY idx ) L ON M.idx=L.idx WHERE category="+category;
+				+ " GROUP BY idx ) L ON M.idx=L.idx ";
 		
-		try {
-			stmt = con.createStatement();
-			rs = stmt.executeQuery(query);
-			
-			while(rs.next()) {
-				
-				MovieDTO dto = new MovieDTO();
-				
-				dto.setIdx(rs.getString("idx"));
-				dto.setName(rs.getString("name"));
-				dto.setCategory(rs.getString("category"));
-				dto.setSummary(rs.getString("summary"));
-				dto.setGrade(rs.getInt("grade"));
-				dto.setLikeCnt(rs.getInt("likeCnt"));
-				dto.setOfile(rs.getString("ofile"));
-				dto.setNfile(rs.getString("nfile"));
-				dto.setrDate(rs.getDate("rDate"));
-				
-				mItem.add(dto);
-			}
-		} 
-		catch (Exception e) {
-			System.out.println("해시태그 검색 리스트 추출 중 예외 발생");
-			e.printStackTrace();
+		if(map.get("searchWord") != null) {
+			query += "WHERE name LIKE '%"+map.get("searchWord")+"%'";
 		}
-		return mItem;
-	}
-	
-	//영화 검색(키워드) 리스트
-	public List<MovieDTO> selectSearchList(String keword) {
-		
-		List<MovieDTO> mItem = new Vector<MovieDTO>();
-		
-		String query = "SELECT * FROM movie_info M "
-				+ " LEFT JOIN (SELECT idx, COUNT(*) likeCnt FROM sug_like_log WHERE field='movie' "
-				+ " GROUP BY idx ) L ON M.idx=L.idx WHERE name="+keword;
+		else if(map.get("category") != null) {
+			query += "WHERE category LIKE '%"+map.get("category")+"%'";
+		}
 		
 		try {
 			stmt = con.createStatement();
@@ -227,5 +196,33 @@ public class MovieDAO extends JDBConnect {
 			e.printStackTrace();
 		}
 		return mItem;
+	}
+	
+	public int selectCount(Map<String, Object> map) {
+		
+		int totalCount = 0;
+		
+		List<MovieDTO> mItem = new Vector<MovieDTO>();
+		
+		String query = "SELECT count(*) FROM movie_info ";
+		
+		if(map.get("searchWord") != null) {
+			query += " WHERE name LIKE '%"+map.get("searchWord")+"%'";
+		}
+		else if(map.get("category") != null) {
+			query += " WHERE category LIKE '%"+map.get("category")+"%'";
+		}
+		
+		try {
+			stmt = con.createStatement();
+			rs = stmt.executeQuery(query);
+			rs.next();
+			totalCount = rs.getInt(1);
+		} 
+		catch (Exception e) {
+			System.out.println("검색 갯수 추출 중 예외 발생");
+			e.printStackTrace();
+		}
+		return totalCount;
 	}
 }

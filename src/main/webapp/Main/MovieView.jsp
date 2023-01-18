@@ -43,7 +43,7 @@ function deletePost() {
 		<div class="row">
 			<div class="poster col-lg-3">
 				<div class="wrap">
-					<img src="./Image/${ dto.nfile }" style="width:90%;">
+					<img src="./Image/${ dto.nfile }" alt="${ dto.nfile }" style="width:90%;">
 				</div>
 			</div>
 			<div class="poster col-lg-9">
