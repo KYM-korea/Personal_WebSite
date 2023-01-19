@@ -60,7 +60,7 @@
 </head>
 <body>
 	<!-- Header -->
-	<%@ include file="./inc/Top.jsp"%>
+	<%@ include file="../Main/inc/Top.jsp"%>
 	<div class="movie-detail-page mt-3 mb-3">
 
 		<!-- movie-detail-cont -->
@@ -72,7 +72,7 @@
 			</div>
 			<div class="col-lg-9">
 			<form method="post" name="RegiMoive" enctype="multipart/form-data" 
-				action="<%= request.getContextPath() %>/MovieController.do?mode=edit" onsubmit="return validateForm(this);">
+				action="<%= request.getContextPath() %>/MovieManagerController.do?mode=edit" onsubmit="return validateForm(this);">
 			<input type="hidden" name="idx" value="${ dto.idx }">
 			<input type="hidden" name="prevOfile" value="${ dto.ofile }">
 			<input type="hidden" name="prevsfile" value="${ dto.nfile }">
@@ -114,6 +114,6 @@
 		</div>
 	</div>
 	<!-- Footer -->
-	<%@ include file="./inc/Bottom.jsp"%>
+	<%@ include file="../Main/inc/Bottom.jsp"%>
 </body>
 </html>

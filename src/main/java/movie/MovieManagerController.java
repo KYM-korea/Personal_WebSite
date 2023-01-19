@@ -15,8 +15,8 @@ import com.oreilly.servlet.MultipartRequest;
 import utils.JSFunction;
 
 
-@WebServlet("/MovieController.do")
-public class MovieController extends HttpServlet {
+@WebServlet("/MovieManagerController.do")
+public class MovieManagerController extends HttpServlet {
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -25,7 +25,7 @@ public class MovieController extends HttpServlet {
 		MovieDAO dao = new MovieDAO();
 		MovieDTO dto = dao.selectMovie(idx);
 		req.setAttribute("dto", dto);
-		req.getRequestDispatcher("/Main/MovieEdit.jsp").forward(req, resp);
+		req.getRequestDispatcher("/Movie_Admin/MovieEdit.jsp").forward(req, resp);
 	}
 	
 	@Override
@@ -98,7 +98,7 @@ public class MovieController extends HttpServlet {
 				utils.FileUtil.deleteFile(req, "/Image", saveFileName);
 			}
 			//삭제가 완료되면 리스트로 이동한다.
-			JSFunction.alertLocation(resp, "삭제되었습니다.", "Main/HomeMain.jsp");
+			JSFunction.alertLocation(resp, "삭제되었습니다.", "../Main/HomeMain.jsp");
 		}
 		
 	}
