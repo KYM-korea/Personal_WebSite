@@ -23,7 +23,6 @@ public class MovieLikeController extends HttpServlet {
 		HttpSession session = req.getSession();
 		
 		
-		
 		if(session.getAttribute("UserId")==null) {
 			JSFunction.alertLocation(resp, "로그인이 필요한 서비스입니다.", "./Login/LoginForm.jsp");
 		}
@@ -48,7 +47,7 @@ public class MovieLikeController extends HttpServlet {
 			if(mode.equals("insert")) {
 				ldao.insertLike(ldto);
 			}
-			else {
+			else if(mode.equals("delete")) {
 				ldao.deleteLike(ldto);
 			}
 			ldao.close();
