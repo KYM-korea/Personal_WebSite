@@ -49,19 +49,19 @@ dao.close();
 <h2>문의 게시판</h2>
 	<!-- 검색폼 -->
 	<form method="get">  
-    <table>
-    <tr>
-        <td align="left" style="padding-left: 10px">
-            <input type="hidden" name="flag" value="${ flag }" />
-            <select name="searchField"> 
-                <option value="title">제목</option> 
-                <option value="content">내용</option>
-            </select>
-            <input type="text" name="searchWord" />
-            <input type="submit" value="검색하기" />
-        </td>
-    </tr>   
-    </table>
+	    <table>
+	    <tr>
+	        <td align="left" style="padding-left: 10px">
+	            <input type="hidden" name="flag" value="${ flag }" />
+	            <select name="searchField"> 
+	                <option value="title">제목</option> 
+	                <option value="content">내용</option>
+	            </select>
+	            <input type="text" name="searchWord" />
+	            <input type="submit" value="검색하기" />
+	        </td>
+	    </tr>   
+	    </table>
     </form>
 	
 	<!-- 목록 테이블 -->
@@ -84,7 +84,7 @@ dao.close();
 			</c:when>
 		<c:otherwise>
 			<!-- 게시물이 있을때 컬렉션에 저장된 목록의 갯수만큼 반복한다. -->
-			<c:forEach items="${inquiryLists }" var="row" varStatus="loop">
+			<c:forEach items="${ inquiryLists }" var="row" varStatus="loop">
 	
 				<tr align="center">
 					<td>${ map.totalCount - (((map.pageNum-1)* map.pageSize) + loop.index)} </td>
@@ -92,8 +92,8 @@ dao.close();
 					<!-- 제목을 클릭할 경우 내용보기 페이지로 이동한다. --> 
 						<a href="../inquiry/inquiryView.do?idx=${ row.idx }">${ row.title }</a>
 					</td>
-					<td>${row.name }</td>
-					<td>${row.postdate }</td>
+					<td>${ row.name }</td>
+					<td>${ row.postdate }</td>
 					<td>
 					<!-- 첨부파일의 경우 필수사항이 아니므로 테이블 생성시에도 not null조건이 적용되어 있진않다. 
 						따라서 첨부파일이 있을때만 다운로드 링크를 출력한다. --> 

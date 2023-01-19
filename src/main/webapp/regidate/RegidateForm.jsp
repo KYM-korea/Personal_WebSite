@@ -187,7 +187,7 @@ function winopen(){
     .btn_search:hover{background-color: #6d6d6d;}
 </style>
 </head>
-<body class="container p-5 my-5 border">
+<body>
 	<!-- 회원가입 테이블 생성 -->
 	<!-- 필수요소 	
 	아이디, 비밀번호, 비밀번호 확인 (비밀번호와 비밀번호 확인이 일치하지 않으면 return하게 해야 함
@@ -198,9 +198,9 @@ function winopen(){
 	
 	마지막에 가입하기 클릭하면 insert쿼리문 실행하게 하기 
 	취소하기 하면 첫 페이지로 돌아가기 ==> main으로 -->
-	
-	<h1>회원가입</h1>
-	
+	<%@ include file ="../Main/inc/Top.jsp" %> 
+	<br /><br />
+	<div class="container p-5 my-5 border">
 	<form name="fr" id="myForm" method="post" action="RegidateProcess.jsp" onsubmit="return validateForm(this);">
 		<table class="table">
 			<tr>
@@ -353,5 +353,7 @@ function winopen(){
             </tr>
         </table> 
 	</form>
+	</div>
+<%@ include file ="../Main/inc/Bottom.jsp" %>
 </body>
 </html>
