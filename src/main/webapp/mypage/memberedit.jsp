@@ -263,7 +263,7 @@ function inputEmail(frm){
                 <td align="center">                    
                     <input type="submit" value="회원정보수정" class="btn_submit" />
                     &nbsp;&nbsp;
-                    <input type="button" value="취소" onClick="location.href='../mypage/mypageMain.jsp'" class="btn_cancel" />
+                    <input type="button" value="취소" onClick="location.href='../mypage/MypageMain.jsp'" class="btn_cancel" />
                 </td>
             </tr>
         </table> 
