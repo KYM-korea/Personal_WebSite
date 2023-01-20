@@ -50,7 +50,6 @@
 				<th>첨부파일</th>
 	            <td colspan="2" align="left">
 					${ dto.ofile }
-
 	            </td>
 			</tr>
 		</tbody>
@@ -58,13 +57,13 @@
 			<tr>
 	        	<td colspan="6" align="right"> 
 		        	<%
-		        	if(session.getAttribute("UserId")!=null){
+		        	if(session.getAttribute("Userid")=="admin"){
+		        		
 		        	%>
 	        		<button type="button" onclick="location.href='../inquiry/inquiryWrite.do?mode=edit&idx=${ dto.idx}';">
 	        			수정하기</button>
 	        		<button type="button" onclick="location.href='../inquiry/inquiryWrite.do?mode=delete&idx=${ dto.idx}';">
 	        			삭제하기</button>
-	        		
 	        		<%
 	        		}
 	        		%>
@@ -74,34 +73,55 @@
 	        </tr>
 		</tfoot>
 	</table>
-	<!-- 작성된 댓글이 보이는 곳 -->
-	<table class="table table-hover" border="1">
-		<tr>
-			<th>
-				작성자 : ${ dto.name }
-			</th>
-			<td>
-				작성된 내용은 여기에서 보입니다! 진짜루!
-			</td>
-		</tr>
-	</table>
 	
-	<!-- 댓글창 -->
-	<table class="table table-hover" border="1" >
-		<tr class="comment">
-			<th>
-				<input type="text" name="name" style="width: 130px; border: none;" value="${ dto.name }" readonly/>
-			</th>
-			<td rowspan="2" align="center">
-				<button style="width: 50%; height: 80px;">작성</button>
-			</td>
-		</tr>
-		<tr class="comment">
-			<td >
-				<textarea name="content" style="width: 100%" placeholder=" -내용을 입력하세요."></textarea>
-			</td>
-		</tr>
-	</table>
+	<br />
+	<!-- 댓글 작성하는 곳 -->
+	<form name="comentFrm" method="post" action="../coment/comentWrite.do" onsubmit="return">
+		<input type="hidden" value="${ dto.idx }" name="idx">
+		<table class="table table-striped" border="1" >
+			<tr>
+				<th>
+					작성자
+					<input type="text" name="name" style="width: 130px; border: none;" value="${ sessionScope.UserId }" readonly/>
+				</th>
+				<td rowspan="2" align="center">
+					<button type="submit" style="width: 50%; height: 80px; border-radius: 10px;">댓글작성</button>
+				</td>
+			</tr>
+			<tr>
+				<td >
+					<textarea name="coment" style="width: 100%" placeholder=" -내용을 입력하세요."></textarea>
+				</td>
+			</tr>
+		</table>
+	</form>
+	<br />
+	<!-- 작성된 댓글이 보이는 곳 -->
+	<c:if test="${ not empty comentLists }">
+		<table class="table table-hover" border="1">
+			<c:forEach items="${comentLists }" var="row" varStatus="loop">
+			<tr>
+				<!-- 작성자명 -->
+				<th>
+					${ row.name }
+				</th>
+				<!-- 내용 -->
+				<td>
+					${ row.coment }
+				</td>
+				<!-- 글의 작성일 -->
+				<td>
+					${ row.postdate }
+				</td>
+				<td>
+					<!-- 삭제 수정 아이콘 -->
+					<button type="button" onclick="location.href='../coment/comentWrite.do?mode=delete&idx=${ row.comidx }';">
+	        			<i class="bi bi-trash3-fill"></i></button>
+				</td>
+			</tr>
+			</c:forEach>
+		</table>
+	</c:if>
 <!-- Footer -->
 <%@ include file ="../Main/inc/Bottom.jsp" %>
 </body>

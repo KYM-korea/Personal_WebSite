@@ -132,7 +132,7 @@ dao.close();
 <!-- 영화 목록 -->
 
 <c:if test="${not empty UserId and UserId eq 'admin'}" var="result">
-	<a href="./MovieRegist.jsp" class="btn btn-primary">등록</a><br>
+	<a href="../Movie_Admin/MovieRegist.jsp" class="btn btn-primary">등록</a><br>
 </c:if>
 <div class="row">
 		<%
