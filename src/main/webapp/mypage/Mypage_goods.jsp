@@ -13,6 +13,18 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
 <meta charset="UTF-8">
 <title>구매목록리스트 - 스토어</</title>
+<script type="text/javascript">
+function deletePost() {
+	
+    var confirmed = confirm("정말로 환불 하시겠습니까?"); 
+    
+    if (confirmed) {
+    	
+        location.href='../mypage/mypage_deletecontroller.do?mypage_idx=${dto.mypage_idx }'; 
+        
+    }
+}
+</script>
 <style type="text/css">
 input:focus{
 	outline:none;
@@ -100,15 +112,15 @@ a:visited{
 						<c:choose>
 							<c:when test="${dto.fd eq 'giftcard' }">
 								구매일로부터 366일 이내 취소 가능하며, 부분취소는 불가능
-								<c:if test="${nowdate - dto.mypage_date}"> 
-									<button type="button" class="btn btn-outline-primary">환불요청</button>
-								< </c:if> 
+								<%-- <c:if test="${nowdate - dto.mypage_date}">  --%>
+									<button type="button" class="btn btn-outline-primary" onclick="deletePost();">환불요청</button>
+								<%-- < </c:if>  --%>
 							</c:when>
 							<c:otherwise>
 								구매일로부터 10일 이내 취소 가능하며, 부분취소는 불가능
-								<c:if test="${nowdate - dto.mypage_date }"> 
-									<button type="button" class="btn btn-outline-primary" >환불요청</button>
-								</c:if> 
+								<%-- <c:if test="${nowdate - dto.mypage_date }">  --%>
+									<button type="button" class="btn btn-outline-primary" onclick="location.href='../mypage/mypage_deletecontroller.do?mypage_idx=${dto.mypage_idx }';">환불요청</button>
+								<%-- </c:if>  --%>
 							</c:otherwise>
 						</c:choose>
 					</td>

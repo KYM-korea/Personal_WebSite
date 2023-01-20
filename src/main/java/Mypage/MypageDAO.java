@@ -109,4 +109,19 @@ public class MypageDAO extends JDBConnect{
 			   }
 			   return dto;
 		 }
+		 
+		 public int deleteGoods(String idx) {
+			 int result = 0;
+			 try {
+				 String query = "DELETE FROM mypage_list WHERE 	mypage_idx=?";
+				 psmt = con.prepareStatement(query);
+				 psmt.setString(1, idx);
+				 result = psmt.executeUpdate();
+			 }
+			 catch (Exception e) {
+				 System.out.println("게시물 삭제 중 예외 발생");
+				 e.printStackTrace();
+			}
+			 return result;
+		 }
 }
