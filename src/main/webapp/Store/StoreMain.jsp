@@ -24,14 +24,6 @@ dao.close();
 .card:focus, .card:hover {
 	border-color: #503396;
 }
-a:link{
-	color: black;
-	text-decoration: none;
-}
-a:visited{
-	color: black;
-	text-decoration: none;
-}
 </style>
 </head>
 <body>
