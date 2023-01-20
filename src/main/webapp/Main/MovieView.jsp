@@ -27,6 +27,19 @@ function deletePost() {
         
     }
 }
+
+function commentChk(frm) {
+	
+	if(frm.reviewStar.value == ""){
+		alert("별점을 선택해주세요");
+		return false;
+	}
+	
+	if(frm.rcomment.value == ""){
+		alert("댓글을 입력해주세요");
+		return false;
+	}
+}
 </script>
 <title>Insert title here</title>
 </head>
@@ -39,7 +52,7 @@ function deletePost() {
 		<div class="bg-pattern"></div>
 		<div class="bg-mask"></div>
 
-		<!-- movie-detail-cont -->
+		<!-- movie-detail -->
 		<div class="row">
 			<div class="poster col-lg-3">
 				<div class="wrap">
@@ -49,9 +62,7 @@ function deletePost() {
 			<div class="poster col-lg-9">
 				<p class="movie-grade age-12">12세 이상 관람가</p>
 				<div class="movie-detail-cont">
-					<!-- 개봉 예매가능-->
 					<p class="title">${ dto.name }</p>
-					<!-- info -->
 					<div class="info">
 						<div class="score">
 							<p class="tit" style="float: left;">실관람 평점</p>
@@ -78,7 +89,7 @@ function deletePost() {
 						<c:choose>
 							<c:when test="${not empty UserId and UserId eq 'admin'}">
 								<form name="deleteFrm" action="">
-									<a href="<%=request.getContextPath()%>/MovieController.do?idx=${ dto.idx }" class="btn btn-primary">수정하기</a>							
+									<a href="<%=request.getContextPath()%>/MovieManagerController.do?idx=${ dto.idx }" class="btn btn-primary">수정하기</a>							
 									<input type="hidden" name="idx" value="${ dto.idx }">
 									<button class="btn btn-primary" onclick="deletePost();">삭제하기</button>
 								</form>
@@ -159,7 +170,8 @@ function deletePost() {
 					    resize: none;
 					}
 				</style>
-				<form action="" method="post" name="myform" id="myform" onsubmit="return commentChk(this);">
+				<!-- 별점 없는 상태 -->
+				<form action="../MovieGradeController.do?mode=insert" method="post" name="myform" id="myform" onsubmit="return commentChk(this);">
 					<input type="hidden" name="id" value="${sessionScope.UserId }" />
 					<input type="hidden" name="idx" value="${dto.idx }" />
 					<table class="table table-striped">
@@ -191,7 +203,44 @@ function deletePost() {
 		                        name="rcomment">
 							</td>
 							<td>
-								<button class="btn btn-secondary" style="margin-top: 30%;">등록</button>
+								<button class="btn btn-secondary" type="submit" style="margin-top: 30%;">등록</button>
+							</td>
+						</tr>
+					</table>
+				</form>
+				<!-- 별점 있는 상태 -->
+				<form action="../MovieGradeController.do?mode=edit" method="post" name="myform" id="myform" onsubmit="return commentChk(this);">
+					<input type="hidden" name="id" value="${sessionScope.UserId }" />
+					<input type="hidden" name="idx" value="${dto.idx }" />
+					<table class="table table-striped">
+						<colgroup>
+							<col width="*"/>
+							<col width="15%"/>
+						</colgroup>
+						<tr>
+							<td colspan="2">
+								<fieldset>
+									<span class="text-bold">별점을 선택해주세요</span>
+									<input type="radio" name="reviewStar" value="10" id="rate1"><label
+										for="rate1">★</label>
+									<input type="radio" name="reviewStar" value="8" id="rate2"><label
+										for="rate2">★</label>
+									<input type="radio" name="reviewStar" value="6" id="rate3"><label
+										for="rate3">★</label>
+									<input type="radio" name="reviewStar" value="4" id="rate4"><label
+										for="rate4">★</label>
+									<input type="radio" name="reviewStar" value="2" id="rate5"><label
+										for="rate5">★</label>
+								</fieldset>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<input type="text" style="height: 100px;" class="form-control" name="rcomment">
+							</td>
+							<td>
+								<button class="btn btn-secondary" type="submit" style="margin-top: 20%;" >수정</button>
+								<a class="btn btn-secondary" href="../MovieGradeController.do?mode=delete" style="margin-top: 20%;">삭제</a>
 							</td>
 						</tr>
 					</table>

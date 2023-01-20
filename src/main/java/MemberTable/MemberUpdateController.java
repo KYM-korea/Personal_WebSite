@@ -21,8 +21,6 @@ public class MemberUpdateController extends HttpServlet {
 		//수정페이지로 전달된 일련번호를 통해 게시물을 인출한다.
 		//Request영역에 있는 Session을 가져온다.
 		HttpSession session = req.getSession();
-			
-		String UserId = null;
 		String id = null;
 		if(session.getAttribute("UserId")!=null) {
 			id = session.getAttribute("UserId").toString();	
@@ -35,38 +33,30 @@ public class MemberUpdateController extends HttpServlet {
 		MemberDAO dao = new MemberDAO();
 		MemberDTO dto = dao.getMemberDTO(id);
 		
-		String pass = dto.getPass();
-		String name = dto.getName();
-		String birth = dto.getBirth();
-		String sex = dto.getSex();
 		String email = dto.getEmail();
 		String phone = dto.getPhone();
 		String interest1 = dto.getInterest1();
 		
-		System.out.println(pass);
-		System.out.println(name);
-		System.out.println(birth);
-		System.out.println(sex);
-		
-		System.out.println(phone);
+		String birth = dto.getBirth();
+		String[] birthArr = birth.split("/");
+		req.setAttribute("year", birthArr[0]);
+		req.setAttribute("month", birthArr[1]);
+		req.setAttribute("day", birthArr[2]);
 		
 		String[] phoneArr = phone.split("-");
-		
-		System.out.println(phoneArr[0]);
-		System.out.println(phoneArr[1]);
-		System.out.println(phoneArr[2]);
 		req.setAttribute("phoneArr0", phoneArr[0]);
 		req.setAttribute("phoneArr1", phoneArr[1]);
 		req.setAttribute("phoneArr2", phoneArr[2]);
 		
 		String[] interestArr = interest1.split(",");
-		System.out.println(interestArr[0]);
-		System.out.println(interestArr[1]);
-		System.out.println(interestArr[2]);
-		
-		req.setAttribute("interestArr0", interestArr[0]);
-		req.setAttribute("interestArr1", interestArr[1]);
-		req.setAttribute("interestArr2", interestArr[2]);
+		int i =0;
+		while(i < interestArr.length) {
+			if(interestArr[i]==null || interestArr[i].equals("")) {
+				break;
+			}
+			req.setAttribute("interestArr"+i, interestArr[i]);
+			i++;
+		}
 		
 		String email1 = email.substring(0, email.lastIndexOf("@"));
 		String email2 = email.substring(email.lastIndexOf("@")+1);

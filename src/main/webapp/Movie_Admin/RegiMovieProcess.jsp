@@ -52,12 +52,12 @@
 		dao.insertMovie(dto);
 		dao.close();
 		
-		response.sendRedirect("HomeMain.jsp");
+		response.sendRedirect("MovieRegist.jsp");
 	}
 	catch (Exception e) {
 		e.printStackTrace();
 		request.setAttribute("errorMessage", "영화 등록 오류");
-		request.getRequestDispatcher("HomeMain.jsp").forward(request, response);
+		request.getRequestDispatcher("MovieRegist.jsp").forward(request, response);
 		
 		
 	}

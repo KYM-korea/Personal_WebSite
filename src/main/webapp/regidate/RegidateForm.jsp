@@ -3,20 +3,10 @@
 <%@page import="MemberTable.MemberDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
-<% MemberDAO dao = new MemberDAO(application);
-	List<String> sival = new Vector<String>();
-	sival = dao.idCheck();
-	StringBuffer abc = new StringBuffer();
-	for(int i =0; i<sival.size();i++){
-		if(abc.length()>0){
-			abc.append(',');
-		}
-		abc.append('"').append(sival.get(i)).append('"');
-	}
-%>
 <meta charset="UTF-8">
 <title>regidateForm</title>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
@@ -197,7 +187,7 @@ function winopen(){
     .btn_search:hover{background-color: #6d6d6d;}
 </style>
 </head>
-<body class="container p-5 my-5 border">
+<body>
 	<!-- 회원가입 테이블 생성 -->
 	<!-- 필수요소 	
 	아이디, 비밀번호, 비밀번호 확인 (비밀번호와 비밀번호 확인이 일치하지 않으면 return하게 해야 함
@@ -208,9 +198,9 @@ function winopen(){
 	
 	마지막에 가입하기 클릭하면 insert쿼리문 실행하게 하기 
 	취소하기 하면 첫 페이지로 돌아가기 ==> main으로 -->
-	
-	<h1>회원가입</h1>
-	
+	<%@ include file ="../Main/inc/Top.jsp" %> 
+	<br /><br />
+	<div class="container p-5 my-5 border">
 	<form name="fr" id="myForm" method="post" action="RegidateProcess.jsp" onsubmit="return validateForm(this);">
 		<table class="table">
 			<tr>
@@ -248,39 +238,42 @@ function winopen(){
 				<th><span class="c_imp">*</span>생년월일</th>
 				<td>
 					<!-- 나이는 그 위아래로 숫자나와서 선택할 수 있게 하면 좋을듯-->
-					<%
-					String query1 = "<select name='year'><option value=''>-선택-</option>";
-						
-					for(int i=100 ; i>=0 ; i--){
-						int birth1 = 1922+i;
-						query1 += "<option value="+birth1+">"+birth1+"</option>";
-						
-					}
-					query1 += "</select>";
-					out.println(query1);
-					%>
-					
-					<%
-					String query2 = "<select name='month'><option value=''>-선택-</option>";
-					
-					for(int i=1 ; i<=12 ; i++){
-						int birth2 = i;
-						query2 += "<option value="+birth2+">"+birth2+"</option>";
-					}
-					query2 += "</select>";
-					out.println(query2);
-					%>
-					<%
-					String query3 = "<select name='day'><option value=''>-선택-</option>";
-					
-					//30일 31일 따로 만들어주기? if문으로 바꿔줘야 함
-					for(int i=1 ; i<=31 ; i++){
-						int birth3 = i;
-						query3 += "<option value="+birth3+">"+birth3+"</option>";
-					}
-					query3 += "</select>";
-					out.println(query3);
-					%>
+					<select name="year">
+						<c:forEach begin="1969" end="2022" step="1" var="i" >
+							<c:choose>
+								<c:when test="${i eq 1969 }">
+									<option value="">-선택-</option>
+								</c:when>
+								<c:otherwise>
+									<option value="${i }">${i }</option>
+								</c:otherwise>
+							</c:choose>
+						</c:forEach>
+					</select>
+					<select name="month">
+						<c:forEach begin="00" end="12" step="1" var="i" >
+							<c:choose>
+								<c:when test="${i eq 00}">
+									<option value="">-선택-</option>
+								</c:when>
+								<c:otherwise>
+									<option value="${i }">${i }</option>
+								</c:otherwise>
+							</c:choose>
+						</c:forEach>
+					</select>
+					<select name="day">
+						<c:forEach begin="00" end="31" step="1" var="i" >
+							<c:choose>
+								<c:when test="${i eq 00}">
+									<option value="">-선택-</option>
+								</c:when>
+								<c:otherwise>
+									<option value="${i }">${i }</option>
+								</c:otherwise>
+							</c:choose>
+						</c:forEach>
+					</select>
 				</td>
 			</tr>
 			<tr>
@@ -360,5 +353,7 @@ function winopen(){
             </tr>
         </table> 
 	</form>
+	</div>
+<%@ include file ="../Main/inc/Bottom.jsp" %>
 </body>
 </html>

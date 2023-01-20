@@ -60,7 +60,7 @@
 </head>
 <body>
 	<!-- Header -->
-	<%@ include file="./inc/Top.jsp"%>
+	<%@ include file="../Main/inc/Top.jsp"%>
 	<div class="movie-detail-page mt-3 mb-3">
 		<div class="bg-img"
 			style="background-image: url('https://img.megabox.co.kr/SharedImg/2022/12/16/PfDTp3T0P1HSn7tWOlbJe2mTFmeYGRxV_570.jpg');"></div>
@@ -113,6 +113,6 @@
 		</div>
 	</div>
 	<!-- Footer -->
-	<%@ include file="./inc/Bottom.jsp"%>
+	<%@ include file="../Main/inc/Bottom.jsp"%>
 </body>
 </html>

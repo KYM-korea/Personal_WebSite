@@ -19,12 +19,12 @@ public class MypageDAO extends JDBConnect{
 	
 	public int selectCount(Map<String, Object> map) {
 	      int totalCount = 0; 
-	      String query = "SELECT COUNT(*) FROM mypage_list";
+	      String query = "SELECT COUNT(*) FROM mypage_list "
+	      		+ " WHERE id = '"+ map.get("id") +"'";
 	      if(map.get("searchWord") != null) {
-	         query += " WHERE "+ map.get("searchField") 
-	         			+ " LIKE '%"+ map.get("searchWord")+ "%'";
+	         query +=" AND "+ map.get("searchField") 
+	         			+ " LIKE '%"+ map.get("searchWord")+ "%' AND ";
 	      }
-	      System.out.println(query);
 	      try {
 	    	 stmt = con.createStatement();
 	         rs = stmt.executeQuery(query);
@@ -41,10 +41,12 @@ public class MypageDAO extends JDBConnect{
 	public List<MypageDTO> selectList(Map<String, Object> map){
 		   List<MypageDTO> mypageList = new Vector<MypageDTO>();
 		   
-		   String query = "SELECT * FROM mypage_list";
+		   String query = "SELECT * FROM mypage_list "
+		   		+ " WHERE id = '"+ map.get("id") +"'";
 		   if(map.get("searchWord") != null) {
-			   query += " WHERE "+ map.get("searchField") 
-			   			+ " LIKE '%"+ map.get("searchWord")+ "%'";
+			   query += " AND "+ map.get("searchField") 
+			   			+ " LIKE '%"+ map.get("searchWord")+ "%' "
+			   			+ " AND id = '"+map.get("id")+"'";
 		   }
 		   query += "	ORDER BY mypage_date desc";
 		   try {
@@ -106,5 +108,20 @@ public class MypageDAO extends JDBConnect{
 				   e.printStackTrace();
 			   }
 			   return dto;
+		 }
+		 
+		 public int deleteGoods(String idx) {
+			 int result = 0;
+			 try {
+				 String query = "DELETE FROM mypage_list WHERE 	mypage_idx=?";
+				 psmt = con.prepareStatement(query);
+				 psmt.setString(1, idx);
+				 result = psmt.executeUpdate();
+			 }
+			 catch (Exception e) {
+				 System.out.println("게시물 삭제 중 예외 발생");
+				 e.printStackTrace();
+			}
+			 return result;
 		 }
 }

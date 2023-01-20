@@ -27,7 +27,7 @@ a:visited{
 </head>
 <body>
 	<!-- Header -->
-    <%@ include file ="../Main/inc/Top.jsp" %>
+     <%@ include file ="../Main/inc/Top.jsp" %>
     
 	<br /><br />
 		<h2>마이페이지</h2>
@@ -48,21 +48,15 @@ a:visited{
 			<div id="mypage_member" class="tab-pane active">
 				<a class="nav-link active" style="text-align:left; margin-left:15px;" href="../MemberUpdateController.do">회원정보수정</a>
 				<div class="row" >
-				
+			<div>
+				<h2>회원정보수정</h2>
+				<div class="row">
 				</div>
 			</div>	
-			<div id="mypage_moveie" class="tab-pane fade">
-				<h2>영화</h2>
-				<div class="row">
-				</div>
-			</div>
-			<div id="mypage_store" class="tab-pane fade">
-				<h2>스토어</h2>
-				<div class="row">
-				</div>
-			</div>
 			<br />
 		</div>
+	</div>
+	</div>
 	<!-- Footer -->
 	<%@ include file ="../Main/inc/Bottom.jsp" %>
 </body>

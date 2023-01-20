@@ -143,45 +143,42 @@ function inputEmail(frm){
 				<th><span class="c_imp">*</span>생년월일</th>
 				<td>
 					<!-- 나이는 그 위아래로 숫자나와서 선택할 수 있게 하면 좋을듯-->
-					<%
-					String query1 = "<select name='year'><option value=''>-선택-</option>";
-						
-					for(int i=100 ; i>=0 ; i--){
-						int birth1 = 1922+i;
-						query1 += "<option value="+birth1+">"+birth1+"</option>";
-						
-					}
-					
-					query1 += "</select>";
-					out.println(query1);
-					%>
-					
-					${dto.birth }
-					
-					<%
-					String query2 = "<select name='month'><option value=''>-선택-</option>";
-					
-					for(int i=1 ; i<=12 ; i++){
-						int birth2 = i;
-						query2 += "<option value="+birth2+">"+birth2+"</option>";
-					}
-					query2 += "</select>";
-					out.println(query2);
-					%>
-					
-					
-					<%
-					String query3 = "<select name='day'><option value=''>-선택-</option>";
-					
-					//30일 31일 따로 만들어주기? if문으로 바꿔줘야 함
-					for(int i=1 ; i<=31 ; i++){
-						int birth3 = i;
-						query3 += "<option value="+birth3+">"+birth3+"</option>";
-					}
-					query3 += "</select>";
-					out.println(query3);
-					%>
-					
+					<select name="year">
+                  <c:forEach begin="1970" end="2022" step="1" var="i" >
+                     <c:choose>
+                        <c:when test="${i eq year }">
+                        	<option value="${i }" selected>${i }</option>
+                        </c:when>
+                        <c:otherwise>
+                           <option value="${i }">${i }</option>
+                        </c:otherwise>
+                     </c:choose>
+                  </c:forEach>
+               </select>
+               <select name="month">
+                  <c:forEach begin="00" end="12" step="1" var="i" >
+                     <c:choose>
+                        <c:when test="${i eq month}">
+                        	<option value="${i }" selected>${i }</option>
+                        </c:when>
+                        <c:otherwise>
+                           <option value="${i }">${i }</option>
+                        </c:otherwise>
+                     </c:choose>
+                  </c:forEach>
+               </select>
+               <select name="day">
+                  <c:forEach begin="00" end="31" step="1" var="i" >
+                     <c:choose>
+                        <c:when test="${i eq day }">
+                        	<option value="${i }"  selected>${i }</option>
+                        </c:when>
+                        <c:otherwise>
+                           <option value="${i }">${i }</option>
+                        </c:otherwise>
+                     </c:choose>
+                  </c:forEach>
+               </select>
 				</td>
 			</tr>
 			<tr>
@@ -200,7 +197,7 @@ function inputEmail(frm){
 					<input type="text" name="email2" value="${email2}" style="width: 100px;" />
 					<!-- 도메인 선택할 수 있게 만들어주기  -->
 					<select name="email_domain" onchange="inputEmail(this.form);" class="userSelect w100">
-                        <option value="" checked> -- 선택 --</option>
+                        <option value="" selected> -- 선택 --</option>
                         <option value="naver.com">naver.com</option>
                         <option value="nate.com">nate.com</option>
                         <option value="gmail.com">gmail.com</option>

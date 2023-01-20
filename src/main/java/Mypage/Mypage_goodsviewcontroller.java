@@ -2,6 +2,7 @@ package Mypage;
 
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -16,8 +17,8 @@ public class Mypage_goodsviewcontroller extends HttpServlet{
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
+		Date nowdate = new Date();
 		MypageDAO dao = new MypageDAO();
-		System.out.println();
 		String mypage_idx = req.getParameter("mypage_idx");
 		MypageDTO dto = dao.goodsView(mypage_idx);
 		dao.close();
@@ -39,10 +40,11 @@ public class Mypage_goodsviewcontroller extends HttpServlet{
 					isImage = true;
 				}
 				req.setAttribute("isImage", isImage);
+				req.setAttribute("nowdate", nowdate);
 				
 				//request영역에 DTO객체를 저장한 후 View로 포워드한다.
 				req.setAttribute("dto", dto);
-				req.getRequestDispatcher("/test/Mypage_goods.jsp?mypage_idx="+mypage_idx).forward(req, resp);
+				req.getRequestDispatcher("/mypage/Mypage_goods.jsp?mypage_idx="+mypage_idx).forward(req, resp);
 	}
 }
 

@@ -100,7 +100,7 @@
 			<tr class="head">
 				<th><span class="c_imp">*</span>휴대전화</th>
 				<td colspan="4">
-					<input type="text" maxlength="3" style="width: 150px; border: none;" name="phone" value="${ dto.phone }" readonly/>
+					<input type="text" style="width: 150px; border: none;" name="phone" value="${ dto.phone }" readonly/>
 				</td>
 			</tr>
 			<tr class="head">
@@ -125,9 +125,9 @@
 		<table class="table" width="90%">
             <tr>
                 <td align="center" >                    
-                    <input type="submit" value="등록" class="btn btn-secondary" />
+                    <input type="submit" value="등록하기" class="btn btn-secondary" />
                     &nbsp;&nbsp;
-                    <input type="reset" value="취소" class="btn btn-secondary" />
+                    <input type="reset" value="다시입력" class="btn btn-secondary" />
                     &nbsp;&nbsp;
                     <input type="button" value="뒤로가기" class="btn btn-secondary" onclick="history.back();" />
                     
