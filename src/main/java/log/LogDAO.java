@@ -1,8 +1,12 @@
 package log;
 
+import java.util.List;
+import java.util.Vector;
+
 import javax.servlet.ServletContext;
 
 import common.JDBConnect;
+import movie.MovieDTO;
 
 public class LogDAO extends JDBConnect {
 	
@@ -77,4 +81,52 @@ public class LogDAO extends JDBConnect {
 		}
 		return result;
 	}
+	
+	public void insertGrade(LogDTO dto) {
+		String query = "";
+		try {
+			query = "INSERT INTO movie_grade ("
+						+ " idx, id, grade, mcomment ) "
+						+ " VALUES ( ?,?,?,? )"; 
+			
+			psmt = con.prepareStatement(query);
+			psmt.setString(1, dto.getIdx());
+			psmt.setString(2, dto.getId());
+			psmt.setInt(3, dto.getGrade());
+			psmt.setString(4, dto.getMcomment());
+			psmt.execute();		
+		}
+		catch (Exception e) {
+			System.out.println("INSERT 중 예외 발생");
+			e.printStackTrace();
+		}
+	}
+	
+	public List<LogDTO> selectGrade(String idx) {
+		
+		List<LogDTO> mItem = new Vector<LogDTO>();
+		
+		String query = "SELECT * FROM movie_grade "
+				+ " WHERE idx = ?";
+		try {
+			psmt = con.prepareStatement(query);
+			psmt.setString(1, idx);
+			rs = psmt.executeQuery();
+			
+			while(rs.next()) {
+				LogDTO dto = new LogDTO();
+				
+				dto.setIdx(rs.getString("idx"));
+				dto.setId(rs.getString("id"));
+				dto.setGrade(rs.getInt("grade"));
+				dto.setMcomment(rs.getString("mcomment"));
+				dto.setRegidate(rs.getDate("regidate"));
+			}
+		}catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("댓글 불러오는 중 에러 발생");
+		}
+		return mItem;
+	}
+	
 }

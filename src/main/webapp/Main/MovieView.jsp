@@ -171,7 +171,7 @@ function commentChk(frm) {
 					}
 				</style>
 				<!-- 별점 없는 상태 -->
-				<form action="../MovieGradeController.do?mode=insert" method="post" name="myform" id="myform" onsubmit="return commentChk(this);">
+				<form action="./MovieGradeController.do?mode=insert" method="post" name="myform" id="myform" onsubmit="return commentChk(this);">
 					<input type="hidden" name="id" value="${sessionScope.UserId }" />
 					<input type="hidden" name="idx" value="${dto.idx }" />
 					<table class="table table-striped">
@@ -209,7 +209,7 @@ function commentChk(frm) {
 					</table>
 				</form>
 				<!-- 별점 있는 상태 -->
-				<form action="../MovieGradeController.do?mode=edit" method="post" name="myform" id="myform" onsubmit="return commentChk(this);">
+				<form action="./MovieGradeController.do?mode=edit" method="post" name="myform" id="myform" onsubmit="return commentChk(this);">
 					<input type="hidden" name="id" value="${sessionScope.UserId }" />
 					<input type="hidden" name="idx" value="${dto.idx }" />
 					<table class="table table-striped">

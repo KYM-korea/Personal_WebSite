@@ -25,7 +25,7 @@
 	<h2>검색결과</h2>
 	<div class="mt-3">
 		<span>검색결과가 ${ totalCount }건 있습니다.</span>
-		<form action="./MovieSearch.do" method="get" style="float:right;">
+		<form action="MovieSearch.do" method="get" style="float:right;">
 			<input class="form-control" name="searchWord" type="text" placeholder="영화를 검색하세요" style="border: 1px solid gray; width:80%; display:inline;">
 			<button class="btn btn-outline-secondary form-control" style="width:40px; margin-bottom:4px;">
 				<i class="bi bi-search"></i>

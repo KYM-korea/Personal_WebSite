@@ -27,20 +27,21 @@ public class MovieGradeController extends HttpServlet {
 		else {
 			String mode = req.getParameter("mode");
 			String idx = req.getParameter("idx");
-			String grade = req.getParameter("reviewStar");
-			String comment = req.getParameter("rcomment");
+			int grade = Integer.parseInt(req.getParameter("reviewStar"));
+			String mcomment = req.getParameter("mcomment");
 			String id = req.getParameter("id");
 			
 			LogDTO ldto = new LogDTO();
 			
 			ldto.setId(id);
 			ldto.setIdx(idx);
-			ldto.setField("movie");
+			ldto.setGrade(grade);
+			ldto.setMcomment(mcomment);
 			
 			LogDAO ldao = new LogDAO();
 			
 			if(mode.equals("insert")) {
-				ldao.insertLike(ldto);
+				ldao.insertGrade(ldto);
 			}
 			else if(mode.equals("edit")) {
 				ldao.deleteLike(ldto);
