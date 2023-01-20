@@ -2,11 +2,19 @@ package coment;
 
 public class comentDTO {
 	
+	private String comidx;
 	private String idx;
 	private String name;
 	private String coment;
 	private java.sql.Date postdate;
 	
+
+	public String getComidx() {
+		return comidx;
+	}
+	public void setComidx(String comidx) {
+		this.comidx = comidx;
+	}
 	public String getIdx() {
 		return idx;
 	}
@@ -31,5 +39,4 @@ public class comentDTO {
 	public void setPostdate(java.sql.Date postdate) {
 		this.postdate = postdate;
 	}
-	
 }

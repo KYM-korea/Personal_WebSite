@@ -28,30 +28,39 @@ a:visited{
 <body>
 	<!-- Header -->
      <%@ include file ="../Main/inc/Top.jsp" %>
-    
-	<br /><br />
+     
+    <br /><br />
 		<h2>마이페이지</h2>
 		<div class="fixed">
 			<ul class="nav nav-tabs" role="tablist">
 	            <li class="nav-item">
-	                <a class="nav-link active" href="./MypageMain.jsp">회원정보수정</a>
-	            </li>
-	            <li class="nav-item">
-	                <a class="nav-link" style="color : gray;" href="./Mypage_movielist.jsp">영화</a>
+	                <a class="nav-link" style="color : gray;" href="../mypage_movielist.jsp">영화</a>
 	            </li>
 	            <li class="nav-item">
 	                <a class="nav-link" style="color : gray;" href="../mypage/mypage_storelist.do">스토어</a>
 	            </li>
+	            <li class="nav-item">
+	                <a class="nav-link active" style="color : gray;" href="../MemberUpdateController.do">회원정보수정</a>
+	            </li>
 	        </ul>
         </div>
+		<!-- 
 		<div class="tab-content">
+			<div id="mypage_member" class="tab-pane active">
+				<a class="nav-link active" style="text-align:left; margin-left:15px;" href="../MemberUpdateController.do">회원정보수정</a>
+				<div class="row" >
 			<div>
-				<h2>회원정보수정</h2>
 				<div class="row">
 				</div>
 			</div>	
 			<br />
 		</div>
+	</div>
+	</div>
+	-->
+	<%@ include file ="/mypage/memberedit.jsp" %>
+	
+	
 	<!-- Footer -->
 	<%@ include file ="../Main/inc/Bottom.jsp" %>
 </body>

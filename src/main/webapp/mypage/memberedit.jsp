@@ -107,8 +107,10 @@ function inputEmail(frm){
 </style>
 </head>
 
-<body class="container p-5 my-5 border">
-		
+<body>
+	
+	<div class="container p-5 my-5 border">
+	
 	<h1>회원정보수정</h1>
 	
 	<form name="fr" id="myForm" method="post" action="../MemberUpdateController.do" onsubmit="return validateForm(this);">
@@ -258,10 +260,12 @@ function inputEmail(frm){
                 <td align="center">                    
                     <input type="submit" value="회원정보수정" class="btn_submit" />
                     &nbsp;&nbsp;
-                    <input type="reset" value="취소" class="btn_cancel" />
+                    <input type="button" value="취소" onClick="location.href='../mypage/MypageMain.jsp'" class="btn_cancel" />
                 </td>
             </tr>
         </table> 
 	</form>
+	</div>
+	
 </body>
 </html>

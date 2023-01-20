@@ -27,9 +27,6 @@ public class Mypage_Listcontroller extends HttpServlet{
 		String searchWord = req.getParameter("searchWord");
 		String id = session.getAttribute("UserId").toString();
 		
-		System.out.println(id);
-		System.out.println(searchField +"  "+ searchWord);
-		
 		if(searchWord != null){
 			//검색어가 있는 경우 Map에 파라미터를 저장한다.
 			map.put("searchField", searchField);

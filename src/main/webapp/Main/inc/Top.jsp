@@ -40,7 +40,7 @@
 				    </c:when>
 				    <c:otherwise>
 			    		<a href="#" class="util-menu" onclick="location.href='<%= request.getContextPath() %>/Login/Logout.jsp';">로그아웃</a>
-					    <a href="#" class="util-menu" onclick="location.href='<%= request.getContextPath() %>/mypage/MypageMain.jsp';">마이페이지</a>
+					    <a href="#" class="util-menu" onclick="location.href='<%= request.getContextPath() %>../mypage/Mypage_movielist.jsp';">마이페이지</a>
 				    </c:otherwise>
 			    </c:choose>
 			</div>

@@ -10,6 +10,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import coment.comentDAO;
+import coment.comentDTO;
+
 @WebServlet("/inquiry/inquiryView.do")
 public class ViewController extends HttpServlet {
 	
@@ -17,12 +20,12 @@ public class ViewController extends HttpServlet {
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
 		inquiryDAO dao = new inquiryDAO();
-		
-		String idx = req.getParameter("idx");
-		
+		String idx = req.getParameter("idx");		
 		inquiryDTO dto = dao.selectView(idx);
-		
 		dao.close();
+		
+		comentDAO cdao = new comentDAO();
+		List<comentDTO> comentLists = cdao.selectComent(idx);
 		
 		//줄바꿈 띄워쓰기 처리
 		dto.setContent(dto.getContent().replace("\r\n", "<br/>").replace(" ", "&nbsp"));
@@ -41,11 +44,13 @@ public class ViewController extends HttpServlet {
 		if (mineList.contains(ext)) {
 			isImage = true;
 		}
+		
 		//리퀘스트 영역에 저장
 		req.setAttribute("isImage", isImage);
 		
 		//리퀘스트에 DTO객체 저장 -> View로 포워드
 		req.setAttribute("dto", dto);
+		req.setAttribute("comentLists", comentLists);
 		req.getRequestDispatcher("/inquiry/inquiryView.jsp").forward(req, resp);
 	}
 }

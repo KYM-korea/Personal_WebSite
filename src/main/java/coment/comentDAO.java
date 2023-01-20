@@ -29,8 +29,8 @@ public class comentDAO extends JDBConnect{
 		return totalCount;
 	}
 	
-	public List<comentDTO> selectListPage(Map<String, Object> map) {
-		List<comentDTO> coment = new Vector<comentDTO>();
+	public List<comentDTO> selectComent(String idx) {
+		List<comentDTO> comentLists = new Vector<comentDTO>();
 		
 		String query = "SELECT * FROM coment ORDER BY postdate DESC";
 		
@@ -40,19 +40,20 @@ public class comentDAO extends JDBConnect{
 			
 			while (rs.next()) {
 				comentDTO dto = new comentDTO();
-				dto.setIdx(rs.getString(1));
-				dto.setName(rs.getString(2));
-				dto.setComent(rs.getString(3));
-				dto.setPostdate(rs.getDate(4));
+				dto.setComidx(rs.getString("comidx"));
+				dto.setIdx(rs.getString("idx"));
+				dto.setName(rs.getString("name"));
+				dto.setComent(rs.getString("coment"));
+				dto.setPostdate(rs.getDate("postdate"));
 				
-				coment.add(dto);
+				comentLists.add(dto);
 			}
 		} 
 		catch (Exception e) {
 			System.out.println("댓글 조회 중 예외 발생");
 			e.printStackTrace();
 		}
-		return coment;
+		return comentLists;
 	}
 	//댓글 작성
 	public int insertComent(comentDTO dto) {
@@ -60,12 +61,13 @@ public class comentDAO extends JDBConnect{
 		
 		try {
 			String query = "INSERT INTO coment ( "
-					+ " idx, name, coment, postdate) "
-					+ " Values(seq_coment_num.NEXTVAL, ?, ? , sysdate)";
+					+ " comidx, idx, name, coment, postdate) "
+					+ " Values(seq_coment_num.NEXTVAL, ?, ?, ? , sysdate)";
 			
 			psmt = con.prepareStatement(query);
-			psmt.setString(1, dto.getName());
-			psmt.setString(2, dto.getComent());
+			psmt.setString(1, dto.getIdx());
+			psmt.setString(2, dto.getName());
+			psmt.setString(3, dto.getComent());
 			
 			result = psmt.executeUpdate();
 		} 
@@ -75,12 +77,13 @@ public class comentDAO extends JDBConnect{
 		}
 		return result;
 	}
+	
 	//댓글 삭제
-	public void deleteComent(String idx) {
-		String query = "DELETE FROM coment WHERE idx=?";
+	public void deleteComent(String comidx) {
+		String query = "DELETE FROM coment WHERE comidx=?";
 		try {
 			psmt = con.prepareStatement(query);
-			psmt.setString(1, idx);
+			psmt.setString(1, comidx);
 			psmt.execute();
 			
 		} 

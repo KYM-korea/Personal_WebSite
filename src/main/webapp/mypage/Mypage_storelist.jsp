@@ -34,13 +34,13 @@ a:visited{
 		<div class="fixed">
 			<ul class="nav nav-tabs" role="tablist">
 	            <li class="nav-item">
-	                <a class="nav-link" style="color : gray;" href="./MypageMain.jsp">회원정보수정</a>
-	            </li>
-	            <li class="nav-item">
 	                <a class="nav-link" style="color : gray;" href="./Mypage_movielist.jsp">영화</a>
 	            </li>
 	            <li class="nav-item">
 	                <a class="nav-link active" href="../mypage/mypage_storelist.do">스토어</a>
+	            </li>
+	            <li class="nav-item">
+	                <a class="nav-link" style="color : gray;" href="../MemberUpdateController.do">회원정보수정</a>
 	            </li>
 	        </ul>
         </div>

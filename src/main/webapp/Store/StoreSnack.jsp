@@ -2,6 +2,16 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<style>
+.card>a:link{
+	color: black;
+	text-decoration: none;
+}
+.card>a:visited{
+	color: black;
+	text-decoration: none;
+}
+</style>
 <div class="card m-2" style="width:240px">
 	${snackObj.pur_cnt }
 	<a href="../store/goods.do?idx=${snackObj.idx}">

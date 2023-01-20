@@ -19,7 +19,6 @@ public class Mypage_goodsviewcontroller extends HttpServlet{
 		
 		Date nowdate = new Date();
 		MypageDAO dao = new MypageDAO();
-		System.out.println();
 		String mypage_idx = req.getParameter("mypage_idx");
 		MypageDTO dto = dao.goodsView(mypage_idx);
 		dao.close();
