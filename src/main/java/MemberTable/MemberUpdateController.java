@@ -66,7 +66,7 @@ public class MemberUpdateController extends HttpServlet {
 		//인출된 내용은 request영역에 저장한 후 View로 포워드한다.
 		req.setAttribute("dto", dto);
 				
-		req.getRequestDispatcher("/mypage/memberedit.jsp").forward(req,resp);
+		req.getRequestDispatcher("/mypage/MypageMain.jsp").forward(req,resp);
 	}
 	
 	@Override
