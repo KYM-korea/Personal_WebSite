@@ -35,9 +35,13 @@ function validateForm(form) {  // 폼 내용 검증
 <body>
 <!-- Header -->
 <%@ include file ="../Main/inc/Top.jsp" %>
-<form name="writeFrm" method="post" action="writeProcess.jsp"
+<form name="writeFrm" method="post" action="../Notice/write.do"
       onsubmit="return validateForm(this);">
     <table border="1" width="90%">
+    	<tr>
+    		<td>이름</td>
+    		<td><input type="text" name="name" style="width: 130px; border: none;" value="admin" readonly/>
+    	</tr>
         <tr>
             <td>제목</td>
             <td>
@@ -61,7 +65,7 @@ function validateForm(form) {  // 폼 내용 검증
             <td colspan="2" align="center">
                 <button type="submit">작성 완료</button>
                 <button type="reset">다시 입력</button>
-                <button type="button" onclick="location.href='noticeMain.jsp';">목록 보기</button>
+                <button type="button" onclick="history.back();">뒤로가기</button>
                 <button type="button" onclick="location.href='../Main/HomeMain.jsp';"> 홈으로</button>
             </td>
         </tr>

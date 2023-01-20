@@ -5,30 +5,6 @@
 <%@page import="java.util.Map"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%
-NoticeDAO dao = new NoticeDAO(application);
-
-Map<String, Object> param = new HashMap<String, Object>();
-
-String searchField = request.getParameter("searchField");
-String searchWord = request.getParameter("searchWord");
-
-String flag = request.getParameter("flag");
-param.put("flag", flag);
-
-if (searchWord != null) {
-	/* Map컬렉션에 컬럼명과 검색어를 추가한다. */
-	param.put("searchField", searchField);
-	param.put("searchWord", searchWord);
-}
-//게시물 갯수 카운트용
-int totalCount = dao.selectCount(param);
-
-//목록에 출력할 게시물을 추출하여 반환받는다. 
-List<NoticeDTO> boardLists = dao.selectList(param);
-//자원해제
-dao.close();
-%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -40,24 +16,22 @@ dao.close();
     <script src="../common/jquery/jquery-3.6.1.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
     <titler>공지사항 메인</title>
-   
 </head>
 <body>
 <!-- Header -->
 <%@ include file ="../Main/inc/Top.jsp" %>
-    
+<br /><br /> 
 <div class="container">
 	<div>
 		<ul class="nav nav-tabs" role="tablist">
 			<li class="nav-item">
-				<a class="nav-link" href="./noticeMain.jsp?flag=con" style="color : gray;">공지사항</a>
+				<a class="nav-link" href="../Notice/List.do?flag=con" style="color : gray;">공지사항</a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link active" href="./event.jsp?flag=eve">이벤트</a>
+				<a class="nav-link active" href="../Notice/List.do?flag=eve">이벤트</a>
 			</li>
 		</ul>
 	</div>
-
 	<!-- 이벤트 -->
 	<table class="table table-hover">
         <thead class=" text-center">
@@ -68,32 +42,30 @@ dao.close();
                 <th>작성일</th>
             </tr>
         </thead>
-        <%
-		if (boardLists.isEmpty()) {
-		%>
-		<tr>
-			<td colspan="5" align="center">등록된 게시물이 없습니다.</td>
-		</tr>
-		<%
-		} else {
-		int virtualNum = 0;
-		
-		for (NoticeDTO dto : boardLists) {
-			virtualNum = totalCount--;
-		%>
-		<tr>
-		 <td><%= virtualNum %></td>
-		<td>
-			<a href="noticeView.jsp?idx=<%= dto.getIdx()%>">
-		<%= dto.getTitle() %></a>
-		</td>
-		<td><%= dto.getName() %></td>
-		<td><%= dto. getPostdate() %></td>
-		</tr>
-		<%
-			}
-		}
-		%>
+       
+	<c:choose>
+		<c:when test="${empty Lists }">
+			<tr>
+				<td colspan="5" align="center">등록된 게시물이 없습니다.</td>
+			</tr>
+		</c:when>
+		<c:otherwise>
+			<c:forEach items="${Lists }" var="row" varStatus="loop">
+				<tr align="center">
+				 <td>
+					 ${ map.totalCount - (((map.pageNum-1) * map.pageSize)
+                         + loop.index) }
+                 </td>
+				<td>
+					<a href="../Notice/noticeView.do?idx=${row.idx }">
+						${row.title }</a>
+				</td>
+				<td>${row.name }</td>
+				<td>${row.postdate }</td>
+				</tr>
+			</c:forEach>
+		</c:otherwise>
+	</c:choose>
 	</table>
 
 	<table>

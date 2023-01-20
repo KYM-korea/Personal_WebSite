@@ -6,9 +6,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
 MovieDAO dao = new MovieDAO();
-
 List<MovieDTO> mLists = dao.selectMovieList();
-
 dao.close();
 %>
 <!DOCTYPE html>
@@ -79,26 +77,8 @@ dao.close();
 
 <!-- Header -->
 <%@ include file ="./inc/Top.jsp" %>
-
-<form method="post" name="RegiMoive" enctype="multipart/form-data" style="color:white;"
-	action="RegiMovieProcess.jsp" onsubmit="return validateForm(this);">
-	영화명 : <input type="text" name="mName" /><br />
-	장르 : <select name="mGenre" >
-					<option value="action">액션</option>
-					<option value="melo">멜로</option>
-					<option value="sf">SF</option>
-					<option value="horror">공포</option>
-					<option value="fantasy">판타지</option>
-					<option value="thriller">스릴러</option>	
-					<option value="inference">추리</option>
-					<option value="comedy">코미디</option>
-				</select><br />
-	이미지 : <input type="file" name="movieImg" /><br />
-	설명 : <textarea rows="" cols="" name="mSummary"></textarea><br />
-		<input type="submit" value="전송" />
-</form>
-
 <!-- Body -->
+
 <!-- 슬라이드 배너 -->
 <!-- 
 ***해야할 것***
@@ -130,8 +110,8 @@ dao.close();
 		<%
 			   }
 		%>
-        <a href="#">
-            <img src="../Image/<%= dto.getNfile() %>" class="d-block ">
+        <a href="../MovieViewController.do?idx=<%= dto.getIdx() %>">
+            <img src="../Image/<%= dto.getNfile() %>" class="d-block " style="width:300px;">
         </a>
         </div>
         <%
@@ -149,7 +129,11 @@ dao.close();
 	</div>    
 </div>
 
-<!-- 카드형 아이템 -->
+<!-- 영화 목록 -->
+
+<c:if test="${not empty UserId and UserId eq 'admin'}" var="result">
+	<a href="../Movie_Admin/MovieRegist.jsp" class="btn btn-primary">등록</a><br>
+</c:if>
 <div class="row">
 		<%
 		   for (MovieDTO dto : mLists)
@@ -172,24 +156,19 @@ dao.close();
                 </div> --%>
             </div>
             <div>  
-		        <form name="like_change" action="LikeProcess.jsp" method="post">		                     	
-                	<input type="hidden" name="lIdx" value="<%= dto.getIdx() %>">
-                	<input type="hidden" name="lGenre" value="<%= dto.getCategory() %>">
-                	<input type="hidden" name="lName" value="<%= dto.getName() %>">
-                	<c:choose>
-                		<c:when test="${not empty UserId }">
-		                	<button type="submit" class="btn btn-outline-primary">
-		                	<i id="like_btn_f" class="bi bi-heart-fill"></i><%= dto.getLikeCnt() %>
-		                	</button>
-                		</c:when>
-                		<c:otherwise>
-		                	<button type="submit" class="btn btn-outline-primary">
-		                	<i id="like_btn_f" class="bi bi-heart"></i><%= dto.getLikeCnt() %>
-		                	</button>
-                		</c:otherwise>
-                	</c:choose>
-                	<a href="#" class="btn btn-primary">예매</a>
-            	</form>
+               	<c:choose>
+               		<c:when test="${not empty UserId }">
+	                	<button type="submit" disabled class="btn btn-outline-primary">
+	                	<i id="like_btn_f" class="bi bi-heart-fill"></i><%= dto.getLikeCnt() %>
+	                	</button>
+               		</c:when>
+               		<c:otherwise>
+	                	<button type="submit" disabled class="btn btn-outline-primary">
+	                	<i id="like_btn_f" class="bi bi-heart"></i><%= dto.getLikeCnt() %>
+	                	</button>
+               		</c:otherwise>
+               	</c:choose>
+               	<a href="#" class="btn btn-primary">예매</a>
             </div>
         </div>
         <%

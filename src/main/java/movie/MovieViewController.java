@@ -36,7 +36,7 @@ public class MovieViewController extends HttpServlet {
 		MovieDAO dao = new MovieDAO();
 		MovieDTO dto = new MovieDTO();
 		
-		dto = dao.selectMoive(idx);
+		dto = dao.selectMovie(idx);
 		dao.close();
 		
 		req.setAttribute("dto", dto);

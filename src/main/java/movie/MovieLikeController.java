@@ -13,8 +13,8 @@ import log.LogDAO;
 import log.LogDTO;
 import utils.JSFunction;
 
-@WebServlet("/LikeController.do")
-public class LikeController extends HttpServlet {
+@WebServlet("/MovieLikeController.do")
+public class MovieLikeController extends HttpServlet {
 	
 	
 	@Override
@@ -22,9 +22,11 @@ public class LikeController extends HttpServlet {
 		
 		HttpSession session = req.getSession();
 		
+		
 		if(session.getAttribute("UserId")==null) {
-			JSFunction.alertLocation(resp, "로그인이 필요한 서비스입니다.", "../Login/LoginForm.jsp");
+			JSFunction.alertLocation(resp, "로그인이 필요한 서비스입니다.", "./Login/LoginForm.jsp");
 		}
+		
 		else {
 			String mode = req.getParameter("mode");
 			String idx = req.getParameter("idx");
@@ -45,7 +47,7 @@ public class LikeController extends HttpServlet {
 			if(mode.equals("insert")) {
 				ldao.insertLike(ldto);
 			}
-			else {
+			else if(mode.equals("delete")) {
 				ldao.deleteLike(ldto);
 			}
 			ldao.close();

@@ -117,7 +117,7 @@ a:visited{
 		<table class="table">
 			<tr>
 				<td align="center">
-					<button type="submit" class="btn btn-primary">등록하기</button>
+					<button type="submtait" class="btn btn-primary">등록하기</button>
 					<button type="reset" class="btn btn-primary">새로작성</button>
 				</td>
 			</tr>

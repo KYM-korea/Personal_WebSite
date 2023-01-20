@@ -2,18 +2,16 @@
 <%@page import="notice.NoticeDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%
-String idx = request.getParameter("idx");
-NoticeDAO dao = new  NoticeDAO(application);
-NoticeDTO dto = dao.selectView(idx);
 
-dao.close();
-%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../common/jquery/jquery-3.6.1.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
+<title>View</title>
 <script>
 function deletePost() {
     var confirmed = confirm("정말로 삭제하겠습니까?"); 
@@ -31,38 +29,39 @@ function deletePost() {
     <%@ include file ="../Main/inc/Top.jsp" %>
 
 <div class="container">
+<h2>상세보기</h2>
 <form name="writeFrm">
 <!-- idx숨겨놓기 -->
-<input type="hidden" name="idx" value="<%= idx %>" /> 
-	<%= dto.getIdx() %>
+<input type="hidden" name="idx" value="${dto.idx }" /> 
+	${dto.idx }
     <table border="1" width="90%">
         <tr>
             <td>번호</td>
-            <td><%= dto.getIdx() %></td>
+            <td>${dto.idx }</td>
             <td>작성자</td>
-            <td><%= dto.getName() %></td>
+            <td>${dto.name }</td>
         </tr>
         <tr>
             <td>작성일</td>
-            <td><%= dto.getPostdate() %></td>
+            <td>${dto.postdate }</td>
         </tr>
         <tr>
             <td>제목</td>
-            <td colspan="3"><%= dto.getTitle() %></td>
+            <td colspan="3">${dto.title }</td>
         </tr>
         <tr>
             <td>내용</td>
             <td colspan="3" height="100">
-				<%= dto.getContent().replace("\r\n", "<br/>") %>
+				${dto.content }
             </td> 
         </tr>
         <tr>
             <td colspan="4" align="center">
 
-				<button type="button" onclick="location.href='Edit.jsp?idx=<%= dto.getIdx() %>';">
+				<button type="button" onclick="location.href='../Notice/Edit.do?idx=${dto.idx}';">
 					수정하기</button>
-				<button type="button" onclick="deletePost();">삭제하기</button> 
-                <button type="button" onclick="location.href='noticeMain.jsp?flag=con';">
+				<button type="button" onclick="location.href='../Notice/Delete.do?flag=${dto.flag }&idx=${dto.idx}';">삭제하기</button> 
+                <button type="button" onclick="location.href='../Notice/List.do?flag=${dto.flag}';">
                     목록 보기
                 </button>
                 <button type="button" onclick="location.href='../Main/HomeMain.jsp';">
