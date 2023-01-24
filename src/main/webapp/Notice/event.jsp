@@ -21,6 +21,21 @@
 <!-- Header -->
 <%@ include file ="../Main/inc/Top.jsp" %>
 <br /><br /> 
+<form method="get">  
+    <table>
+    <tr>
+        <td align="left" style="padding-left: 10px">
+            <input type="hid den" name="flag" value="${ map.flag }" />
+            <select name="searchField"> 
+                <option value="title">제목</option> 
+                <option value="content">내용</option>
+            </select>
+            <input type="text" name="searchWord" />
+            <input type="submit" value="검색하기" />
+        </td>
+    </tr>   
+    </table>
+</form>
 <div class="container">
 	<div>
 		<ul class="nav nav-tabs" role="tablist">
