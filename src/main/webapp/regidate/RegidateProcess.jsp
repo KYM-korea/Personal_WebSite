@@ -1,4 +1,4 @@
-<%@page import="MemberTable.MemberDAO"%>
+<%-- <%@page import="MemberTable.MemberDAO"%>
 <%@page import="MemberTable.MemberDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -38,3 +38,4 @@ else{
 }
 %>
 
+ --%>

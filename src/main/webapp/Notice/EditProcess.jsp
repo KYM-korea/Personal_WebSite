@@ -1,4 +1,4 @@
-<%@page import="notice.NoticeDAO"%>
+<%-- <%@page import="notice.NoticeDAO"%>
 <%@page import="notice.NoticeDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -35,3 +35,4 @@ else {
     JSFunction.alertBack("수정하기에 실패하였습니다.", out);
 }
 %>
+ --%>

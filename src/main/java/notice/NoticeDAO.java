@@ -46,7 +46,7 @@ public class NoticeDAO extends JDBConnect {
 		
 		List<NoticeDTO> bbs = new Vector<NoticeDTO>();
 		
-        String query = "SELECT * FROM notice WHERE flag='" + map.get("flag") + "'"; 
+        String query = "SELECT * FROM notice WHERE flag='" + map.get("flag") + "' ORDER BY postdate DESC"; 
         
 		try {
 			stmt = con.createStatement();
