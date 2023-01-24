@@ -45,11 +45,16 @@ public class MovieViewController extends HttpServlet {
 		
 		LogDAO gdao = new LogDAO();
 		List<LogDTO> gList = new Vector<LogDTO>();
-		gList = gdao.selectGrade(idx);
+		gList = gdao.selectAllGrade(idx,id);
+		
+		LogDTO myGrade = new LogDTO();
+		myGrade = gdao.selectMyGrade(idx,id);
 		
 		gdao.close();
 		
 		req.setAttribute("dto", dto);
+		req.setAttribute("gList", gList);
+		req.setAttribute("myGrade", myGrade);
 		req.getRequestDispatcher("/Main/MovieView.jsp?idx="+idx).forward(req, resp);
 	}
 }
