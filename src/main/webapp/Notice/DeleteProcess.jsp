@@ -1,4 +1,4 @@
-
+<%-- 
 <%@page import="utils.JSFunction"%>
 <%@page import="notice.NoticeDAO"%>
 <%@page import="notice.NoticeDTO"%>
@@ -46,4 +46,4 @@ else {
     JSFunction.alertBack("본인만 삭제할 수 있습니다.", out);
     return;
 }
-%>
+%> --%>

@@ -46,7 +46,12 @@ public class NoticeDAO extends JDBConnect {
 		
 		List<NoticeDTO> bbs = new Vector<NoticeDTO>();
 		
-        String query = "SELECT * FROM notice WHERE flag='" + map.get("flag") + "'"; 
+        String query = "SELECT * FROM notice WHERE flag='" + map.get("flag") + "' ";
+		if(map.get("searchWord")!= null) {
+        	query += " AND " + map.get("searchField")+ " "
+        			+ " LIKE '%" + map.get("searchWord")+ "%'";
+        }
+        query +=" ORDER BY postdate DESC"; 
         
 		try {
 			stmt = con.createStatement();
@@ -63,6 +68,7 @@ public class NoticeDAO extends JDBConnect {
 				dto.setName(rs.getString("name"));
 				dto.setPostdate(rs.getDate("postdate"));
 				dto.setFlag(rs.getString("flag"));
+				System.out.println("되니?");
 				
 				//List컬렉션에 DTO객체를 추가한다.
 				bbs.add(dto);

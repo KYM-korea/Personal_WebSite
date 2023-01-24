@@ -1,4 +1,4 @@
-<%@page import="notice.NoticeDAO"%>
+<%-- <%@page import="notice.NoticeDAO"%>
 <%@page import="notice.NoticeDTO"%>
 <%@page import="utils.JSFunction"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -34,4 +34,4 @@ try{
 catch(Exception e){
 	e.printStackTrace();
 }
-%>
+%> --%>

@@ -40,7 +40,7 @@ function validateForm(form) {  // 폼 내용 검증
     <table border="1" width="90%">
     	<tr>
     		<td>이름</td>
-    		<td><input type="text" name="name" style="width: 130px; border: none;" value="admin" readonly/>
+    		<td><input type="text" name="name" style="width: 130px; border: none;" value="${ sessionScope.UserId }" readonly/>
     	</tr>
         <tr>
             <td>제목</td>
