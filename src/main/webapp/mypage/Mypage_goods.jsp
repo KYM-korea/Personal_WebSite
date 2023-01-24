@@ -4,7 +4,12 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<fmt:formatDate var="today" value="${nowdate }" pattern="yyyy-MM-dd"/>
+<fmt:formatDate var="nowdate" value="${nowdate}" pattern="yyyyMMdd"/>
+<fmt:parseDate var="nowdatevar" value="${nowdate}" pattern="yyyyMMdd"/>
+<fmt:parseNumber value="${nowdatevar.time / (1000*60*60*24)}" integerOnly="true" var="now_date"></fmt:parseNumber>
+<fmt:formatDate var="mypagedate" value="${dto.mypage_date}" pattern="yyyyMMdd000000"/>
+<fmt:parseDate var="mypagedatevar" value="${mypagedate}" pattern="yyyyMMddmmss"/>
+<fmt:parseNumber value="${mypagedatevar.time / (1000*60*60*24)}" integerOnly="true" var="mypage_date"></fmt:parseNumber>
 <!DOCTYPE html>
 <html>
 <head>
@@ -77,7 +82,6 @@ a:visited{
 					</td>
 					<td colspan="2" style="padding-bottom: 0">
 						${dto.mypage_date }
-						${nowdate }
 						<div style="padding-top: 25px">
 							※ 유효기간:
 						<c:choose>
@@ -109,18 +113,21 @@ a:visited{
 						구매 후 취소
 					</td>
 					<td colspan="2">
+							<%-- ${mypage_date }
+							${now_date } --%>
+						<c:set var="date" value="${now_date -mypage_date}"/>
 						<c:choose>
 							<c:when test="${dto.fd eq 'giftcard' }">
 								구매일로부터 366일 이내 취소 가능하며, 부분취소는 불가능
-								<%-- <c:if test="${nowdate - dto.mypage_date}">  --%>
+								<c:if test="${date < 365}">  
 									<button type="button" class="btn btn-outline-primary" onclick="deletePost();">환불요청</button>
-								<%-- < </c:if>  --%>
+								</c:if>  
 							</c:when>
 							<c:otherwise>
 								구매일로부터 10일 이내 취소 가능하며, 부분취소는 불가능
-								<%-- <c:if test="${nowdate - dto.mypage_date }">  --%>
+								  <c:if test="${date < 10 }">  
 									<button type="button" class="btn btn-outline-primary" onclick="location.href='../mypage/mypage_deletecontroller.do?mypage_idx=${dto.mypage_idx }';">환불요청</button>
-								<%-- </c:if>  --%>
+								  </c:if>   
 							</c:otherwise>
 						</c:choose>
 					</td>
