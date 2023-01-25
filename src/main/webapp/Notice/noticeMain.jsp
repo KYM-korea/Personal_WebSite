@@ -86,7 +86,13 @@
 		<tr align="right">
 			<td>
 				<button type="button" onclick="#Main">홈으로</button> 
-				<button type="button" onclick="location.href='../Notice/write.do';">글쓰기</button> 
+				<%
+				if(session.getAttribute("UserId").equals("admin")){
+				%>
+				<button type="button" onclick="location.href='../Notice/write.do';">글쓰기</button>
+				<%
+				}
+				%> 
 			</td>
 		</tr>
 	</table>	
