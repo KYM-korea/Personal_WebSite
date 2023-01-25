@@ -20,6 +20,13 @@ public class eventListController extends HttpServlet{
       String flag = req.getParameter("flag");
       Map<String, Object> map = new HashMap<String, Object>();
       
+      String searchField = req.getParameter("searchField");
+      String searchWord = req.getParameter("searchWord");
+      if (searchWord != null) {
+    	  map.put("searchField", searchField);
+    	  map.put("searchWord", searchWord);
+      }
+      map.put("flag", flag);
       //게시물 갯수 카운트용
       int totalCount = dao.selectCount(map);
       
@@ -37,7 +44,6 @@ public class eventListController extends HttpServlet{
       int end = pageNum * pageSize;
       map.put("start", start);
       map.put("end", end);
-      map.put("flag", flag);
       
       //목록에 출력할 게시물을 추출하여 반환받는다. 
       List<NoticeDTO> noticeLists = dao.selectList(map);

@@ -40,7 +40,7 @@
 				    </c:when>
 				    <c:otherwise>
 			    		<a href="#" class="util-menu" onclick="location.href='<%= request.getContextPath() %>/Login/Logout.jsp';">로그아웃</a>
-					    <a href="#" class="util-menu" onclick="location.href='<%= request.getContextPath() %>../mypage/Mypage_movielist.jsp';">마이페이지</a>
+					    <a href="#" class="util-menu" onclick="location.href='<%= request.getContextPath() %>/mypage/Mypage_movielist.jsp';">마이페이지</a>
 				    </c:otherwise>
 			    </c:choose>
 			</div>
@@ -58,15 +58,14 @@
 	        </div>
 	        <div class="col-lg-3"><a href="" class="nav-link">개봉예정</a></div>
 	        <div class="col-lg-3"><a href="<%= request.getContextPath() %>/Store/StoreMain.jsp" class="nav-link">스토어</a></div>
-	        <%-- <div class="col-lg-3"><a href="<%= request.getContextPath() %>/Notice/noticeMain.jsp?flag=con" class="nav-link">공지</a></div> --%>
-	        <li class="col-lg-3" class="nav-item dropdown">
+	        <div class="col-lg-3 nav-item dropdown">
 				<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#">고객센터</a>
 				<ul class="dropdown-menu">
 					<li><a class="dropdown-item" href="<%= request.getContextPath() %>/Notice/List.do?flag=con">공지사항</a></li>
 					<li><a class="dropdown-item" href="<%= request.getContextPath() %>/Notice/List.do?flag=eve">이벤트</a></li>
 					<li><a class="dropdown-item" href="<%= request.getContextPath() %>/inquiry/inquiryList.do">문의 게시판</a></li>
 				</ul>
-    		</li>
+    		</div>
 	    </div>
 	</div>
 </header>

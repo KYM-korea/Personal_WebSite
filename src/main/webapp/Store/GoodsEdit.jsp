@@ -5,8 +5,6 @@
 <head>
 <meta charset="UTF-8">
 <title>상품 수정</title>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 <script>
 	function validateForm(form){
 		if(form.title.value==""){

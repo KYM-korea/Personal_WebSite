@@ -11,7 +11,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import MemberTable.MemberDAO;
+import MemberTable.MemberDTO;
 import utils.BoardPage;
 
 @WebServlet("/Notice/List.do")
@@ -19,6 +22,8 @@ public class noticeListController extends HttpServlet {
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		
+		
 		NoticeDAO dao = new NoticeDAO();
 		String flag = req.getParameter("flag");
 		Map<String, Object> map = new HashMap<String, Object>();
@@ -47,7 +52,7 @@ public class noticeListController extends HttpServlet {
 		int end = pageNum * pageSize;
 		map.put("start", start);
 		map.put("end", end);
-
+		
 		// 목록에 출력할 게시물을 추출하여 반환받는다.
 		List<NoticeDTO> Lists = dao.selectList(map);
 		dao.close();
@@ -55,7 +60,7 @@ public class noticeListController extends HttpServlet {
 		map.put("totalCount", totalCount);
 		map.put("pageSize", pageSize);
 		map.put("pageNum", pageNum);
-
+		
 		if (flag.equals("con")) {
 			String pagingImg = BoardPage.pagingStr(totalCount, pageSize, blockPage, pageNum,
 					"../Notice/List.do?flag=con");
