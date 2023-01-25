@@ -47,7 +47,7 @@ public class noticeListController extends HttpServlet {
 		int end = pageNum * pageSize;
 		map.put("start", start);
 		map.put("end", end);
-
+		
 		// 목록에 출력할 게시물을 추출하여 반환받는다.
 		List<NoticeDTO> Lists = dao.selectList(map);
 		dao.close();

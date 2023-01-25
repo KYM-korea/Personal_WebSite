@@ -1,5 +1,7 @@
 package log;
 
+import java.util.Date;
+
 public class LogDTO {
 	//인덱스
 	private String idx;
@@ -11,6 +13,12 @@ public class LogDTO {
 	private String id;
 	//필드(movie와 store 구분)
 	private String field;
+	//평점
+	private int grade;
+	//댓글
+	private String mcomment;
+	//등록(수정)일
+	private Date regidate;
 	
 	public String getIdx() {
 		return idx;
@@ -42,6 +50,23 @@ public class LogDTO {
 	public void setField(String field) {
 		this.field = field;
 	}
-	
+	public String getMcomment() {
+		return mcomment;
+	}
+	public void setMcomment(String mcomment) {
+		this.mcomment = mcomment;
+	}
+	public Date getRegidate() {
+		return regidate;
+	}
+	public void setRegidate(Date regidate) {
+		this.regidate = regidate;
+	}
+	public int getGrade() {
+		return grade;
+	}
+	public void setGrade(int grade) {
+		this.grade = grade;
+	}
 	
 }

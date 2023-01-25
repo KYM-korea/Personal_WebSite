@@ -108,7 +108,7 @@ function inputEmail(frm){
 </head>
 
 <body>
-	<jsp:include page="../Main/inc/Top.jsp"/>
+	
 	<div class="container p-5 my-5 border">
 	
 	<h1>회원정보수정</h1>
@@ -266,6 +266,6 @@ function inputEmail(frm){
         </table> 
 	</form>
 	</div>
-	<jsp:include page = "../Main/inc/Bottom.jsp" />
+	
 </body>
 </html>

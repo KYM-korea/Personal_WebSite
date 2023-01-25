@@ -161,7 +161,6 @@ function winopen(){
 
 </script>
 
-
 <style>
 
 #chk{
@@ -201,7 +200,8 @@ function winopen(){
 	<%@ include file ="../Main/inc/Top.jsp" %> 
 	<br /><br />
 	<div class="container p-5 my-5 border">
-	<form name="fr" id="myForm" method="post" action="RegidateProcess.jsp" onsubmit="return validateForm(this);">
+	<form name="fr" id="myForm" method="post" action="../regidate/Write.do" 
+		onsubmit="return validateForm(this);">
 		<table class="table">
 			<tr>
 				<th><span class="c_imp">*</span>아이디</th>

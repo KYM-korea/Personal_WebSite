@@ -1,6 +1,8 @@
 package movie;
 
 import java.io.IOException;
+import java.util.List;
+import java.util.Vector;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,6 +13,7 @@ import javax.servlet.http.HttpSession;
 import javax.websocket.Session;
 
 import log.LogDAO;
+import log.LogDTO;
 
 @WebServlet("/MovieViewController.do")
 public class MovieViewController extends HttpServlet {
@@ -37,9 +40,21 @@ public class MovieViewController extends HttpServlet {
 		MovieDTO dto = new MovieDTO();
 		
 		dto = dao.selectMovie(idx);
+		
 		dao.close();
 		
+		LogDAO gdao = new LogDAO();
+		List<LogDTO> gList = new Vector<LogDTO>();
+		gList = gdao.selectAllGrade(idx,id);
+		
+		LogDTO myGrade = new LogDTO();
+		myGrade = gdao.selectMyGrade(idx,id);
+		
+		gdao.close();
+		
 		req.setAttribute("dto", dto);
+		req.setAttribute("gList", gList);
+		req.setAttribute("myGrade", myGrade);
 		req.getRequestDispatcher("/Main/MovieView.jsp?idx="+idx).forward(req, resp);
 	}
 }
