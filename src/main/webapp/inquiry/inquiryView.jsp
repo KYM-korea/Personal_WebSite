@@ -56,17 +56,14 @@
 		<tfoot>
 			<tr>
 	        	<td colspan="6" align="right"> 
-		        	<%
-		        	if(session.getAttribute("Userid")=="admin"){
-		        		
-		        	%>
-	        		<button type="button" onclick="location.href='../inquiry/inquiryWrite.do?mode=edit&idx=${ dto.idx}';">
-	        			수정하기</button>
-	        		<button type="button" onclick="location.href='../inquiry/inquiryWrite.do?mode=delete&idx=${ dto.idx}';">
-	        			삭제하기</button>
-	        		<%
-	        		}
-	        		%>
+		        	<c:choose>
+		        		<c:when test="${not empty UserId and UserId eq 'admin'}">
+			        		<button type="button" onclick="location.href='../inquiry/inquiryWrite.do?mode=edit&idx=${ dto.idx}';">
+			        			수정하기</button>
+			        		<button type="button" onclick="location.href='../inquiry/inquiryWrite.do?mode=delete&idx=${ dto.idx}';">
+			        			삭제하기</button>
+		        		</c:when>
+	        		</c:choose>
 	        		<button type="button" onclick="location.href='../inquiry/inquiryList.do';">
 	        			목록 바로가기</button>
 	        	</td>
@@ -77,7 +74,7 @@
 	<br />
 	<!-- 댓글 작성하는 곳 -->
 	<form name="comentFrm" method="post" action="../coment/comentWrite.do" onsubmit="return">
-		<input type="hidden" value="${ dto.idx }" name="idx">
+		<input type="hid-den" value="${ dto.idx }" name="idx">
 		<table class="table table-striped" border="1" >
 			<tr>
 				<th>
@@ -97,9 +94,9 @@
 	</form>
 	<br />
 	<!-- 작성된 댓글이 보이는 곳 -->
-	<c:if test="${ not empty comentLists }">
+	<c:if test="${ not empty comentLists}">
 		<table class="table table-hover" border="1">
-			<c:forEach items="${comentLists }" var="row" varStatus="loop">
+			<c:forEach items="${comentLists}" var="row" varStatus="loop">
 			<tr>
 				<!-- 작성자명 -->
 				<th>
