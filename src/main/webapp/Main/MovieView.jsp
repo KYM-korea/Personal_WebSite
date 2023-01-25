@@ -5,14 +5,6 @@
 <html>
 <head>
 <meta charset="EUC-KR">
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
-	rel="stylesheet">
-<script
-	src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-<script src="../common/jquery/jquery-3.6.1.min.js"></script>
-<link rel="stylesheet"
-	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
 <script type="text/javascript">
 	function deletePost() {
 
@@ -134,35 +126,36 @@
 		</div>
 		<div class="">
 		<style>
-			#myform, #editform fieldset {
+			fieldset {
 				display: inline-block;
 				direction: rtl;
 				border: 0;
 			}
 			
-			#myform, #editform fieldset legend {
+			fieldset legend {
 				text-align: right;
 			}
 			
-			#myform, #editform input[type=radio] {
+			fieldset>input[type=radio] {
 				display: none;
 			}
 			/* 체크되지 않은 별 색상 */
-			#myform, #editform label {
+			fieldset>label {
 				font-size: 3em;
 				color: transparent;
 				text-shadow: 0 0 0 #C8C8C8;
 			}
 			/* 마우스 over시 별 색상 */
-			#myform, #editform label:hover {
+			fieldset>label:hover:first-child {
 				text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
 			}
 			
-			#myform, #editform label:hover ~ label {
+			(fieldset>label:hover ~ label):first-child {
 				text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
 			}
+			
 			/* 체크된 별 색상 */
-			#myform, #editform input[type=radio]:checked ~ label {
+			fieldset>input[type=radio]:checked ~ label {
 				text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
 			}
 		</style>
@@ -218,14 +211,43 @@
 							<tr>
 								<td colspan="2">
 									<fieldset>
-										<input type="radio" name="reviewStar" value="10" id="rate1"><label
-											for="rate1">★</label> <input type="radio" name="reviewStar"
-											value="8" id="rate2"><label for="rate2">★</label> <input
-											type="radio" name="reviewStar" value="6" id="rate3"><label
-											for="rate3">★</label> <input type="radio" name="reviewStar"
-											value="4" id="rate4"><label for="rate4">★</label> <input
-											type="radio" name="reviewStar" value="2" id="rate5"><label
-											for="rate5">★</label>
+										<c:choose>
+											<c:when test="${myGrade.grade eq 2}">
+												<input type="radio" name="reviewStar" value="10" id="rate1" ><label for="rate1">★</label> 
+												<input type="radio" name="reviewStar" value="8" id="rate2"><label for="rate2">★</label> 
+												<input type="radio" name="reviewStar" value="6" id="rate3"><label for="rate3">★</label> 
+												<input type="radio" name="reviewStar" value="4" id="rate4"><label for="rate4">★</label> 
+												<input type="radio" name="reviewStar" value="2" id="rate5" checked><label for="rate5">★</label>
+											</c:when>
+											<c:when test="${myGrade.grade eq 4}">
+												<input type="radio" name="reviewStar" value="10" id="rate1" ><label for="rate1">★</label> 
+												<input type="radio" name="reviewStar" value="8" id="rate2"><label for="rate2">★</label> 
+												<input type="radio" name="reviewStar" value="6" id="rate3"><label for="rate3">★</label> 
+												<input type="radio" name="reviewStar" value="4" id="rate4" checked><label for="rate4">★</label> 
+												<input type="radio" name="reviewStar" value="2" id="rate5" ><label for="rate5">★</label>
+											</c:when>
+											<c:when test="${myGrade.grade eq 6}">
+												<input type="radio" name="reviewStar" value="10" id="rate1" ><label for="rate1">★</label> 
+												<input type="radio" name="reviewStar" value="8" id="rate2"><label for="rate2">★</label> 
+												<input type="radio" name="reviewStar" value="6" id="rate3" checked><label for="rate3">★</label> 
+												<input type="radio" name="reviewStar" value="4" id="rate4"><label for="rate4">★</label> 
+												<input type="radio" name="reviewStar" value="2" id="rate5"><label for="rate5">★</label>
+											</c:when>
+											<c:when test="${myGrade.grade eq 8}">
+												<input type="radio" name="reviewStar" value="10" id="rate1" ><label for="rate1">★</label> 
+												<input type="radio" name="reviewStar" value="8" id="rate2" checked><label for="rate2">★</label> 
+												<input type="radio" name="reviewStar" value="6" id="rate3"><label for="rate3">★</label> 
+												<input type="radio" name="reviewStar" value="4" id="rate4"><label for="rate4">★</label> 
+												<input type="radio" name="reviewStar" value="2" id="rate5"><label for="rate5">★</label>
+											</c:when>
+											<c:when test="${myGrade.grade eq 10}">
+												<input type="radio" name="reviewStar" value="10" id="rate1" checked><label for="rate1">★</label> 
+												<input type="radio" name="reviewStar" value="8" id="rate2"><label for="rate2">★</label> 
+												<input type="radio" name="reviewStar" value="6" id="rate3"><label for="rate3">★</label> 
+												<input type="radio" name="reviewStar" value="4" id="rate4"><label for="rate4">★</label> 
+												<input type="radio" name="reviewStar" value="2" id="rate5"><label for="rate5">★</label>
+											</c:when>
+										</c:choose>
 									</fieldset>
 								</td>
 							</tr>
@@ -236,10 +258,10 @@
 									<span>${ myGrade.regidate }</span></td>
 								<td>
 									<button class="btn btn-secondary" type="submit"
-										style="margin-top: 20%;">수정</button> <a
-									class="btn btn-secondary"
-									href="./MovieGradeController.do?mode=delete"
-									style="margin-top: 20%;">삭제</a>
+										style="margin-top: 20%;">수정</button>
+									<a class="btn btn-secondary" style="margin-top: 20%;"
+									href="./MovieGradeController.do?mode=delete&idx=${myGrade.idx}&id=${myGrade.id}">
+									삭제</a>
 								</td>
 							</tr>
 						</table>
@@ -256,15 +278,44 @@
 					</colgroup>
 					<tr>
 						<td colspan="2">
-							<fieldset>
-								<input type="radio" name="reviewStar" value="10" id="rate1"><label
-									for="rate1">★</label> <input type="radio" name="reviewStar"
-									value="8" id="rate2"><label for="rate2">★</label> <input
-									type="radio" name="reviewStar" value="6" id="rate3"><label
-									for="rate3">★</label> <input type="radio" name="reviewStar"
-									value="4" id="rate4"><label for="rate4">★</label> <input
-									type="radio" name="reviewStar" value="2" id="rate5"><label
-									for="rate5">★</label>
+							<fieldset id="allreview">
+								<c:choose>
+									<c:when test="${list.grade eq 2}">
+										<input type="radio" disabled><label >★</label> 
+										<input type="radio" disabled><label >★</label> 
+										<input type="radio" disabled><label >★</label> 
+										<input type="radio" disabled><label>★</label> 
+										<input type="radio" disabled checked><label>★</label>
+									</c:when>
+									<c:when test="${list.grade eq 4}">
+										<input type="radio" disabled><label >★</label> 
+										<input type="radio" disabled><label >★</label> 
+										<input type="radio" disabled><label >★</label> 
+										<input type="radio" disabled checked><label>★</label> 
+										<input type="radio" disabled><label>★</label>
+									</c:when>
+									<c:when test="${list.grade eq 6}">
+										<input type="radio" disabled><label >★</label> 
+										<input type="radio" disabled><label >★</label> 
+										<input type="radio" disabled checked><label >★</label> 
+										<input type="radio" disabled><label>★</label> 
+										<input type="radio" disabled><label>★</label>
+									</c:when>
+									<c:when test="${list.grade eq 8}">
+										<input type="radio" disabled><label >★</label> 
+										<input type="radio" disabled checked><label >★</label> 
+										<input type="radio" disabled><label >★</label> 
+										<input type="radio" disabled><label>★</label> 
+										<input type="radio" disabled><label>★</label>
+									</c:when>
+									<c:when test="${list.grade eq 10}">
+										<input type="radio" disabled checked><label >★</label> 
+										<input type="radio" disabled><label >★</label> 
+										<input type="radio" disabled><label >★</label> 
+										<input type="radio" disabled><label>★</label> 
+										<input type="radio" disabled><label>★</label>
+									</c:when>
+								</c:choose>
 							</fieldset>
 						</td>
 					</tr>
