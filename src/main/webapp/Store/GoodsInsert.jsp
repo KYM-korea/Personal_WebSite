@@ -5,8 +5,6 @@
 <head>
 <meta charset="UTF-8">
 <title>상품 등록</title>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 <script>
 	function validateForm(form){
 		if(form.title.value==""){
@@ -117,7 +115,7 @@ a:visited{
 		<table class="table">
 			<tr>
 				<td align="center">
-					<button type="submtait" class="btn btn-primary">등록하기</button>
+					<button type="submit" class="btn btn-primary">등록하기</button>
 					<button type="reset" class="btn btn-primary">새로작성</button>
 				</td>
 			</tr>

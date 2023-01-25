@@ -4,22 +4,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="../Login/IsLoggedIn.jsp"%>
-<%-- <%
-String idx = request.getParameter("idx");
-
-NoticeDAO dao = new NoticeDAO(application);
-
-NoticeDTO dto = dao.selectView(idx);
-
-String sessionName = session.getAttribute("UserName").toString();
-
-if(!sessionName.equals(dto.getName())){
-	JSFunction.alertBack("관리자만 수정할 수 있습니다.", out);
-	return;
-}
-
-dao.close();
-%> --%>
 <!DOCTYPE html>
 <html>
 <head>
