@@ -24,6 +24,9 @@ dao.close();
 .card:focus, .card:hover {
 	border-color: #503396;
 }
+.fixed a{
+	color:black;
+}
 </style>
 </head>
 <body>
