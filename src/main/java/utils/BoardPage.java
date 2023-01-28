@@ -60,7 +60,6 @@ public class BoardPage {
 			pagingStr += "&nbsp;";
 			pagingStr += "<a href='" + reqUrl + "?pageNum=" + totalPages + "'>[마지막페이지]</a>";
 		}
-		
 		return pagingStr;
 	}
 }

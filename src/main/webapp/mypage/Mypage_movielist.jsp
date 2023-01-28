@@ -42,9 +42,11 @@ a:visited{
 	            </li>
 	        </ul>
         </div>
-		<div class="tab-content">
-			<div>
-				<h2>구매목록리스트 - 영화</h2>
+		<div>
+			<div id="mypage_movie">
+			<br>
+				<h2 style="text-align:center;">구매목록리스트 - 영화</h2>
+				<br>
 				<div class="row">
 				</div>
 			</div>

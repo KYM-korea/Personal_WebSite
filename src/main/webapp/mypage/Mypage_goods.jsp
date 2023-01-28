@@ -116,14 +116,14 @@ a:visited{
 						<c:choose>
 							<c:when test="${dto.fd eq 'giftcard' }">
 								구매일로부터 366일 이내 취소 가능하며, 부분취소는 불가능
-								<c:if test="${date < 365}">  
+								<c:if test="${date < 366}">  
 									<button type="button" class="btn btn-outline-primary" onclick="deletePost();">환불요청</button>
 								</c:if>  
 							</c:when>
 							<c:otherwise>
 								구매일로부터 10일 이내 취소 가능하며, 부분취소는 불가능
-								  <c:if test="${date < 10 }">  
-									<button type="button" class="btn btn-outline-primary" onclick="location.href='../mypage/mypage_deletecontroller.do?mypage_idx=${dto.mypage_idx }';">환불요청</button>
+								  <c:if test="${date < 11 }">  
+									<button type="button" class="btn btn-outline-primary" onclick="deletePost();">환불요청</button>
 								  </c:if>   
 							</c:otherwise>
 						</c:choose>

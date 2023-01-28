@@ -44,31 +44,34 @@ a:visited{
         </div>
 		<div>
 			<div id="mypage_store">
-				<h2>구매목록리스트 - 스토어</h2>
-    
+			<br>
+				<h2 style="text-align:center;">구매목록리스트 - 스토어 </h2>
+    			<br>
 			    <form method="get">  
-			    <table border="1" width="90%">
+			    <table class="table table-hover">
+			    <thead class=" text-center">
 			    <tr>
-			        <td align="center">
+			        <td colspan="5" align="center">
 			            <select name="searchField"> 
-			                <option value="fd">스토어/기프트카드/티켓</option> 
+			                <option value="fd">snack/giftcard/ticket</option> 
 			                <option value="title">상품명</option>
 			            </select>
 			            <input type="text" name="searchWord" />
 			            <input type="submit" value="검색하기" />
 			        </td>
-			    </tr>   
-			    </table>
+			    </tr>  
+			    </thead> 
 			    </form>
 			    <!-- 목록 테이블 -->
-			    <table border="1" width="90%">
+			    <thead class=" text-center">
 			        <tr>
-			            <th width="20%">스토어/기프트카드/티켓</th>
+			            <th width="20%">snack/giftcard/ticket</th>
 			            <th width="*">상품명</th>
 			            <th width="15%">가격</th>
 			            <th width="10%">수량</th>
 			            <th width="15%">구매한날짜</th>
 			        </tr>
+			       </thead> 
 			        <c:choose>
 			        	<c:when test="${ empty mypageList }">
 			        	<!-- 게시물을 저장하고 있는 boardLists 컬렉션에 내용이 없다면
@@ -109,7 +112,7 @@ a:visited{
 			    </table>
 			   
 			   <!-- 하단메뉴(바로가기, 글쓰기) -->
-			<%--     <table border="1" width="90%">
+			   <table border="0" width="100%">
 			        <tr align="center">
 			        	<td>
 			        		<!-- 컨트롤러(서블릿)에서 클래스 호출을 통해 미리 페이지번호가 
@@ -117,10 +120,8 @@ a:visited{
 			        		출력만 해주면 된다. -->
 			        		${map.pagingImg}
 			        	</td>
-			            <td width="100"><button type="button" onclick="location.href='../mvcboard/write.do';">글쓰기
-			                </button></td>
 			        </tr>
-			    </table> --%>
+			    </table>
 				<div class="row">
 				</div>
 			</div>

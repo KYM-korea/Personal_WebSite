@@ -19,11 +19,12 @@ public class MypageDAO extends JDBConnect{
 	
 	public int selectCount(Map<String, Object> map) {
 	      int totalCount = 0; 
-	      String query = "SELECT COUNT(*) FROM mypage_list "
+	      String query = "SELECT COUNT(*) FROM mypage_store_list "
 	      		+ " WHERE id = '"+ map.get("id") +"'";
 	      if(map.get("searchWord") != null) {
-	         query +=" AND "+ map.get("searchField") 
-	         			+ " LIKE '%"+ map.get("searchWord")+ "%' AND ";
+	    	  query += " AND "+ map.get("searchField") 
+	   			+ " LIKE '%"+ map.get("searchWord")+ "%' "
+	   			+ " AND id = '"+map.get("id")+"'";
 	      }
 	      try {
 	    	 stmt = con.createStatement();
@@ -41,17 +42,24 @@ public class MypageDAO extends JDBConnect{
 	public List<MypageDTO> selectList(Map<String, Object> map){
 		   List<MypageDTO> mypageList = new Vector<MypageDTO>();
 		   
-		   String query = "SELECT * FROM mypage_list "
+		   String query =  "SELECT * FROM ( "
+			   	+ "  SELECT Tb.*, ROWNUM rNum FROM ( "
+				+ " SELECT * FROM mypage_store_list "
 		   		+ " WHERE id = '"+ map.get("id") +"'";
 		   if(map.get("searchWord") != null) {
 			   query += " AND "+ map.get("searchField") 
 			   			+ " LIKE '%"+ map.get("searchWord")+ "%' "
 			   			+ " AND id = '"+map.get("id")+"'";
 		   }
-		   query += "	ORDER BY mypage_date desc";
+		   query += "	ORDER BY mypage_date DESC"
+				 + "        ) Tb "
+				 + " ) "
+				 + " WHERE rNum BETWEEN ? AND ?";
 		   try {
-			   stmt = con.createStatement();
-		       rs = stmt.executeQuery(query);
+			   psmt = con.prepareStatement(query);
+			   psmt.setString(1, map.get("start").toString());
+			   psmt.setString(2, map.get("end").toString());
+			   rs = psmt.executeQuery();
 			   
 			   while(rs.next()) {
 				   MypageDTO dto = new MypageDTO();
@@ -80,8 +88,8 @@ public class MypageDAO extends JDBConnect{
 			 MypageDTO dto = new MypageDTO();
 			   //쿼리문 작성 후 인파라미터를 설정하고 실행한다.
 			   String query = "select *  "
-			   		+ "    from mypage_list inner join store "
-			   		+ "    on mypage_list.idx=store.idx "
+			   		+ "    from mypage_store_list inner join store "
+			   		+ "    on mypage_store_list.idx=store.idx "
 			   		+ "    where mypage_idx = ? "
 			   		+ "    order by mypage_date desc";
 			   try {
@@ -113,7 +121,7 @@ public class MypageDAO extends JDBConnect{
 		 public int deleteGoods(String idx) {
 			 int result = 0;
 			 try {
-				 String query = "DELETE FROM mypage_list WHERE 	mypage_idx=?";
+				 String query = "DELETE FROM mypage_store_list WHERE 	mypage_idx=?";
 				 psmt = con.prepareStatement(query);
 				 psmt.setString(1, idx);
 				 result = psmt.executeUpdate();
